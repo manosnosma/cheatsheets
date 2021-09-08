@@ -1,0 +1,150 @@
+#+title: Git Cheat Sheet
+#+author: Manos Vasilakis (advizor.gr)
+
+* Git Cheat Sheet
+
+** Basics
+- Add all files in directory:
+  #+BEGIN_SRC <sh>
+$ git add .
+  #+END_SRC
+
+- Commit with message:
+  #+BEGIN_SRC <sh>
+$ git commit -m "first commit"
+  #+END_SRC
+
+- Do both at once with the -am flag* Git Cheat Sheet
+
+*** Basic Commands
+| Command          | Comment                                         |
+|------------------+-------------------------------------------------|
+| $ git init       | Initialize local git repository                 |
+| $ git add <file> | Add File(s) to index ('.' for all files in dir) |
+| $ git status     | Check the status of the working tree            |
+| $ git commit     | Commit changes to index                         |
+| $ git push       | Push to remote repository                       |
+| $ git pull       | Pull latest from remote repository              |
+| $ git clone      | Clone repository into a new directory           |
+
+** Aliases for Commands
+For example create an alias for "commit -am" to use with just 2 letters (ac):
+
+#+BEGIN_SRC <sh>
+$ git config --global alias.ac "commit -am"
+#+END_SRC
+
+** Mistake on commit message
+If you made a mistake on the last commit message, you can use
+the '- -amend' flag to change the last commit message:
+
+#+BEGIN_SRC <sh>
+$ git commit --amend -m "new commit message"
+#+END_SRC
+
+** List repository's history of commits
+#+BEGIN_SRC <sh>
+$ git log
+
+$ git log --oneline
+
+$ git log --graph --oneline --decorate
+#+END_SRC
+
+** Update the last commit with new files (if not pushed yet!)
+Use the '- -no-edit' flag to keep the existed commit message
+#+BEGIN_SRC <sh>
+$ git add .
+
+$ git commit --amend --no-edit
+#+END_SRC
+
+If you want to live dangerously, you can overwrite the last pushed commit:
+But if there are any commits you don't have, it'll be forever lost.
+#+BEGIN_SRC <sh>
+$ git push origin master --force
+#+END_SRC
+
+** Revert Last (garbage) Commit
+Ctrl-Z in steroids.
+#+BEGIN_SRC <sh>
+$ git revert commitName
+#+END_SRC
+
+** Rename the 'master' branch (main, mega, mucho)
+#+BEGIN_SRC <sh>
+$ git branch -M main
+#+END_SRC
+
+** Return to a working state of the past (past commit)
+#+BEGIN_SRC <sh>
+$ git bisect start
+
+$ git bisect bad
+
+$ git bisect good
+#+END_SRC
+
+See the documentation: [[https://git-scm.com/docs/git-bisect][Git Bisect]].
+
+** Squash commits
+Merge multiple commits (as one merged commit) from another branch (a features branch
+for example) to the +master+ main branch.
+
+Run:
+
+#+BEGIN_SRC <sh>
+$ git rebase main --interactive
+#+END_SRC
+
+In the file created,
+- to use a commit, use the /pick/ command,
+- change a message, using the /reword/ command, or
+- combine (squash) everything, into the original commit,
+  using the /squash/ command.
+
+Save and close the file.
+Git will pull another file prompting you to update the commit message,
+which by default will be a combination of all messages you have just squashed.
+
+If you don't want all the messages to be combined you can use '- -fixup' instead
+of '- -squash' when you're doing the rebase.
+
+To be even more productive you can use the '- -fixup' and '- -squash' flags on
+the commits you are making on your branch, so that it tells git in advance that you
+want to squash them, so when you go to do a rebase ($ git rebase -i - -autosquash)
+with the auto squash flag it can handle all the squashing automatically.
+
+Read the documentation for more: [[https://git-scm.com/docs/git-rebase][Git Rebase]].
+
+** Git Hooks (~run code before the commit the committed)
+For repository maintaining, docs: [[https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][Git Hooks]].
+
+** Revert bad local changes back to master (last committed state)
+You made changes on the local repo and you screw up as always.
+To revert the changes back to the origin/master run the following:
+
+#+BEGIN_SRC <sh>
+$ git fetch origin
+#+END_SRC
+
+
+and,
+
+#+BEGIN_SRC <sh>
+$ git reset --hard origin/master
+#+END_SRC
+
+to overwrite the local code with the remote.
+
+If there are any crappy files left after that, use the following
+command to clean the up:
+
+#+BEGIN_SRC <sh>
+$ git clean -df
+#+END_SRC
+
+** Switch back to the previous working branch
+#+BEGIN_SRC <sh>
+$ git checkout -
+#+END_SRC
