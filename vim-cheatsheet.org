@@ -1,0 +1,542 @@
+#+title: VIM Cheat Sheet
+#+author: Manos Vasilakis (advizor.gr)
+
+* VIM Cheatsheet
+A lifetime worth of vim knowledge in a file.
+** Basics
+*** Basic Movements & Commands
+#+BEGIN_EXAMPLE
++-----------------+   For Japanese users, Hiroshi Iwatani suggested using this:
+|  Movements:     | -----------------------------------------------------------
++-----------------+                   Komsomolsk
+|                 |                       ^
+|       ^         |                       |
+|       k         |          Huan Ho  <---0---> Los Angeles
+| < h       l >   |	(Yellow river)    |
+|       j         |                       v
+|       v         |                       Java (the island,
+|                 |                       not the programming language)
++-----------------+
+
+Basic Commands:
+- :q! → Exit discarding anything you did.(cause u suck!)
+- x   → Delete Char. (Normal Mode, N.M.)
+- i   → Insert (move cursor, press i and insert text) (N.M)
+- A   → Append ("--") (N.M.)
+- wq  → Exit and Save Changes.
+- dw  → DeleteWord after cursor (N.Mode)
+- d$  → Delete Until End Of Line (N.M.)
+#+END_EXAMPLE
+
+*** Cursor Location & File Status
+- CTRL + G → Shows Ur Location in file & file status.
+- G    → Move to Bottom of File
+- gg   → Move to Top of File.
+
+*** Search Command / and ?
+- /test
+   - Searches for "skatata"
+   - press n to Find Next
+   - press N to Find Next on Opposite Direction.
+- ?skatata
+   - Searches for "skatata" on the Opposite Direction.
+   - Press CTRL + O to go back where you came, keep pressing o, to repeat
+   - Press CTRL + I to go Forward.
+
+*** Matching (Parenthesis)
+- % → Place cursor on any (,[,{ and type % to find it's match ),] or }.
+*** Searching
+- /term
+  - Searches for the term 'term'
+  - Press 'n' and 'b' to go back and forth.
+
+*** Substitution
+   #+BEGIN_EXAMPLE
+    :s/old/new	    → Change first occurence of "old" to "new".
+    :s/old/new/     → Adding the g Flag makes it Global
+    		          all occurences of "thee" replaced.
+    :#,#s/old/new/g → where #,# are the line numbers of the range
+                      of lines where the substitution is to be done.
+    :%s/old/new/gc  → to find every occurrence in the whole file,
+                      with a prompt whether to substitute or not.
+   #+END_EXAMPLE
+
+*** Execute External Commands:
+- !ls → Execute ls command inside vim.
+
+*** Make External copy of current file:
+- :w NewFile
+   - Make exact copy of current file as NewFile.
+   - To save part of the file, type v, select and :w NewFile.
+
+*** Retrieve & Merge Files:
+- :r Filename
+   - Insert the contents of the file Filename into the current one.
+- :r !ls
+   - Insert the output of ls command under your cursor <3LifeHack.
+
+*** To go insert mode:
+- o → open Command, puts you in I mode, to the line bellow the cursor.
+- O → Open Command, puts you in I mode, to the line Above the cursor.
+- a → Append Command, Puts you to I mode (almost same as i, A)
+- A → Append Command, Puts you to I mode, append text at the end of line.
+
+*** Basic Text Manipulation
+- R → Replace Command, Replace More than One Character.
+- y → yank=copy, type v, select text you need, type y to yank.
+- p → put=paste, move the cursor where you want, type p to put that you yanked.
+
+*** set option :set
+- :set ic
+   - Type :set ic and /skata to search for skata (ic=IgnoreCase).
+   - Type :set noic to Disable Ingoring Case.
+   - Type /skata\c to Ignore Case for just this search.
+   - Type :set hls is and /skata to highligt all skata occurences.
+   - Type :nohlsearch to remove the highlightings.
+
+** Vim Language Synopsis
+Vim's killer feature is the language it provides for making changes.
+#+BEGIN_EXAMPLE
+The Syntax of the VIM Language:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    - Verb + Noun
+
+    - d for Delete }
+                   } => Delete Word :)
+    - w for Word   }
+
+- Commands are: Repeatable & Undoable.
+#+END_EXAMPLE
+
+*** Verbs and Nouns in VimL
+- Verbs: The operations you want to make on the text.
+  + "d" → Delete
+  + "dd → Delete Line.
+  + "D" → Delete from Cursor pos. until end of line.(=d$)
+  + "c" → Change (Delete & go to Insert Mode)
+  + ">" → Indent
+  + "<" → Outdent
+  + "v" → Visually Select
+  + "y" → Yank (copy)
+  + "u" → Undo
+  + "r" → Replace
+  + "J" → Join current live with following one.
+  + "w" → Save
+  + "x" → Delete Character
+  + "i" → Insert Mode.
+  + "o" → open (puts you to Imode to the line bellow)
+  + "O" → Open (puts you to Imode to the line above)
+  + "a" → append (like i)
+  + "A" → Append (Append text to the end of current line.)
+  + "p" → Put (Paste)
+  + "gg: → Go to 1st Line of the file.
+  + "g" → (k,h,l,j): Move to logical line.
+  + "G" → Go to Last Line of the file.
+  + "q" → Quit.
+  + "/" → Search Forward.
+  + "?" → Search Backward.
+  + "%" → Marching (,[,{.
+  + "s" → Substitute.
+  + "!" → Execute External Command.
+  + "." → Repeat my previous command
+  + =+++=
+
+- Nouns: Motions.
+  - "w" → Word (forward by a "word")
+  - "e" → End of the word.
+  - "b" → Back (back by a "word")
+  - "j" → One Line Down.
+  - "k" → One Line Up.
+  - "0" → Start of Line
+  - "$" → End of Line. (including last char.)
+  - "s" → Sentence (ex: das (Delete Arround Sentence
+  - "p" → Paragraph.
+  - "i" → Inner (ex: ciw change all current word)
+  - "a" → Arround (ex: das delete arround sent. deletes sentence & its whitespace)
+  - "t" → Tag (ex: cit change inner tag
+		  → change the contents of a <p>sdasew12r</p> tag;)
+		  → Vim understands tags! you dont even have to be inside one.🤘
+  - =+++=
+
+- Examples:
+  - "iw" → inner word (works from anywhere in the word).
+  - "i"" → inner quotes.
+  - "it" → inner tag (contents of HTML tag see above).
+  - "ip" → inner paragraph.
+  - "as" → "a sentence" (ap = a paragraph).
+
+- Parameterized Text Objects:
+  **(You have some of those on Verbs cause u're NoOb deal with it!)**
+	Not Official Term, but means that they need text after them, to do something with it:
+  - "f", "F" → "find" the next character(including that character).
+  - "t", "T" → "find" the next character(NOT including that character).
+  - "/" → Search (up to the next term).
+
+** Some built-in configuration additions
+The following settings in the next 6 sections require no plugins
+to be installed, just vanilla vim or neovim.
+#+BEGIN_EXAMPLE
+" Enter the current millenium:
+set nocompatible
+
+" Enable syntax and plugins (for metrw)
+syntax enable
+filetype plugin on
+#+END_EXAMPLE
+
+*** Fuzzy Buffer File Search
+Search down into subfolders
+Provides tab-complition for all file-related tasks
+
+#+BEGIN_EXAMPLE
+set path +=**
+
+" Display all matching files when we tab autocomplete
+set wildmenu
+#+END_EXAMPLE
+
+NOW YOU CAN:
+- Hit tad to :find by partial match
+- Use * to make it fuzzy
+- Remove a file from buffer with :bd
+- :b lets you autocomplete any buffer:
+
+One cool thing you can do is play with ur vim buffers finally:
+( You have more that you could possibly handle! )
+1. If you have multiple files opened in vim,
+   you can use the :ls command, to view all opened buffers.
+2. Then you can use the :b command along with a substring:
+   (part of the filename of the file u need from the buffer)
+   #+BEGIN_EXAMPLE
+   :b flname
+   #+END_EXAMPLE
+   If ur substring Isn't Unique vim'll let u know.
+
+*** Tag Jumping
+Create the 'tags' file (may need ctags if urnot in Linux.)
+#+BEGIN_EXAMPLE
+command! MakeTags !ctags -R .
+#+END_EXAMPLE
+NOW YOU CAN: (^=<CTRL>)
+  1. Use ^] to jump to tag under cursor.
+  2. Use g^] for ambiguous tags.
+  3. Use ^t to jump back up the stack.
+  4. This doesn't help if you want a visual list of tags.
+*** Autocomplete
+The good stuff is documented in |:help ins-completion|
+
+HIGHLIGHTS:
+- ^x^n for JUST this file.
+- ^x^f for filenames (works with our path tricks.) <-- FIND FLNMS in INSERT MODE!
+- ^x^] for tags only
+- ^n for anything specified by the 'complete' option.
+
+NOW YOU CAN:
+- Press ^n to see suggestions and
+- Use ^n and ^p to go back and forth in the suggestion list menu.
+- Cool if you asked me. Also:
+- Type ~/Code/myPython/ ^x^f to list all files in there specifically.
+  - Vim ins autocompletion supports BRE. Find out if needed.
+  - Go to :help ins-completion for more crazy toys.
+
+*** File Browsing
+Tweak for browsing:
+#+BEGIN_EXAMPLE
+let g:netrw_banner=0		" disable annoying banner.
+let g:netrw_browse_split=4	" open in prior windows.
+let g:netrw_altv=1		" open splits to the right.
+let g:netrw_liststyle=3		" tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+#+END_EXAMPLE
+
+NOW YOU CAN:
+- :edit a folder to open a file browser.
+- <CR>/v/t to open in a h-split/v-split/tab
+- check ":help netrw-browse-maps" for more mappings.
+*** Snippets
+#+BEGIN_EXAMPLE
+nnoremap ,html :-1read $HOME/.config/nvim/.skeleton.html<CR>3jwf>a
+#+END_EXAMPLE
+
+NOW YOU CAN:
+- Take over the world! (with much fewer keystrokes)
+- "read" => ":read file.html" put contents of file.html in my current file.
+- The :-1 before the read on the command is there before read, adds a \n, and the cursor would move.
+- The "3jwf" is for moving cursor in the <title>👇</title>.
+*** Build Integration
+Steal Mr. Bradley's formatter & add it to our =spec_helper=
+[[http://philipbradley.net/rspec-into-vim-with-quickfix][http://philipbradley.net/rspec-into-vim-with-quickfix]]
+
+Configure the 'make' command to run RSpec
+#+BEGIN_EXAMPLE
+set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
+#+END_EXAMPLE
+
+NOW YOU CAN:
+
+Run
+- :make to run RSpec.
+- :cl to list errors.
+- :cc# to jump tp error by number.
+- :cn and :cp to navigate back & forward.
+
+** NeoVim User Manual Synopsis
+NEOVIM USER MANUAL - by Bram Mooleanaar - Not all of it but the stuff i needed most.
+*** =usr_02.txt=: First Steps in Vim
+1. Go to Insert Mode:	"i"
+2. Go to Normal Mode:	"<ESC>"
+3. Go to Command-line Mode: ":"
+4. See what mode u are in: ":set showmode"
+5. Move cursor left/down/up/right: "h"/"j"/"k"/"l"
+6. Delete char under cursor: "x"
+7. Delete line cursor is at: "dd"
+8. Delete line brake (join lines): "J"
+9. Undo Last Edit: "u"
+10. Redo Last Undo: "<CTRL>+R"
+11. Append (Go to Insert mode & Append to end of line: "a"
+12. Open new line (Go to I. mode and add \n before the cursor: "o"
+13. Open new line above cursor: "O"
+14. You can use counts to (almost) all the above commands, examples: "3a", "3dd", "3x", "9k"
+15. Getting Help (Stop Googling!): ":help {subject}"
+    a. Get help for the x command: ":help x"
+    b. Find out how to delete: ":help deleting"
+    c. Index all Vim Commands: ":help index"
+    d. Get help for CTRL+"": ":help CTRL-A"
+    e. Help for CTRL+H in Normal Mode: ":help CTRL-H"
+    f. Help for CTRL+H in Insert Mode: ":help i_CTRL-H"
+    g. Help for cmd-line args: ":help -t"
+    h. Help on cmd options: Options are enclosed with signle quotes 'opt':-> ":help 'number'"
+    i. Special Keys are enclosed by <angle> brackets: ":help i_<Up>"
+    j. If you see an Error you don't know of: ":help E37"
+       - (like this: E37: No write since last... ...change (use ! to override))
+       - DON'T PANIC copy the code "E37" and: ":help E37"
+    k. Follow linkstorelatted topics:	":help usr_13.txt"
+    l. Autocomplete help topics: ":help ind<Tab>" or "<CTRL>+D"
+    m. For more on help see: ":help helphelp" or ":help usr_02.txt" :)
+16. Save & Exit (NoBackup): "ZZ"
+17. Save & Discard Changes: ":q!"
+
+*** =usr_03.txt=: Moving Around
+**** Word Movement:
+1. Move (3) word(s) Forward: "3w"
+2. Move backword to start of previous word: "b"
+3. Move to next end of a word: "e"
+4. Move to previous end of a word: "ge"
+5. Make Vim consider as words, words that
+	end with a non-word char like . - ... : ":set iskeyword&"
+**** Moving to start or end of file:
+1. Move to end of Current Line: "&"
+2. Move to end of 4rth Line: "4$"
+3. Move to start of Line: "0"
+
+**** Moving to a specific character:
+1. (f)ind forward in line specific char: "fx" search for "x"
+   - Go to the l if the "foul" word: "3fl"
+2. (F)ind backwords in line specific char: "Fx"
+3. Same as f but stops one char before: "tx"
+4. Same as F but stops one char before: "Tx"
+5. You can repeat those 4 commands by using: ";"/","
+
+**** Matching Parenthesis:
+1. Match (,[,[ by going on top of one and: "%"
+
+**** Moving to a specific line:
+1. Go to Last line in file: "G"
+2. Go to 7th line of the file: "7G"
+3. Go to 1st line of the file: "gg"
+4. Go to the middle of the file: "50%"
+5. Go to near the end: "90%"
+6. Move on top of the visible text area: "H" 1st visible line
+7. Move on middle of the visible text area:	"M" Middle
+8. Move to end of the visible text area: "L"	Last visible line
+
+**** Telling where you are:
+1. See current filename, line number,
+   position(%), column: "<CTRL> + G"
+2. Display Line Numbers: ":set number"
+3. Switch of displaying line numbers: ":set nonumber"
+4. Display cursor posit. in low right corner: ":set ruler"
+
+**** Scrolling around:
+1. Scrolling Carefully Up: "<CTRL> + U" or "u"
+2. Scrolling Carefully Down: "<CTRL> + D" or "d"
+3. Scrolling Carefully One Line Up: "<CTRL> + E" or "e"
+4. Scrolling Carefully One Line Down: "<CTRL> + Y" or "y"
+5. Scroll by a whole screen forward: "<CTRL> + F" or "f"
+6. Scroll by a whole screen Backwards: "<CTRL> + B" or "b"
+7. Scroll screen carefully down without,
+   moving the cursor, to see below: "zz"
+8. Save as above but puts cursor on top: "zt"
+9. Save but puts cursor on the bottom: "zb"
+
+**** Simple Searches:
+1. Search for a string: ="\string_to_find"=
+2. Find next occurence: "n"
+3. Go to 3rd occurence: "3n"
+4. Search backwards for string: "?string"
+5. Find next occurence on backwards: "N"
+6. Set Ignore case: ":set ignorecase"
+7. Unset Ignore case: ":set noignorecase"
+8. Search History: "/" or "?" and <Up>/<Down>
+9. Command History: ":" and <Up>/<Down>
+10. Match String to Search with cursor:	"=*="
+    - Put cursor on the word and press "*"
+11. Find Next Occurence of Current Word:
+    - Put the cursor on top of the word, type "*"
+      to grab the word as search string.
+    - "#" is the same for the other direction.
+    - "3*" matches the 3rd oc/nce.
+12. Search for exact words:
+    - "/the\" if not use \ u'll also match there, these, ...
+13. Match the beginning of a word:
+    - "/\<the\" search the word "the"
+14. Hightlight All Occurence of a Search: ":set hlsearch"
+15. Disable the above: ":set nohlsearch"
+16. Just remove the hightlight:	"nohlsearch"
+17. Search Specifically in the file: ":set nowrepscan"
+18. Disable display anwers while typing: ":set noincsearch"
+19. Set any of the above options on vimrc: ":edit ~/.config/nvim/init.vim"
+
+**** Simple Search Patterns - Simple REs:
+1. Match a word at beginning of line Only: "^the"
+2. Match word at the end of a line Only: "the$"
+3. Search for word at begin/end of line: "/^the" / "the$"
+4. Match a line containing only the pattern: "/^the$"
+5. Match any signle character: "."
+6. Match special characters with eskeetit: "\.", "\^"
+
+**** Using marks
+When u move arround vim remembers the position u came from, this position is called mark.
+1. Go back to your previous position: "``"
+2. Jump to older positions: "<Ctrl>" + "O"
+3. Jump to newer positions: "<Ctrl>" + "I" Same as <TAB>
+4. Consider the following sequence:	"33G /^The CTRL + O"
+5. List all positions you jumped to: ":jumps"
+
+NAMED MARKS - Use your own marks, you can have 26 of them,
+(A-Z) in your text, you cant see them, vim remembers them:
+1. Mark the place under your cursor as "a":	"ma"
+2. Now to go to your "a" mark use the "`":	"`a"
+3. Go to the beginning of the line that contains the mark: "'a" (single quote')
+4. A good usage is the following:
+   Put a mark "s" for start at the start of the file u're working,
+   and a "e" end mark at the end of the file and go back and
+   forth easilly with: "'s" / "'e"
+5. List all marks: ":marks"
+6. Some Special Marks:
+   - The cursor position before doing a jump: "'"
+   - The cursor position when last editing the file: '"'
+   - Start of the last change: "["
+   - End of the last change: "]"
+
+*** =usr_04.txt=: Making Small Changes
+**** Operators and Motions
+1. Delete 2 words (w): "d2w"
+2. Delete 2 words up until the last char (e): "d2e" (delete 2 end)
+3. Delete from cursor until end of line: "d$"
+4. Operate on any text u can move over: "d4k"
+**** Changing Text
+1. Replace part of a line with ur string: "c2wbe<Esc>"
+   - "c": the change operator.
+   - "2w": move two words (they're deleted and Insert mode started)
+   - "be": insert this text <Esc> back to Normal Mode. Cool ;)
+2. Delete a Whole Line: "dd"
+   a. Delete to the end of Line: "d$"
+   b. Delete to the end of Line: "D"
+3. Change a Whole Line: "cc"
+   a. Change a Whole Line: "S"
+   b. Change to the end of Line: "c$"
+   c. Change to the end of Line: "C"
+**** SHORTCUTS:
+Some operator-motion commands are used so often that they
+have been given a single letter command:
+- x stands for dl (delete character under cursor)
+- X stands for dh (delete character left of the cursor)
+- D stands for d$ (delete to the end of the line)
+- C stands for c$ (change to the end of the line)
+- s stands for cl (change one character)
+- S stands for cc (change a whole line)
+**** WHERE TO PUT THE COUNT:
+1. Delete 1 word 3 times: "3dw"
+2. Delete 3 words 1 time: "d3w"
+3. Delete 2 words, repeated 3 times for a total of 6 words: "3d2w"
+**** REPLACING WITH ONE CHARACTER:
+1. Replace char with "T" in NormalMode: "rT"
+2. Replace 5 chars with "x"s in NormalMode: "5rx"
+3. Replace 4 characters with breakline: "4r<Enter>"
+**** Repeating a Change
+1. Repeat the last change: "."
+**** Visual Mode - (v/V)
+1. Select text: "v" + movement(h/j/k/l)
+2. Select text to delete: "v" + movement + "d"
+3. Select WHole Lines: "V"+ movement + action
+4. Select Blocks (like tables): "<Ctrl>+V" + move + act
+5. Go to end the selection: "o"
+**** Moving Text
+When you Delete something with "d", "x", or another command,
+the text is saved. You can paste it back by using the "p" put command.
+1. Put deleted text before the cursor: "p"
+2. Put deleted text before the cursor: "P"
+3. You can repeat p/P as many times you need, the same text will be printed.
+4. Put deleted text 3times: "3p"
+5. Swap 2 characters("teh"~>"the"): "xp" 1st move cursor on the "e"
+**** Copying - Yanking Text - Inside vim
+1. Yank selected text: "y"
+2. Yank word: "yw"
+3. Yank 2 words: "y2w"
+4. Yank 2 words without whitespaces: "y2e"
+5. Yank whole line:"yy" or "Y"
+6. Delete from cursor until end: "D"
+7. Yank from cursor until end of line: "y$"
+**** Using the Clipboard - (y + p + "*)
+1. Yank line into clipboard: "*yy
+2. Put text from clipboard into text: "*p
+**** Text objects
+These commands move over three kinds of text objects:
+Sentence, Paragraph, Section
+1. Delete A Word under cursor no whitespace: "diw"
+2. Delete Word under cursor with whitespace: "daw"
+3. Change Inner Sentence: "cis"
+4. Same as above, includes whitespace: "cas"
+5. Delete Until End of file: "dG"
+6. Delete Until Start of file: "dgg"
+7. text-objects-summary:
+   1. sentences backward: "("
+   2. sentences forward: ")"
+   3. paragraph backward: "{"
+   4. paragraph forward: "}"
+   5. section forward or to the next '{': "]]"
+   6. section forward or to the next '}': "]["
+   7. section backward or to previous '{': "[["
+   8. section backward or to previous '}': "[]"
+**** Replace mode - R
+1. The R command cause vim to enter the replace mode.
+   In this mode every character u type replaces the one
+   under ur cursor, until u press <Esc>
+2. Switch from Replace to Insert mode: "<Insert>"
+
+*** more someday...
+** Let vim do the typing
+Let Vim do the typing - Insert Mode
+- Insert Text from a Register: "<Ctrl> + r"
+- Last Inserted text: "<Ctrl> + a"
+- Go to sub completion mode: "<Ctrl> + x"
+- Tag Completion: "<Ctrl> + x + <Ctrl> + ]"
+- Filename Completion: "<Ctrl> + x + <Ctrl> + f"
+- Context Aware Word Completion: "<Ctrl> + x + <Ctrl> + p"
+- Same as above but searches forward: "<Ctrl> + x + <Ctrl> + n"
+- Context Aware Line Completion: "<Ctrl> + x + <Ctrl> + l"
+- Omni Completion (ex python methods): "<Ctrl> + x + <Ctrl> + o"
+- Where vim looks for completion: ":set complete"
+- To add there: ":set complete+=i,kspell"
+
+** More Unsorted Magic
+- To delete forward up to character: "'X' type dtX"
+- To delete forward through character: "'X' type dfX"
+- To delete backward up to character: "'X' type dTX"
+- To delete backward through character: "'X' type dFX"
+- Open Multiple Files in buffers: ":n file1 file2"
+- Loop through Multiple Files in ur buffers: ":b <Tab>" (:b<space><Tab>)
+- Create visual block: "<Ctrl> + v"
+- Comment Mupliple Lines: Ctrl + v from down to up, Shift + I, type the comment char (#, //), and press Esc
