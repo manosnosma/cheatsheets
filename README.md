@@ -1,7 +1,7 @@
 # Programming Cheatsheets
 
 Cheatsheets:
-- Python
+- [~~Python~~](https://github.com/manosvasilakis/cheatsheets/blob/master/python-cheatsheet.org)
 - Java
 - [~~Awk~~](https://github.com/manosvasilakis/cheatsheets/blob/master/awk-cheatsheet.org)
 - [~~Mysql~~](https://github.com/manosvasilakis/cheatsheets/blob/master/mysql-cheatsheet.org)
