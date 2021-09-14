@@ -1,5 +1,6 @@
 #+title: VIM Cheat Sheet
 #+author: Manos Vasilakis (advizor.gr)
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
 * VIM Cheatsheet
 A lifetime worth of vim knowledge in a file.

@@ -1,5 +1,6 @@
 #+title: Python Cheat Sheet
 #+author: Manos Vasilakis (advizor.gr)
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
 * Comments.
 #+BEGIN_SRC python

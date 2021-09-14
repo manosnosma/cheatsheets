@@ -1,5 +1,6 @@
 #+title: MySQL Cheat Sheet
 #+author: Manos Vasilakis (advizor.gr)
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
 * MySQL Cheat Sheet
 

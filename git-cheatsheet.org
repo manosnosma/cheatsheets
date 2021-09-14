@@ -1,5 +1,6 @@
 #+title: Git Cheat Sheet
 #+author: Manos Vasilakis (advizor.gr)
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
 * Git Cheat Sheet
 
