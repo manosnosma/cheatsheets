@@ -5,12 +5,12 @@
 
 ** Basics
 - Add all files in directory:
-  #+BEGIN_SRC <sh>
+  #+BEGIN_SRC sh
 $ git add .
   #+END_SRC
 
 - Commit with message:
-  #+BEGIN_SRC <sh>
+  #+BEGIN_SRC sh
 $ git commit -m "first commit"
   #+END_SRC
 
@@ -30,7 +30,7 @@ $ git commit -m "first commit"
 ** Aliases for Commands
 For example create an alias for "commit -am" to use with just 2 letters (ac):
 
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git config --global alias.ac "commit -am"
 #+END_SRC
 
@@ -38,12 +38,12 @@ $ git config --global alias.ac "commit -am"
 If you made a mistake on the last commit message, you can use
 the '- -amend' flag to change the last commit message:
 
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git commit --amend -m "new commit message"
 #+END_SRC
 
 ** List repository's history of commits
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git log
 
 $ git log --oneline
@@ -53,7 +53,7 @@ $ git log --graph --oneline --decorate
 
 ** Update the last commit with new files (if not pushed yet!)
 Use the '- -no-edit' flag to keep the existed commit message
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git add .
 
 $ git commit --amend --no-edit
@@ -61,23 +61,23 @@ $ git commit --amend --no-edit
 
 If you want to live dangerously, you can overwrite the last pushed commit:
 But if there are any commits you don't have, it'll be forever lost.
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git push origin master --force
 #+END_SRC
 
 ** Revert Last (garbage) Commit
 Ctrl-Z in steroids.
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git revert commitName
 #+END_SRC
 
 ** Rename the 'master' branch (main, mega, mucho)
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git branch -M main
 #+END_SRC
 
 ** Return to a working state of the past (past commit)
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git bisect start
 
 $ git bisect bad
@@ -93,7 +93,7 @@ for example) to the +master+ main branch.
 
 Run:
 
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git rebase main --interactive
 #+END_SRC
 
@@ -124,14 +124,14 @@ For repository maintaining, docs: [[https://git-scm.com/book/en/v2/Customizing-G
 You made changes on the local repo and you screw up as always.
 To revert the changes back to the origin/master run the following:
 
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git fetch origin
 #+END_SRC
 
 
 and,
 
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git reset --hard origin/master
 #+END_SRC
 
@@ -140,11 +140,11 @@ to overwrite the local code with the remote.
 If there are any crappy files left after that, use the following
 command to clean the up:
 
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git clean -df
 #+END_SRC
 
 ** Switch back to the previous working branch
-#+BEGIN_SRC <sh>
+#+BEGIN_SRC sh
 $ git checkout -
 #+END_SRC

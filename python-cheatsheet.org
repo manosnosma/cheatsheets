@@ -2,7 +2,7 @@
 #+author: Manos Vasilakis (advizor.gr)
 
 * Comments.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 # Single line comments
 
 """ Multiline comment
@@ -20,13 +20,13 @@
 
 * Primitive Datatypes and Operators
 ** Numbers
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 3    # => 3    => integer
 3.14 # => 3.14 => float
 #+END_SRC
 
 ** Basic Math
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 + 1   # => 2
 8 - 1   # => 7
 10 * 2  # => 20
@@ -34,7 +34,7 @@
 #+END_SRC
 
 ** Integer division
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 5 // 3       # => 1
 5.0 // 3.0   # => 1.0 # works on floats too
 -5 // 3      # => -2
@@ -42,55 +42,55 @@
 #+END_SRC
 
 ** Division's result is always a float
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 10.0 / 3  # => 3.3333333333333335
 #+END_SRC
 
 ** Modulo Operation
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 7 % 3  # => 1
 #+END_SRC
 
 ** Exponentiation
 (x**y, x to the yth power)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 2**3  # => 8
 #+END_SRC
 
 ** Enforce precedence
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 (1 + 3) * 2  # => 8
 #+END_SRC
 
 ** Boolean values are primitives
 (Note: the capitalization)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 True
 False
 #+END_SRC
 
 ** Negate with not
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 not True   # => False
 not False  # => True
 #+END_SRC
 
 ** Boolean Operators
 Note "and" and "or" are case-sensitive
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 True and False  # => False
 False or True   # => True
 #+END_SRC
 
 ** True and False are actually 1 and 0
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 True + True # => 2
 True * 8    # => 8
 False - 5   # => -5
 #+END_SRC
 
 ** Comparison operators
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 0 == False  # => True
 1 == True   # => True
 2 == True   # => False
@@ -103,7 +103,7 @@ evaluation, but their non-cast value is returned
 
 Don't mix up with bool(ints) and bitwise and/or (&,|)
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 bool(0)     # => False
 bool(4)     # => True
 bool(-6)    # => True
@@ -112,19 +112,19 @@ bool(-6)    # => True
 #+END_SRC
 
 ** Equality is ==
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 == 1  # => True
 2 == 1  # => False
 #+END_SRC
 
 ** Inequality is !=
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 != 1  # => False
 2 != 1  # => True
 #+END_SRC
 
 ** More comparisons
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 < 10  # => True
 1 > 10  # => False
 2 <= 2  # => True
@@ -132,13 +132,13 @@ bool(-6)    # => True
 #+END_SRC
 
 ** Is value in range?
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 < 2 and 2 < 3  # => True
 2 < 3 and 3 < 2  # => False
 #+END_SRC
 
 *** Chaining makes this look nicer
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 < 2 < 3  # => True
 2 < 3 < 2  # => False
 #+END_SRC
@@ -148,7 +148,7 @@ bool(-6)    # => True
 
 If the objects pointed to have the same values.
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 a = [1, 2, 3, 4]  # Point a at a new list, [1, 2, 3, 4]
 b = a             # Point b at what a is pointing to
 b is a            # => True, a and b refer to the same object
@@ -159,72 +159,72 @@ b == a            # => True, a's and b's objects are equal
 #+END_SRC
 
 ** Strings are created with " or '
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "This is a string."
 'This is also a string.'
 #+END_SRC
 
 ** Strings can be added too!
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "Hello " + "world!"  # => "Hello world!"
 #+END_SRC
 
 ** Concatenate strings without using '+'
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "Hello " "world!"    # => "Hello world!"
 #+END_SRC
 
 ** A string ~ list of chars
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "This is a string"[0]  # => 'T'
 #+END_SRC
 
 ** Length of a string
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 len("This is a string")  # => 16
 #+END_SRC
 
 ** Format strings with .format
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "{} can be {}".format("Strings", "interpolated")  # => "Strings can be interpolated"
 #+END_SRC
 
 ** Repeat the formatting arguments to save some typing.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "{0} be nimble, {0} be quick, {0} jump over the {1}".format("Jack", "candle stick")
 # => "Jack be nimble, Jack be quick, Jack jump over the candle stick"
 #+END_SRC
 
 ** Use keywords if you don't want to count.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "{name} wants to eat {food}".format(name="Bob", food="lasagna")  # => "Bob wants to eat lasagna"
 #+END_SRC
 
 ** The old style of formatting:
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "%s can be %s the %s way" % ("Strings", "interpolated", "old")  # => "Strings can be interpolated the old way"
 #+END_SRC
 
 ** Format using f-strings or formatted string literals (in Python 3.6+)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 name = "Reiko"
 f"She said her name is {name}." # => "She said her name is Reiko"
 #+END_SRC
 
 You can basically put any Python statement inside the braces and it will be output in the string.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 f"{name} is {len(name)} characters long."
 #+END_SRC
 
 ** None is an object
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 None  # => None
 #+END_SRC
 
 ** Don't use the equality "==" symbol to compare objects to None
 Use "is" instead. This checks for equality of object identity.
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "etc" is None  # => False
 None is None   # => True
 #+END_SRC
@@ -233,7 +233,7 @@ None is None   # => True
 None, 0, and empty strings/lists/dicts/tuples all evaluate to False.
 
 All other values are True.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 bool(0)   # => False
 bool("")  # => False
 bool([])  # => False
@@ -243,26 +243,26 @@ bool(())  # => False
 
 * Variables and Collections
 ** The print function
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 print("I'm Python. Nice to meet you!")  # => I'm Python. Nice to meet you!
 #+END_SRC
 *** Default newline at the end.
 By default the print function also prints out a newline at the end.
 
 Use the optional argument end to change the end string.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 print("Hello, World", end="!")  # => Hello, World!
 #+END_SRC
 
 ** The input function
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 input_string_var = input("Enter some data: ") # Returns the data as a string
 #+END_SRC
 Note: In earlier versions of Python, input() method was named as raw_input()
 
 ** Only assignments, No declarations.
 Convention is to use lower_case_with_underscores
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 some_var = 5
 some_var  # => 5
 #+END_SRC
@@ -270,127 +270,127 @@ some_var  # => 5
 ** Accessing Unassigned variable
 Accessing a previously unassigned variable is an exception.
 See Control Flow to learn more about exception handling.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 some_unknown_var  # Raises a NameError
 #+END_SRC
 
 ** Ternary operator
 Equivalent of C's '?:' ternary operator
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "yahoo!" if 3 > 2 else 2  # => "yahoo!"
 #+END_SRC
 
 ** Lists (~arraylike)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li = []
 #+END_SRC
 *** Pre-filled list
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 other_li = [4, 5, 6]
 #+END_SRC
 
 *** append - Add to the end
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li.append(1)    # li is now [1]
 li.append(2)    # li is now [1, 2]
 li.append(4)    # li is now [1, 2, 4]
 li.append(3)    # li is now [1, 2, 4, 3]
 #+END_SRC
 *** pop - Remove from the end
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li.pop()        # => 3 and li is now [1, 2, 4]
 #+END_SRC
 *** Access list element
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[0]   # => 1
 #+END_SRC
 *** Last element
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[-1]  # => 3
 #+END_SRC
 
 *** Out of bounds is an IndexError
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[4]  # Raises an IndexError
 #+END_SRC
 
 *** Ranges with slice syntax.
 The start index is included, the end index is not
 *** Closed/open range
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[1:3]   # => [2, 4]
 #+END_SRC
 *** Omit the beginning and return the list
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[2:]    # => [4, 3]
 #+END_SRC
 *** Omit the end and return the list
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[:3]    # => [1, 2, 4]
 #+END_SRC
 *** Select every second entry
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[::2]   # =>[1, 4]
 #+END_SRC
 *** Return a reversed copy
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[::-1]  # => [3, 4, 2, 1]
 #+END_SRC
 *** Advanced Slice Syntax
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li[start:end:step]
 #+END_SRC
 
 *** Copy list
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li2 = li[:]  # => li2 = [1, 2, 4, 3] but (li2 is li) will result in false.
 #+END_SRC
 
 *** del - Remove arbitrary elements
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 del li[2]  # li is now [1, 2, 3]
 #+END_SRC
 
 *** Remove first occurrence of a value
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li.remove(2)  # li is now [1, 3]
 li.remove(2)  # Raises a ValueError as 2 is not in the list
 #+END_SRC
 
 *** Insert element at specific index
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li.insert(1, 2)  # li is now [1, 2, 3] again
 #+END_SRC
 
 *** Get the index of the first item found match
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li.index(2)  # => 1
 li.index(4)  # Raises a ValueError as 4 is not in the list
 #+END_SRC
 
 *** Add lists
 Note: values for li and for other_li are not modified.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li + other_li  # => [1, 2, 3, 4, 5, 6]
 #+END_SRC
 
 *** extend - Concatenate lists
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 li.extend(other_li)  # Now li is [1, 2, 3, 4, 5, 6]
 #+END_SRC
 
 *** in - Check for existence
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 1 in li  # => True
 #+END_SRC
 
 *** len - Length of list
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 len(li)  # => 6
 #+END_SRC
 
 ** Tuples (~immutable lists).
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 tup = (1, 2, 3)
 tup[0]      # => 1
 tup[0] = 3  # Raises a TypeError
@@ -398,7 +398,7 @@ tup[0] = 3  # Raises a TypeError
 
 *** length
 Note that a tuple of length one has to have a comma after the last element but tuples of other lengths, even zero, do not.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 type((1))   # => <class 'int'>
 type((1,))  # => <class 'tuple'>
 type(())    # => <class 'tuple'>
@@ -406,7 +406,7 @@ type(())    # => <class 'tuple'>
 
 *** Operations
 You can do most of the list operations on tuples too
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 len(tup)         # => 3
 tup + (4, 5, 6)  # => (1, 2, 3, 4, 5, 6)
 tup[:2]          # => (1, 2)
@@ -415,35 +415,35 @@ tup[:2]          # => (1, 2)
 
 *** Unpack tuples
 You can unpack tuples (or lists) into variables
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 a, b, c = (1, 2, 3)  # a is now 1, b is now 2 and c is now 3
 #+END_SRC
 
 *** Extended unpacking
 You can also do extended unpacking
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 a, *b, c = (1, 2, 3, 4)  # a is now 1, b is now [2, 3] and c is now 4
 #+END_SRC
 
 *** Tuples by default
 Tuples are created by default if you leave out the parentheses
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 d, e, f = 4, 5, 6  # tuple 4, 5, 6 is unpacked into variables d, e and f
 # respectively such that d = 4, e = 5 and f = 6
 #+END_SRC
 
 *** Swap 2 values
 Swap two values easily
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 e, d = d, e  # d is now 5 and e is now 4
 #+END_SRC
 
 ** Dictionaries (~key-value pairs)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 empty_dict = {}
 #+END_SRC
 *** Prefilled dictionary
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict = {"one": 1, "two": 2, "three": 3}
 #+END_SRC
 
@@ -452,13 +452,13 @@ the key can be converted to a constant hash value for quick look-ups.
 
 *** Immutable types
 Immutable types include ints, floats, strings, tuples.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 invalid_dict = {[1,2,3]: "123"}  # => Raises a TypeError: unhashable type: 'list'
 valid_dict = {(1,2,3):[1,2,3]}   # Values can be of any type, however.
 #+END_SRC
 
 *** Look up values with []
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict["one"]  # => 1
 #+END_SRC
 
@@ -467,7 +467,7 @@ Get all keys as an iterable with "keys()".
 We need to wrap the call in list()
 to turn it into a list. We'll talk about those later.  Note - Dictionary key
 ordering is not guaranteed. Your results might not match this exactly.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 list(filled_dict.keys())  # => ["three", "two", "one"]
 #+END_SRC
 
@@ -478,120 +478,120 @@ in list() to get it out of the iterable.
 
 Note - Same as above regarding key ordering.
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 list(filled_dict.values())  # => [3, 2, 1]
 #+END_SRC
 
 *** in - Check for existence of keys
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 "one" in filled_dict  # => True
 1 in filled_dict      # => False
 #+END_SRC
 
 *** Non-existing key is a KeyError
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict["four"]  # KeyError
 #+END_SRC
 
 **** Use "get()" to avoid the KeyError
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict.get("one")      # => 1
 filled_dict.get("four")     # => None
 #+END_SRC
 ***** The get method supports a default argument when the value is missing
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict.get("one", 4)   # => 1
 filled_dict.get("four", 4)  # => 4
 #+END_SRC
 
 *** setdefault()
 "setdefault()" inserts into a dictionary only if the given key isn't present.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict.setdefault("five", 5)  # filled_dict["five"] is set to 5
 filled_dict.setdefault("five", 6)  # filled_dict["five"] is still 5
 #+END_SRC
 
 *** Adding to a dictionary
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict.update({"four":4})  # => {"one": 1, "two": 2, "three": 3, "four": 4}
 filled_dict["four"] = 4         # another way to add to dict
 #+END_SRC
 
 *** del - Remove keys
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 del filled_dict["one"]  # Removes the key "one" from filled dict
 #+END_SRC
 
 *** Additional unpacking options
 (Python >= 3.5)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 {'a': 1, **{'b': 2}}  # => {'a': 1, 'b': 2}
 {'a': 1, **{'a': 2}}  # => {'a': 2}
 #+END_SRC
 
 ** Sets (~unique elements)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 empty_set = set()
 #+END_SRC
 *** Initialize a set with values.
 It looks a bit like a dict.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 some_set = {1, 1, 2, 2, 3, 4}  # some_set is now {1, 2, 3, 4}
 #+END_SRC
 
 *** The elements of a set have to be immutable.
 Similar to keys of a dictionary, elements of a set have to be immutable.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 invalid_set = {[1], 1}  # => Raises a TypeError: unhashable type: 'list'
 valid_set = {(1,), 1}
 #+END_SRC
 
 *** Add item to the set
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_set = some_set
 filled_set.add(5)  # filled_set is now {1, 2, 3, 4, 5}
 #+END_SRC
 
 *** None duplicate elements
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_set.add(5)  # it remains as before {1, 2, 3, 4, 5}
 #+END_SRC
 
 *** Set intersection with &
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 other_set = {3, 4, 5, 6}
 filled_set & other_set  # => {3, 4, 5}
 #+END_SRC
 
 *** Set union with |
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_set | other_set  # => {1, 2, 3, 4, 5, 6}
 #+END_SRC
 
 *** Set difference with -
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 {1, 2, 3, 4} - {2, 3, 5}  # => {1, 4}
 #+END_SRC
 
 *** Set symmetric difference with ^
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 {1, 2, 3, 4} ^ {2, 3, 5}  # => {1, 4, 5}
 #+END_SRC
 
 *** Set Superset
 Check if set on the left is a superset of set on the right
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 {1, 2} >= {1, 2, 3} # => False
 #+END_SRC
 
 *** Set Subset
 Check if set on the left is a subset of set on the right
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 {1, 2} <= {1, 2, 3} # => True
 #+END_SRC
 
 *** in - Check for existence
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 2 in filled_set   # => True
 10 in filled_set  # => False
 #+END_SRC
@@ -604,7 +604,7 @@ Indentation is significant in Python!
 Convention is to use four spaces, not tabs.
 
 This prints "some_var is smaller than 10"
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 some_var = 5
 if some_var > 10:
     print("some_var is totally bigger than 10.")
@@ -623,7 +623,7 @@ prints:
     mouse is a mammal
 #+END_EXAMPLE
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 for animal in ["dog", "cat", "mouse"]:
     # You can use format() to interpolate formatted strings
     print("{} is a mammal".format(animal))
@@ -638,7 +638,7 @@ prints:
     2
     3
 #+END_EXAMPLE
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 for i in range(4):
     print(i)
 #+END_SRC
@@ -653,7 +653,7 @@ prints:
     6
     7
 #+END_EXAMPLE
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 for i in range(4, 8):
     print(i)
 #+END_SRC
@@ -667,7 +667,7 @@ prints:
     4
     6
 #+END_EXAMPLE
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 for i in range(4, 8, 2):
     print(i)
 #+END_SRC
@@ -680,7 +680,7 @@ prints:
     2
     3
 #+END_EXAMPLE
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 x = 0
 while x < 4:
     print(x)
@@ -688,7 +688,7 @@ while x < 4:
 #+END_SRC
 
 ** try/except - Handle exceptions
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 try:
     # Use "raise" to raise an error
     raise IndexError("This is an index error")
@@ -712,7 +712,7 @@ Python offers a fundamental abstraction called the Iterable.
 An iterable is an object that can be treated as a sequence.
 The object returned by the range function, is an iterable.
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 filled_dict = {"one": 1, "two": 2, "three": 3}
 our_iterable = filled_dict.keys()
 print(our_iterable)  # => dict_keys(['one', 'two', 'three']). This is an object that implements our Iterable interface.
@@ -744,19 +744,19 @@ list(filled_dict.keys())  # => Returns ["one", "two", "three"]
 
 * Functions
 ** def - Create new functions
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 def add(x, y):
     print("x is {} and y is {}".format(x, y))
     return x + y  # Return values with a return statement
     #+END_SRC
 
 ** Calling functions with parameters
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 add(5, 6)  # => prints out "x is 5 and y is 6" and returns 11
 #+END_SRC
 
 ** Another way to call functions
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 add(y=6, x=5)  # Keyword arguments can arrive in any order.
 #+END_SRC
 
@@ -764,7 +764,7 @@ add(y=6, x=5)  # Keyword arguments can arrive in any order.
 *** Variable number of positional arguments
 You can define functions that take a variable number of
 positional arguments
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 def varargs(*args):
     return args
 
@@ -774,13 +774,13 @@ varargs(1, 2, 3)  # => (1, 2, 3)
 *** Variable number of keyword arguments
 You can define functions that take a variable number of
 keyword arguments, as well
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 def keyword_args(**kwargs):
     return kwargs
 #+END_SRC
 
 *** Both at once
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 keyword_args(big="foot", loch="ness")  # => {"big": "foot", "loch": "ness"}
 # You can do both at once, if you like
 def all_the_args(*args, **kwargs):
@@ -796,7 +796,7 @@ all_the_args(1, 2, a=3, b=4) prints:
 *** Shorthand
 When calling functions, you can do the opposite of args/kwargs!
 Use * to expand tuples and use ** to expand kwargs.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 args = (1, 2, 3, 4)
 kwargs = {"a": 3, "b": 4}
 all_the_args(*args)            # equivalent to all_the_args(1, 2, 3, 4)
@@ -806,7 +806,7 @@ all_the_args(*args, **kwargs)  # equivalent to all_the_args(1, 2, 3, 4, a=3, b=4
 
 ** Returning multiple values
 Returning multiple values (with tuple assignments)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 def swap(x, y):
     return y, x  # Return multiple values as a tuple without the parenthesis.
                  # (Note: parenthesis have been excluded but can be included)
@@ -817,7 +817,7 @@ x, y = swap(x, y)     # => x = 2, y = 1
 #+END_SRC
 
 ** Function Scope
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 x = 5
 
 def set_x(num):
@@ -837,7 +837,7 @@ set_global_x(6)
 
 ** First class functions
 Python has first class functions
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 def create_adder(x):
     def adder(y):
         return x + y
@@ -849,14 +849,14 @@ add_10(3)   # => 13
 
 ** Anonymous functions
 There are also anonymous functions
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 (lambda x: x > 2)(3)                  # => True
 (lambda x, y: x ** 2 + y ** 2)(2, 1)  # => 5
 #+END_SRC
 
 ** Built-in higher order funcs
 There are built-in higher order functions
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 list(map(add_10, [1, 2, 3]))          # => [11, 12, 13]
 list(map(max, [1, 2, 3], [4, 2, 1]))  # => [4, 2, 3]
 
@@ -866,14 +866,14 @@ list(filter(lambda x: x > 5, [3, 4, 5, 6, 7]))  # => [6, 7]
 ** List comprehensions
 We can use list comprehensions for nice maps and filters
 List comprehension stores the output as a list which can itself be a nested list
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 [add_10(i) for i in [1, 2, 3]]         # => [11, 12, 13]
 [x for x in [3, 4, 5, 6, 7] if x > 5]  # => [6, 7]
 #+END_SRC
 
 ** Dict comprehensions
 You can construct set and dict comprehensions as well.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 {x for x in 'abcddeef' if x not in 'abc'}  # => {'d', 'e', 'f'}
 {x: x**2 for x in range(5)}  # => {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
 #+END_SRC
@@ -891,26 +891,26 @@ over Python's built-in libraries.
 
 ** import - Import module
 You can import modules with the import keyword:
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 import math
 print(math.sqrt(16))  # => 4.0
 #+END_SRC
 
-** Get specific func from module#+BEGIN_SRC <python> from math import ceil, floor print(ceil(3.7))   # => 4.0 print(floor(3.7))  # => 3.0 #+END_SRC
+** Get specific func from module#+BEGIN_SRC python from math import ceil, floor print(ceil(3.7))   # => 4.0 print(floor(3.7))  # => 3.0 #+END_SRC
 ** Import all funcs from module.
 Warning: this is not recommended
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 from math import *
 #+END_SRC
 
 ** Shorten module names
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 import math as m
 math.sqrt(16) == m.sqrt(16)  # => True
 #+END_SRC
 
 ** Find which functions and attributes are defined in a module.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 import math
 dir(math)
 #+END_SRC
@@ -918,7 +918,7 @@ dir(math)
 * Classes
 ** Basics
 Create a new Human class: (human.py)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 class Human:
 
     # A class attribute.
@@ -1033,15 +1033,15 @@ To take advantage of modularization by file you could place the classes above
 in their own files, say, human.py
 
 To import functions from other files use the following format
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 from "filename-without-extension" import "function-or-class"
 #+END_SRC
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 from human import Human
 #+END_SRC
 
 *** Inherit from the Human class (superhero.py)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 # Specify the parent class(es) as parameters to the class definition
 class Superhero(Human):
 
@@ -1118,7 +1118,7 @@ if __name__ == '__main__':
 
 ** Multiple Inheritance
 Another class example for Batman to inherit bellow (bat.py)
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 class Bat:
 
     species = 'Baty'
@@ -1143,7 +1143,7 @@ if __name__ == '__main__':
 
 *** Multiple Inheritance Example
 The class Batman inherits from the class Human and Bat to create a Batman class.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 # And yet another class definition that inherits from Superhero and Bat
 # superhero.py
 from superhero import Superhero
@@ -1203,7 +1203,7 @@ if __name__ == '__main__':
 * Advanced
 ** Generators
 Generators help you make lazy code.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 def double_numbers(iterable):
     for i in iterable:
         yield i + i
@@ -1214,7 +1214,7 @@ process the next value in the iterable.
 
 This allows them to perform operations on otherwise prohibitively large value ranges.
 _*NOTE: `range` replaces `xrange` in Python 3*_.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 for i in double_numbers(range(1, 900000000)):  # `range` is a generator.
     print(i)
     if i >= 30:
@@ -1223,14 +1223,14 @@ for i in double_numbers(range(1, 900000000)):  # `range` is a generator.
 
 Just as you can create a list comprehension, you can create generator
 comprehensions as well.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 values = (-x for x in [1,2,3,4,5])
 for x in values:
     print(x)  # prints -1 -2 -3 -4 -5 to console/terminal
 #+END_SRC
 
 You can also cast a generator comprehension directly to a list.
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 values = (-x for x in [1,2,3,4,5])
 gen_to_list = list(values)
 print(gen_to_list)  # => [-1, -2, -3, -4, -5]
@@ -1240,7 +1240,7 @@ print(gen_to_list)  # => [-1, -2, -3, -4, -5]
 In this example `beg` wraps `say`. If =say_please= is True then it
 will change the returned message.
 
-#+BEGIN_SRC <python>
+#+BEGIN_SRC python
 from functools import wraps
 
 def beg(target_function):
