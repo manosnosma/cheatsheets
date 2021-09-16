@@ -28,7 +28,6 @@ Basic Commands:
 - dw  → DeleteWord after cursor (N.Mode)
 - d$  → Delete Until End Of Line (N.M.)
 #+END_EXAMPLE
-
 *** Cursor Location & File Status
 - CTRL + G → Shows Ur Location in file & file status.
 - G    → Move to Bottom of File
@@ -55,11 +54,11 @@ Basic Commands:
    #+BEGIN_EXAMPLE
     :s/old/new	    → Change first occurence of "old" to "new".
     :s/old/new/     → Adding the g Flag makes it Global
-    		          all occurences of "thee" replaced.
+			  all occurences of "thee" replaced.
     :#,#s/old/new/g → where #,# are the line numbers of the range
-                      of lines where the substitution is to be done.
+		      of lines where the substitution is to be done.
     :%s/old/new/gc  → to find every occurrence in the whole file,
-                      with a prompt whether to substitute or not.
+		      with a prompt whether to substitute or not.
    #+END_EXAMPLE
 
 *** Execute External Commands:
@@ -103,7 +102,7 @@ The Syntax of the VIM Language:
     - Verb + Noun
 
     - d for Delete }
-                   } => Delete Word :)
+		   } => Delete Word :)
     - w for Word   }
 
 - Commands are: Repeatable & Undoable.

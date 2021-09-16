@@ -3,66 +3,65 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
 * MySQL Cheat Sheet
-
 ** Login
 #+BEGIN_SRC sh
-mysql -u root -p
+  mysql -u root -p
 #+END_SRC
 
 ** Show Users
 #+BEGIN_SRC sql
-SELECT User, Host FROM mysql.user;
+	  SELECT User, Host FROM mysql.user;
 #+END_SRC
 
 ** Create User
 #+BEGIN_SRC sql
-CREATE USER 'someuser'@'localhost' IDENTIFIED BY 'somepassword';
+	  CREATE USER 'someuser'@'localhost' IDENTIFIED BY 'somepassword';
 #+END_SRC
 
 ** Grant All Privileges On All Databases
 #+BEGIN_SRC sql
-GRANT ALL PRIVILEGES ON * . * TO 'someuser'@'localhost';
-FLUSH PRIVILEGES;
+	  GRANT ALL PRIVILEGES ON * . * TO 'someuser'@'localhost';
+	  FLUSH PRIVILEGES;
 #+END_SRC
 
 ** Show Grants
 #+BEGIN_SRC sql
-SHOW GRANTS FOR 'someuser'@'localhost';
+	  SHOW GRANTS FOR 'someuser'@'localhost';
 #+END_SRC
 
 ** Remove Grants
 #+BEGIN_SRC sql
-REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'someuser'@'localhost';
+	  REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'someuser'@'localhost';
 #+END_SRC
 
 ** Delete User
 #+BEGIN_SRC sql
-DROP USER 'someuser'@'localhost';
+	  DROP USER 'someuser'@'localhost';
 #+END_SRC
 
 ** Exit
 #+BEGIN_SRC sql
-exit;
+	  exit;
 #+END_SRC
 
 ** Show Databases
 #+BEGIN_SRC sql
-SHOW DATABASES
+	  SHOW DATABASES
 #+END_SRC
 
 ** Create Database
 #+BEGIN_SRC sql
-CREATE DATABASE acme;
+	  CREATE DATABASE acme;
 #+END_SRC
 
 ** Delete Database
 #+BEGIN_SRC sql
-DROP DATABASE acme;
+	  DROP DATABASE acme;
 #+END_SRC
 
 ** Select Database
 #+BEGIN_SRC sql
-USE acme;
+	  USE acme;
 #+END_SRC
 
 ** Create Table
@@ -83,22 +82,22 @@ id INT AUTO_INCREMENT,
 
 ** Delete / Drop Table
 #+BEGIN_SRC sql
-DROP TABLE tablename;
+	  DROP TABLE tablename;
 #+END_SRC
 
 ** Show Tables
 #+BEGIN_SRC sql
-SHOW TABLES;
+	  SHOW TABLES;
 #+END_SRC
 
 ** Insert Row / Record
 #+BEGIN_SRC sql
-INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
+	  INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
 #+END_SRC
 
 ** Insert Multiple Rows
 #+BEGIN_SRC sql
-INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
+	  INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
 #+END_SRC
 
 ** Select
@@ -117,23 +116,22 @@ SELECT * FROM users WHERE is_admin > 0;
 
 ** Delete Row
 #+BEGIN_SRC sql
-DELETE FROM users WHERE id = 6;
+	  DELETE FROM users WHERE id = 6;
 #+END_SRC
 
 ** Update Row
 #+BEGIN_SRC sql
-UPDATE users SET email = 'freddy@gmail.com' WHERE id = 2;
-
+	  UPDATE users SET email = 'freddy@gmail.com' WHERE id = 2;
 #+END_SRC
 
 ** Add New Column
 #+BEGIN_SRC sql
-ALTER TABLE users ADD age VARCHAR(3);
+	  ALTER TABLE users ADD age VARCHAR(3);
 #+END_SRC
 
 ** Modify Column
 #+BEGIN_SRC sql
-ALTER TABLE users MODIFY COLUMN age INT(3);
+	  ALTER TABLE users MODIFY COLUMN age INT(3);
 #+END_SRC
 
 ** Order By (Sort)
@@ -144,18 +142,17 @@ SELECT * FROM users ORDER BY last_name DESC;
 
 ** Concatenate Columns
 #+BEGIN_SRC sql
-SELECT CONCAT(first_name, ' ', last_name) AS 'Name', dept FROM users;
+	  SELECT CONCAT(first_name, ' ', last_name) AS 'Name', dept FROM users;
 #+END_SRC
 
 ** Select Distinct Rows
 #+BEGIN_SRC sql
-SELECT DISTINCT location FROM users;
-
+	  SELECT DISTINCT location FROM users;
 #+END_SRC
 
 ** Between (Select Range)
 #+BEGIN_SRC sql
-SELECT * FROM users WHERE age BETWEEN 20 AND 25;
+	  SELECT * FROM users WHERE age BETWEEN 20 AND 25;
 #+END_SRC
 
 ** Like (Searching)
@@ -168,12 +165,12 @@ SELECT * FROM users WHERE dept LIKE '%e%';
 
 ** Not Like
 #+BEGIN_SRC sql
-SELECT * FROM users WHERE dept NOT LIKE 'd%';
+	  SELECT * FROM users WHERE dept NOT LIKE 'd%';
 #+END_SRC
 
 ** IN
 #+BEGIN_SRC sql
-SELECT * FROM users WHERE dept IN ('design', 'sales');
+	  SELECT * FROM users WHERE dept IN ('design', 'sales');
 #+END_SRC
 
 ** Create & Remove Index
@@ -197,7 +194,7 @@ id INT AUTO_INCREMENT,
 
 ** Add Data to Posts Table
 #+BEGIN_SRC sql
-INSERT INTO posts(user_id, title, body) VALUES (1, 'Post One', 'This is post one'),(3, 'Post Two', 'This is post two'),(1, 'Post Three', 'This is post three'),(2, 'Post Four', 'This is post four'),(5, 'Post Five', 'This is post five'),(4, 'Post Six', 'This is post six'),(2, 'Post Seven', 'This is post seven'),(1, 'Post Eight', 'This is post eight'),(3, 'Post Nine', 'This is post none'),(4, 'Post Ten', 'This is post ten');
+	  INSERT INTO posts(user_id, title, body) VALUES (1, 'Post One', 'This is post one'),(3, 'Post Two', 'This is post two'),(1, 'Post Three', 'This is post three'),(2, 'Post Four', 'This is post four'),(5, 'Post Five', 'This is post five'),(4, 'Post Six', 'This is post six'),(2, 'Post Seven', 'This is post seven'),(1, 'Post Eight', 'This is post eight'),(3, 'Post Nine', 'This is post none'),(4, 'Post Ten', 'This is post ten');
 #+END_SRC
 
 ** INNER JOIN
@@ -229,7 +226,7 @@ CREATE TABLE comments(
 
 ** Add Data to Comments Table
 #+BEGIN_SRC sql
-INSERT INTO comments(post_id, user_id, body) VALUES (1, 3, 'This is comment one'),(2, 1, 'This is comment two'),(5, 3, 'This is comment three'),(2, 4, 'This is comment four'),(1, 2, 'This is comment five'),(3, 1, 'This is comment six'),(3, 2, 'This is comment six'),(5, 4, 'This is comment seven'),(2, 3, 'This is comment seven');
+	  INSERT INTO comments(post_id, user_id, body) VALUES (1, 3, 'This is comment one'),(2, 1, 'This is comment two'),(5, 3, 'This is comment three'),(2, 4, 'This is comment four'),(1, 2, 'This is comment five'),(3, 1, 'This is comment six'),(3, 2, 'This is comment six'),(5, 4, 'This is comment seven'),(2, 3, 'This is comment seven');
 #+END_SRC
 
 ** Left Join

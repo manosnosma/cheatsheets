@@ -3,12 +3,10 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
 * AWK CheatSheet
-
 ** Basic Syntax:
 #+BEGIN_SRC sh
-$ awk [-F sepstring] [-v assignemnt]... program [arguments]...
+  $ awk [-F sepstring] [-v assignemnt]... program [arguments]...
 #+END_SRC
-
 
 ** AWK Options:
 | Option       | Description                                                       |
@@ -20,45 +18,43 @@ $ awk [-F sepstring] [-v assignemnt]... program [arguments]...
 | -mr N        | Specifies the maximum record size in data file.                   |
 | -W keyword   | Specifies the compatibility mode of warning level in AWK.         |
 
-
 ** Basic Useful Examples:
 1. Print The 1st Word from each line of a given file:
    #+BEGIN_SRC sh
-$ awk '{print $1}' inputfile
+     $ awk '{print $1}' inputfile
    #+END_SRC
 2. Same but this Field Separator Character Specified:
    #+BEGIN_SRC sh
-$ awk -F: '{print $1}' /etc/passwd
+     $ awk -F: '{print $1}' /etc/passwd
    #+END_SRC
 3. Replace 4th element of a data stream:
    #+BEGIN_SRC sh
-$ echo "My name is John" | awk '{$4="Christine"; print $0}'
+     $ echo "My name is John" | awk '{$4="Christine"; print $0}'
    #+END_SRC
 4. Run AWK script saved in file:
    #+BEGIN_SRC sh
-$ awk -F script.awk /etc/passwd
+     $ awk -F script.awk /etc/passwd
    #+END_SRC
 5. Execute AWK command Before reading the input data stream:
    #+BEGIN_SRC sh
-$ awk 'BEGIN {print "Print this as file header"}
- {print $0}' datafile.txt
+     $ awk 'BEGIN {print "Print this as file header"}
+      {print $0}' datafile.txt
    #+END_SRC
 6. Execute AWK command Before & After AWK reads the input data stream:
    #+BEGIN_SRC sh
-$ awk 'BEGIN {print "The Header Line"} {print $0}
- {END {print "End of File"}' datafile.txt
+     $ awk 'BEGIN {print "The Header Line"} {print $0}
+      {END {print "End of File"}' datafile.txt
    #+END_SRC
 7. Cool AWK Script for Report generation:
    #+BEGIN_SRC sh
-$ awk 'BEGIN { print "The latest list of users and shells"
-    print "UserID \t\t Shell"
-    print "------ \t\t ------"
-    FS=":" }
-    { print $1 " \t\t " $7 }
-    END { print "This includes the listing"
- } ' /etc/passwd
+     $ awk 'BEGIN { print "The latest list of users and shells"
+	 print "UserID \t\t Shell"
+	 print "------ \t\t ------"
+	 FS=":" }
+	 { print $1 " \t\t " $7 }
+	 END { print "This includes the listing"
+      } ' /etc/passwd
    #+END_SRC
-
 
 ** AWK BUILT-IN VARIABLES
 *** AWK Data Field & Record Variables:
@@ -76,7 +72,6 @@ $ awk 'BEGIN { print "The latest list of users and shells"
 | 2 | Replace commas with any character or set of chars and print needed:   | $ awk 'BEGIN {FS=","; OFS="<->"} {print $1,$2,$3}' datafile.txt    |
 | 3 | Using FIELDWIDTHS instead of separator characters, to organise data   | $ awk 'BEGIN {FIELDWIDTHS="3 5 2 5"} {print $1,$2,$3,$4}' data.txt |
 | 4 | Organise data spawned on multiple lines                               | $ awk 'BEGIN {FS="\n"; RS=""} {print $1, $4}' datafile.txt         |
-
 
 *** More AWK Built-in Variables:
 | Variable   | Description                                                                             |
@@ -111,92 +106,90 @@ $ awk 'BEGIN { print "The latest list of users and shells"
 | D | $ awk 'BEGIN {FS=","} {print $1, "FNR=" FNR, "NR=" NR} END {print "There were", NR, "records processed"}' data1 data1 |
 
 
-
 ** AWK USER-DEFINED VARIABLES
 1. Variables in AWK can have either numeric of character values:
    #+BEGIN_SRC sh
-$ awk 'BEGIN { testing="This is a test"; print testing;
-	testing=45; print testing }'
+     $ awk 'BEGIN { testing="This is a test"; print testing;
+	     testing=45; print testing }'
    #+END_SRC
 2. The assignment statement can contain mathematical algorithms to handle numeric values:
    #+BEGIN_SRC sh
-$ awk 'BEGIN {x=4; x=x*2+3; print x}'
+     $ awk 'BEGIN {x=4; x=x*2+3; print x}'
    #+END_SRC
 3. You can assign values to variables from the command line: (variables are set after AWK reads the data)
    #+BEGIN_SRC sh
-$ cat script1.awk
-	BEGIN {FS=","}
-	{print $n}
+     $ cat script1.awk
+	     BEGIN {FS=","}
+	     {print $n}
    #+END_SRC
    #+BEGIN_SRC sh
-	$ awk -f script1.awk n=2 datafile.txt
+     $ awk -f script1.awk n=2 datafile.txt
    #+END_SRC
 4. Set variables before AWK reads the data (before the BEGIN
    section of the code with the -v parameter:
    #+BEGIN_SRC sh
-$ cat script2.awk
-	BEGIN {print "The starting value is:",n; FS=","}
-	{print $n}
+     $ cat script2.awk
+	     BEGIN {print "The starting value is:",n; FS=","}
+	     {print $n}
    #+END_SRC
    #+BEGIN_SRC sh
-$ awk -f script2.awk n=3 datafie.txt
-	The starting value is:
-	file contents.....
-	......[...]...
-	SOLUTION:
+     $ awk -f script2.awk n=3 datafie.txt
+	     The starting value is:
+	     file contents.....
+	     ......[...]...
+	     SOLUTION:
    #+END_SRC
    #+BEGIN_SRC sh
-$ awk -v n=3 -f script2.awk datafile.txt
-	The starting value is: 3
-	file contents....[...].
+     $ awk -v n=3 -f script2.awk datafile.txt
+	     The starting value is: 3
+	     file contents....[...].
     #+END_SRC
 5. Associative Arrays (like dictionaries):
    - Declaration Syntax:
-     #+BEGIN_SRC <awk>
-studentPhones["Nick"] = "210.9323567"
+     #+BEGIN_SRC awk
+       studentPhones["Nick"] = "210.9323567"
      #+END_SRC
    - Basic Examples:
      #+BEGIN_SRC sh
-$ awk 'BEGIN {capital["Illinois"] = "Springfield";
-	print capital["Illinois"]}'
+       $ awk 'BEGIN {capital["Illinois"] = "Springfield";
+	       print capital["Illinois"]}'
     #+END_SRC
     #+BEGIN_SRC sh
-$ awk 'BEGIN {var[1] = 34; var[2] = 3; total=var[1]+var[2];
-	print total}'
+      $ awk 'BEGIN {var[1] = 34; var[2] = 3; total=var[1]+var[2];
+	      print total}'
     #+END_SRC
    - Iterate through array elements with a for loop:
      #+BEGIN_SRC sh
-$ awk 'BEGIN {var["a"] = 1; var["g"] = 2; var["m"] = 3;
-	var["u"] = 4;
-	for (test in var) {
-		print "Index:", test, " - Value:", var[test]}
-	}'
+       $ awk 'BEGIN {var["a"] = 1; var["g"] = 2; var["m"] = 3;
+	       var["u"] = 4;
+	       for (test in var) {
+		       print "Index:", test, " - Value:", var[test]}
+	       }'
      #+END_SRC
    - Delete Array Variables:
 
      The delete command removes the associative index value and the associated data element value from the array:
      #+BEGIN_SRC sh
-$ awk 'BEGIN {var["a"] = 1; var["g"] = 2;
-	> for (test iin var) {
-	> print "Index:", test, " - Value:", var[test] }
-	> delete var["g"]; print "---"
-	> for (test in var)
-	> print "Index:", test, " - Value:", var[test] }'
+       $ awk 'BEGIN {var["a"] = 1; var["g"] = 2;
+	       > for (test iin var) {
+	       > print "Index:", test, " - Value:", var[test] }
+	       > delete var["g"]; print "---"
+	       > for (test in var)
+	       > print "Index:", test, " - Value:", var[test] }'
      #+END_SRC
-
 
 ** AWK example usages:
 - Print Text File:
   #+BEGIN_SRC sh
-$ awk '{ print }' /etc/passwd # - or -
+    $ awk '{ print }' /etc/passwd # - or -
   #+END_SRC
   #+BEGIN_SRC sh
-$ awk '{ print $0 }' /etc/passwd
+    $ awk '{ print $0 }' /etc/passwd
   #+END_SRC
 
 - Print Specified Field
   #+BEGIN_SRC sh
-$ awk -F ':' '{ print $1 }' /etc/passwd #| sort
+    $ awk -F ':' '{ print $1 }' /etc/passwd #| sort
   #+END_SRC
 
 - Pattern Matching:
@@ -265,29 +258,28 @@ $ history | awk '{print $2}' | sort | uniq -c | sort -rn | head
 $ whois neoakinito.gr | awk '/Registry Expiry Date:/ { print $4}'
     #+END_SRC
 
-
 **  Some cool AWK Stuff:
 - Rename within the name:
   #+BEGIN_SRC sh
-$ ls -1 *old* | awk '{print "mv "$1" "$1"}' | sed s/old/new/2 | sh
+    $ ls -1 *old* | awk '{print "mv "$1" "$1"}' | sed s/old/new/2 | sh
   #+END_SRC
 - Remove only Files: (CAUTION we remove files here!)
   #+BEGIN_SRC sh
-$ ls -l * | grep -v drwx | awk '{print "rm " $9}' | sh
-#     -or- with just awk:
-$ ls -l | awk '$1!~/^drwx/{print $9}' | xargs rm
+    $ ls -l * | grep -v drwx | awk '{print "rm " $9}' | sh
+    #     -or- with just awk:
+    $ ls -l | awk '$1!~/^drwx/{print $9}' | xargs rm
   #+END_SRC
 - Remove only Directories: (AGAIN CAUTION Removing Shit here!)
   #+BEGIN_SRC sh
-$ ls -l | grep '^d' | awk '{print "rm -r " $9}' | sh
-#     -or-
-$ ls -p | grep /$ | wk '{print "rm -r " $1}'
-#     -or- just with awk:
-$ ls -l | awk '$1~/^d.*x/{print $9}' | xargs rm -r
+    $ ls -l | grep '^d' | awk '{print "rm -r " $9}' | sh
+    #     -or-
+    $ ls -p | grep /$ | wk '{print "rm -r " $1}'
+    #     -or- just with awk:
+    $ ls -l | awk '$1~/^d.*x/{print $9}' | xargs rm -r
   #+END_SRC
 - Kill Processes by name: kill process called netscape:
   #+BEGIN_SRC sh
-$ kill `ps auxww | grep netspace | egrep -v grep | awk '{print $2}'`
-#     -or- with just awk:
-$ ps auxww | awk '$0~/netscape/&&$0!~/awk/{print $2}' | xargs kill
+    $ kill `ps auxww | grep netspace | egrep -v grep | awk '{print $2}'`
+    #     -or- with just awk:
+    $ ps auxww | awk '$0~/netscape/&&$0!~/awk/{print $2}' | xargs kill
   #+END_SRC
