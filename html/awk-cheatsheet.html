@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-16 Thu 22:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AWK Cheat Sheet</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Manos Vasilakis (advizor.gr)" />
+<style type="text/css">
+	<!--/*--><![CDATA[/*><!--*/
+	#content { max-width: 60em; margin: auto; }
+	tr:nth-child(even) { background-color: #f2f2f2 }
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	a:hover { text-decoration: underline }
+	a:visited {
+		color: green;
+		text-decoration: underline;
+	}
+	img { max-width: 100%; }
+	.title {
+		text-align: center;
+		margin-bottom: .2em;
+	}
+	.subtitle { 
+		text-align: center;
+		font-size: medium;
+		font-weight: bold;
+		margin-top:0;
+	}
+	.todo     { font-family: monospace; color: red;    }
+	.done     { font-family: monospace; color: green;  }
+	.priority { font-family: monospace; color: orange; }
+	.tag      { 
+		background-color: #eee; 
+		font-family: monospace;
+		padding: 2px;
+		font-size: 80%;
+		font-weight: normal;
+	}
+	.timestamp     { color: #bebebe; }
+	.timestamp-kwd { color: #5f9ea0; }
+	.org-right  { margin-left: auto; margin-right: 0px;  text-align: right;  }
+	.org-left   { margin-left: 0px;  margin-right: auto; text-align: left;   }
+	.org-center { margin-left: auto; margin-right: auto; text-align: center; }
+	.underline  { text-decoration: underline; }
+	#postamble p, #preamble p { font-size: 90%; margin: .2em; }
+	p.verse { margin-left: 3%; }
+	pre {
+		border: 1px solid #e6e6e6;
+		border-radius: 3px;
+		background-color: #f2f2f2;
+		padding: 8pt;
+		font-family: monospace;
+		overflow: auto;
+		margin: 1.2em;
+	}
+	pre.src {
+		position: relative;
+		overflow: auto;
+	}
+	pre.src:before {
+		display: none;
+		position: absolute;
+		top: -8px;
+		right: 12px;
+		padding: 3px;
+		color: #555;
+		background-color: #f2f2f299;
+	}
+	pre.src:hover:before { 
+		display: inline; 
+		margin-top: 14px;
+	}
+
+	/* Languages per Org manual */
+	pre.src-asymptote:before  { content: 'Asymptote' }
+	pre.src-awk:before        { content: 'Awk'       }
+	pre.src-authinfo::before  { content: 'Authinfo'  }
+	pre.src-C:before          { content: 'C'         }
+	/* pre.src-C++ doesn't work in CSS */
+	pre.src-clojure:before    { content: 'Clojure'        }
+	pre.src-css:before        { content: 'CSS'            }
+	pre.src-D:before          { content: 'D'              }
+	pre.src-ditaa:before      { content: 'ditaa'          }
+	pre.src-dot:before        { content: 'Graphviz'       }
+	pre.src-calc:before       { content: 'Emacs Calc'     }
+	pre.src-emacs-lisp:before { content: 'Emacs Lisp'     }
+	pre.src-fortran:before    { content: 'Fortran'        }
+	pre.src-gnuplot:before    { content: 'gnuplot'        }
+	pre.src-haskell:before    { content: 'Haskell'        }
+	pre.src-hledger:before    { content: 'hledger'        }
+	pre.src-java:before       { content: 'Java'           }
+	pre.src-js:before         { content: 'Javascript'     }
+	pre.src-latex:before      { content: 'LaTeX'          }
+	pre.src-ledger:before     { content: 'Ledger'         }
+	pre.src-lisp:before       { content: 'Lisp'           }
+	pre.src-lilypond:before   { content: 'Lilypond'       }
+	pre.src-lua:before        { content: 'Lua'            }
+	pre.src-matlab:before     { content: 'MATLAB'         }
+	pre.src-mscgen:before     { content: 'Mscgen'         }
+	pre.src-ocaml:before      { content: 'Objective Caml' }
+	pre.src-octave:before     { content: 'Octave'         }
+	pre.src-org:before        { content: 'Org mode'       }
+	pre.src-oz:before         { content: 'OZ'             }
+	pre.src-plantuml:before   { content: 'Plantuml'       }
+	pre.src-processing:before { content: 'Processing.js'  }
+	pre.src-python:before     { content: 'Python'         }
+	pre.src-R:before          { content: 'R'              }
+	pre.src-ruby:before       { content: 'Ruby'           }
+	pre.src-sass:before       { content: 'Sass'           }
+	pre.src-scheme:before     { content: 'Scheme'         }
+	pre.src-screen:before     { content: 'Gnu Screen'     }
+	pre.src-sed:before        { content: 'Sed'            }
+	pre.src-sh:before         { content: 'shell'          }
+	pre.src-sql:before        { content: 'SQL'            }
+	pre.src-sqlite:before     { content: 'SQLite'         }
+	/* additional languages in org.el's org-babel-load-languages alist */
+	pre.src-forth:before      { content: 'Forth'        }
+	pre.src-io:before         { content: 'IO'           }
+	pre.src-J:before          { content: 'J'            }
+	pre.src-makefile:before   { content: 'Makefile'     }
+	pre.src-maxima:before     { content: 'Maxima'       }
+	pre.src-perl:before       { content: 'Perl'         }
+	pre.src-picolisp:before   { content: 'Pico Lisp'    }
+	pre.src-scala:before      { content: 'Scala'        }
+	pre.src-shell:before      { content: 'Shell Script' }
+	pre.src-ebnf2ps:before    { content: 'ebfn2ps'      }
+	/* additional language identifiers per "defun org-babel-execute" in ob-*.el */
+	pre.src-cpp:before     { content: 'C++'    }
+	pre.src-abc:before     { content: 'ABC'    }
+	pre.src-coq:before     { content: 'Coq'    }
+	pre.src-groovy:before  { content: 'Groovy' }
+	/* additional language identifiers from org-babel-shell-names in
+	 * ob-shell.el: ob-shell is the only babel language using a lambda to put
+	 * the execution function name together. 
+	 */
+	pre.src-bash:before { content: 'bash' }
+	pre.src-csh:before  { content: 'csh'  }
+	pre.src-ash:before  { content: 'ash'  }
+	pre.src-dash:before { content: 'dash' }
+	pre.src-ksh:before  { content: 'ksh'  }
+	pre.src-mksh:before { content: 'mksh' }
+	pre.src-posh:before { content: 'posh' }
+	/* Additional Emacs modes also supported by the LaTeX listings package */
+	pre.src-ada:before       { content: 'Ada'        }
+	pre.src-asm:before       { content: 'Assembler'  }
+	pre.src-caml:before      { content: 'Caml'       }
+	pre.src-delphi:before    { content: 'Delphi'     }
+	pre.src-html:before      { content: 'HTML'       }
+	pre.src-idl:before       { content: 'IDL'        }
+	pre.src-mercury:before   { content: 'Mercury'    }
+	pre.src-metapost:before  { content: 'MetaPost'   }
+	pre.src-modula-2:before  { content: 'Modula-2'   }
+	pre.src-pascal:before    { content: 'Pascal'     }
+	pre.src-ps:before        { content: 'PostScript' }
+	pre.src-prolog:before    { content: 'Prolog'     }
+	pre.src-simula:before    { content: 'Simula'     }
+	pre.src-tcl:before       { content: 'tcl'        }
+	pre.src-tex:before       { content: 'TeX'        }
+	pre.src-plain-tex:before { content: 'Plain TeX'  }
+	pre.src-verilog:before   { content: 'Verilog'    }
+	pre.src-vhdl:before      { content: 'VHDL'       }
+	pre.src-xml:before       { content: 'XML'        }
+	pre.src-nxml:before      { content: 'XML'        }
+	/* add a generic configuration mode; LaTeX export needs an additional
+	 (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+	pre.src-conf:before { content: 'Configuration File' }
+
+	table            { border-collapse:collapse }
+	caption.t-above  { caption-side: top    }
+	caption.t-bottom { caption-side: bottom }
+	td, th           { vertical-align:top   }
+	th.org-right     { text-align: center   }
+	th.org-left      { text-align: center   }
+	th.org-center    { text-align: center   }
+	td.org-right     { text-align: right    }
+	td.org-left      { text-align: left     }
+	td.org-center    { text-align: center   }
+	dt               { font-weight: bold    }
+	.footpara { display: inline    }
+	.footdef  { margin-bottom: 1em }
+	.figure   { padding: 1em       }
+	.figure p { text-align: center }
+	.equation-container {
+		display: table;
+		text-align: center;
+		width: 100%;
+	}
+	.equation { vertical-align: middle }
+	.equation-label {
+		display: table-cell;
+		text-align: right;
+		vertical-align: middle;
+	}
+	.inlinetask {
+		padding: 10px;
+		border: 2px solid gray;
+		margin: 10px;
+		background: #ffffcc;
+	}
+	#org-div-home-and-up { text-align: right; font-size: 70%; white-space: nowrap; }
+	textarea { overflow-x: auto   }
+	.linenr  { font-size: smaller }
+	.code-highlighted { background-color: #ffff00 }
+	.org-info-js_info-navigation { border-style: none }
+	#org-info-js_console-label { font-size: 10px; font-weight: bold; white-space: nowrap; }
+	.org-info-js_search-highlight { background-color: #ffff00; color: #000000; font-weight: bold; }
+	.org-svg { width: 90% }
+	/*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">AWK Cheat Sheet</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4a606bb">1. AWK CheatSheet</a>
+<ul>
+<li><a href="#org5de4f1b">1.1. Basic Syntax:</a></li>
+<li><a href="#orgea40fad">1.2. AWK Options:</a></li>
+<li><a href="#org9ffa93a">1.3. Basic Useful Examples:</a></li>
+<li><a href="#org537867e">1.4. AWK BUILT-IN VARIABLES</a>
+<ul>
+<li><a href="#org3033a2e">1.4.1. AWK Data Field &amp; Record Variables:</a></li>
+<li><a href="#orgf263eed">1.4.2. Examples:</a></li>
+<li><a href="#orgc204b02">1.4.3. More AWK Built-in Variables:</a></li>
+<li><a href="#orgf01b375">1.4.4. More Examples:</a></li>
+</ul>
+</li>
+<li><a href="#org76f9029">1.5. AWK USER-DEFINED VARIABLES</a></li>
+<li><a href="#org449ecdb">1.6. AWK example usages:</a></li>
+<li><a href="#orgc394146">1.7. Some cool AWK Stuff:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4a606bb" class="outline-2">
+<h2 id="org4a606bb"><span class="section-number-2">1</span> AWK CheatSheet</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org5de4f1b" class="outline-3">
+<h3 id="org5de4f1b"><span class="section-number-3">1.1</span> Basic Syntax:</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-sh">$ awk [-F sepstring] [-v assignemnt]... program [arguments]...
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgea40fad" class="outline-3">
+<h3 id="orgea40fad"><span class="section-number-3">1.2</span> AWK Options:</h3>
+<div class="outline-text-3" id="text-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Option</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">-F fs</td>
+<td class="org-left">Specifies a file separator for delineating data fields in a line.</td>
+</tr>
+
+<tr>
+<td class="org-left">-f file</td>
+<td class="org-left">Specifies a filename to red the program from.</td>
+</tr>
+
+<tr>
+<td class="org-left">-v var=value</td>
+<td class="org-left">Defines variable and default value used in AWK program.</td>
+</tr>
+
+<tr>
+<td class="org-left">-mf N</td>
+<td class="org-left">Specifies maximum number of fields to process in date file.</td>
+</tr>
+
+<tr>
+<td class="org-left">-mr N</td>
+<td class="org-left">Specifies the maximum record size in data file.</td>
+</tr>
+
+<tr>
+<td class="org-left">-W keyword</td>
+<td class="org-left">Specifies the compatibility mode of warning level in AWK.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org9ffa93a" class="outline-3">
+<h3 id="org9ffa93a"><span class="section-number-3">1.3</span> Basic Useful Examples:</h3>
+<div class="outline-text-3" id="text-1-3">
+<ol class="org-ol">
+<li><p>
+Print The 1st Word from each line of a given file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk '{print $1}' inputfile
+</pre>
+</div></li>
+<li><p>
+Same but this Field Separator Character Specified:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk -F: '{print $1}' /etc/passwd
+</pre>
+</div></li>
+<li><p>
+Replace 4th element of a data stream:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ echo "My name is John" | awk '{$4="Christine"; print $0}'
+</pre>
+</div></li>
+<li><p>
+Run AWK script saved in file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk -F script.awk /etc/passwd
+</pre>
+</div></li>
+<li><p>
+Execute AWK command Before reading the input data stream:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {print "Print this as file header"}
+ {print $0}' datafile.txt
+</pre>
+</div></li>
+<li><p>
+Execute AWK command Before &amp; After AWK reads the input data stream:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {print "The Header Line"} {print $0}
+ {END {print "End of File"}' datafile.txt
+</pre>
+</div></li>
+<li><p>
+Cool AWK Script for Report generation:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN { print "The latest list of users and shells"
+    print "UserID \t\t Shell"
+    print "------ \t\t ------"
+    FS=":" }
+    { print $1 " \t\t " $7 }
+    END { print "This includes the listing"
+ } ' /etc/passwd
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org537867e" class="outline-3">
+<h3 id="org537867e"><span class="section-number-3">1.4</span> AWK BUILT-IN VARIABLES</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org3033a2e" class="outline-4">
+<h4 id="org3033a2e"><span class="section-number-4">1.4.1</span> AWK Data Field &amp; Record Variables:</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Variable</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">FIELDWIDTHS</td>
+<td class="org-left">A space-separated list of numbers defining the exact width (in spaces) of each data field.</td>
+</tr>
+
+<tr>
+<td class="org-left">FS</td>
+<td class="org-left">Input field separator character.</td>
+</tr>
+
+<tr>
+<td class="org-left">RS</td>
+<td class="org-left">Input record separator character.</td>
+</tr>
+
+<tr>
+<td class="org-left">OFS</td>
+<td class="org-left">Output field separator character.</td>
+</tr>
+
+<tr>
+<td class="org-left">ORS</td>
+<td class="org-left">Output record separator character.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf263eed" class="outline-4">
+<h4 id="orgf263eed"><span class="section-number-4">1.4.2</span> Examples:</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">N</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Replace commas with spaces, on given data stream and print out needed</td>
+<td class="org-left">$ awk 'BEGIN {FS=","} {print $1,$2,$3}' datafile.txt</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Replace commas with any character or set of chars and print needed:</td>
+<td class="org-left">$ awk 'BEGIN {FS=","; OFS="&lt;-&gt;"} {print $1,$2,$3}' datafile.txt</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Using FIELDWIDTHS instead of separator characters, to organise data</td>
+<td class="org-left">$ awk 'BEGIN {FIELDWIDTHS="3 5 2 5"} {print $1,$2,$3,$4}' data.txt</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">Organise data spawned on multiple lines</td>
+<td class="org-left">$ awk 'BEGIN {FS="\n"; RS=""} {print $1, $4}' datafile.txt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgc204b02" class="outline-4">
+<h4 id="orgc204b02"><span class="section-number-4">1.4.3</span> More AWK Built-in Variables:</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Variable</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">ARGC</td>
+<td class="org-left">The number of command line parameters present.</td>
+</tr>
+
+<tr>
+<td class="org-left">ARGID</td>
+<td class="org-left">The index in ARGV of the current file being processed.</td>
+</tr>
+
+<tr>
+<td class="org-left">ARGV</td>
+<td class="org-left">An array of command line paramenters.</td>
+</tr>
+
+<tr>
+<td class="org-left">CONVFMT</td>
+<td class="org-left">The conversion formatfor numbers (see printf statement), with a default value of %.6 g.</td>
+</tr>
+
+<tr>
+<td class="org-left">ENVIRON</td>
+<td class="org-left">An associative array of the current shell environment variables and their values.</td>
+</tr>
+
+<tr>
+<td class="org-left">ERRNO</td>
+<td class="org-left">The system error if an error occurs when reading or closing input files.</td>
+</tr>
+
+<tr>
+<td class="org-left">FILENAME</td>
+<td class="org-left">The filename of the data file used for input to AWK.</td>
+</tr>
+
+<tr>
+<td class="org-left">FNR</td>
+<td class="org-left">The current record number in the data file.</td>
+</tr>
+
+<tr>
+<td class="org-left">INGORECASE</td>
+<td class="org-left">If set to a non 0 value, ignores case on characters.</td>
+</tr>
+
+<tr>
+<td class="org-left">NF</td>
+<td class="org-left">The total number of data fields in the data file.</td>
+</tr>
+
+<tr>
+<td class="org-left">NR</td>
+<td class="org-left">The numbers of input records processed.</td>
+</tr>
+
+<tr>
+<td class="org-left">OFMT</td>
+<td class="org-left">The output format for displaying numbers, with a default of %.6 g</td>
+</tr>
+
+<tr>
+<td class="org-left">RLENGTH</td>
+<td class="org-left">The length of the substring matched in the match function.</td>
+</tr>
+
+<tr>
+<td class="org-left">RSTART</td>
+<td class="org-left">The start index of the substring matched in the match function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf01b375" class="outline-4">
+<h4 id="orgf01b375"><span class="section-number-4">1.4.4</span> More Examples:</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">N</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">Retrieve Shell Environment Variables ENVIRON</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-left">Specify the last data field in the record without having to know its position</td>
+</tr>
+
+<tr>
+<td class="org-left">C</td>
+<td class="org-left">The NFR contains the number of records processed in the current data file</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-left">The NR contains the total number of records processed (put the same file (data1) as input twice to see diffs)</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">N</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">$ awk 'BEGIN {print ENVIRON["HOME"] print ENVIRON["PATH"]}'</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-left">$ awk 'BEGIN {FS=":"; OFS=":"} {print $1, $NF}' /etc/passwd</td>
+</tr>
+
+<tr>
+<td class="org-left">C</td>
+<td class="org-left">$ awk 'BEGIN {FS=","} {print $1, "FNR=" FNR} datafile.txt</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-left">$ awk 'BEGIN {FS=","} {print $1, "FNR=" FNR, "NR=" NR} END {print "There were", NR, "records processed"}' data1 data1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org76f9029" class="outline-3">
+<h3 id="org76f9029"><span class="section-number-3">1.5</span> AWK USER-DEFINED VARIABLES</h3>
+<div class="outline-text-3" id="text-1-5">
+<ol class="org-ol">
+<li><p>
+Variables in AWK can have either numeric of character values:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN { testing="This is a test"; print testing;
+	testing=45; print testing }'
+</pre>
+</div></li>
+<li><p>
+The assignment statement can contain mathematical algorithms to handle numeric values:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {x=4; x=x*2+3; print x}'
+</pre>
+</div></li>
+<li><p>
+You can assign values to variables from the command line: (variables are set after AWK reads the data)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ cat script1.awk
+	BEGIN {FS=","}
+	{print $n}
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk -f script1.awk n=2 datafile.txt
+</pre>
+</div></li>
+<li><p>
+Set variables before AWK reads the data (before the BEGIN
+section of the code with the -v parameter:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ cat script2.awk
+	BEGIN {print "The starting value is:",n; FS=","}
+	{print $n}
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk -f script2.awk n=3 datafie.txt
+	The starting value is:
+	file contents.....
+	......[...]...
+	SOLUTION:
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk -v n=3 -f script2.awk datafile.txt
+	The starting value is: 3
+	file contents....[...].
+</pre>
+</div></li>
+<li>Associative Arrays (like dictionaries):
+<ul class="org-ul">
+<li><p>
+Declaration Syntax:
+</p>
+<div class="org-src-container">
+<pre class="src src-awk">studentPhones["Nick"] = "210.9323567"
+</pre>
+</div></li>
+<li><p>
+Basic Examples:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {capital["Illinois"] = "Springfield";
+	print capital["Illinois"]}'
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {var[1] = 34; var[2] = 3; total=var[1]+var[2];
+	print total}'
+</pre>
+</div></li>
+<li><p>
+Iterate through array elements with a for loop:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {var["a"] = 1; var["g"] = 2; var["m"] = 3;
+	var["u"] = 4;
+	for (test in var) {
+		print "Index:", test, " - Value:", var[test]}
+	}'
+</pre>
+</div></li>
+<li><p>
+Delete Array Variables:
+</p>
+
+<p>
+The delete command removes the associative index value and the associated data element value from the array:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {var["a"] = 1; var["g"] = 2;
+	&gt; for (test iin var) {
+	&gt; print "Index:", test, " - Value:", var[test] }
+	&gt; delete var["g"]; print "---"
+	&gt; for (test in var)
+	&gt; print "Index:", test, " - Value:", var[test] }'
+</pre>
+</div></li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org449ecdb" class="outline-3">
+<h3 id="org449ecdb"><span class="section-number-3">1.6</span> AWK example usages:</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li><p>
+Print Text File:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk '{ print }' /etc/passwd # - or -
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk '{ print $0 }' /etc/passwd
+</pre>
+</div></li>
+
+<li><p>
+Print Specified Field
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk -F ':' '{ print $1 }' /etc/passwd #| sort
+</pre>
+</div></li>
+
+<li><p>
+Pattern Matching:
+</p>
+
+<p>
+(Display all  lines from the Apache log if HTTP error code is 500,
+9th field log status error code for each https request:)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk '$9 == 500 { print $0}' /var/log/httpd/access.log
+</pre>
+</div></li>
+
+<li>Comparison Operators: (like C's)
+<ul class="org-ul">
+<li>==</li>
+<li>!=</li>
+<li>&lt;</li>
+<li>&gt;</li>
+<li>&lt;=</li>
+<li>&gt;=</li>
+<li>?:</li>
+</ul></li>
+
+<li><p>
+Print lines containing: "tom","jerry" or "vivek":
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk '/tom|jerry|vivek/' /etc/passwd
+</pre>
+</div></li>
+
+<li><p>
+Print 1st Line from file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk "NR==1{print;exit}" /etc/resolv.conf
+$ awk "NR==$line{print;exit}" /etc/resolv.conf
+</pre>
+</div></li>
+
+<li><p>
+Simple Arithmetic: Get the sum of numbers in a column:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk '{total += $1'} END {print total}' earnings.txt
+</pre>
+</div></li>
+
+<li><p>
+Shell can't calc floats, but awk can:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {printf "%.3f\n", 2005.50 / 3}'
+</pre>
+</div></li>
+
+<li><p>
+Multiple AWK Commands
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ echo "Hello Tom" | awk '{$2="Adam"; print $0}'
+</pre>
+</div></li>
+
+<li>AWK Pre-processing
+<ul class="org-ul">
+<li><p>
+Add Title/Header:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {print "The File Contents: "}{print $0}' myfile
+</pre>
+</div></li>
+</ul></li>
+
+<li>AWK Post-processing
+<ul class="org-ul">
+<li><p>
+Run Script after data has been processed:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ awk 'BEGIN {print "The File Contents:"}{print $0}
+	END {print "File footer}' myfile
+</pre>
+</div></li>
+</ul></li>
+
+<li>AWK and Shell Pipes
+<ul class="org-ul">
+<li><p>
+List your 10 favourite commands:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+</pre>
+</div></li>
+<li><p>
+Find out domain expiry date:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ whois neoakinito.gr | awk '/Registry Expiry Date:/ { print $4}'
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc394146" class="outline-3">
+<h3 id="orgc394146"><span class="section-number-3">1.7</span> Some cool AWK Stuff:</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li><p>
+Rename within the name:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ ls -1 *old* | awk '{print "mv "$1" "$1"}' | sed s/old/new/2 | sh
+</pre>
+</div></li>
+<li><p>
+Remove only Files: (CAUTION we remove files here!)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ ls -l * | grep -v drwx | awk '{print "rm " $9}' | sh
+#     -or- with just awk:
+$ ls -l | awk '$1!~/^drwx/{print $9}' | xargs rm
+</pre>
+</div></li>
+<li><p>
+Remove only Directories: (AGAIN CAUTION Removing Shit here!)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ ls -l | grep '^d' | awk '{print "rm -r " $9}' | sh
+#     -or-
+$ ls -p | grep /$ | wk '{print "rm -r " $1}'
+#     -or- just with awk:
+$ ls -l | awk '$1~/^d.*x/{print $9}' | xargs rm -r
+</pre>
+</div></li>
+<li><p>
+Kill Processes by name: kill process called netscape:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ kill `ps auxww | grep netspace | egrep -v grep | awk '{print $2}'`
+#     -or- with just awk:
+$ ps auxww | awk '$0~/netscape/&amp;&amp;$0!~/awk/{print $2}' | xargs kill
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Manos Vasilakis (advizor.gr)</p>
+<p class="date">Created: 2021-09-16 Thu 22:50</p>
+</div>
+</body>
+</html>

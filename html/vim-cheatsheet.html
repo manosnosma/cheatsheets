@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-16 Thu 22:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VIM Cheat Sheet</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Manos Vasilakis (advizor.gr)" />
+<style type="text/css">
+	<!--/*--><![CDATA[/*><!--*/
+	#content { max-width: 60em; margin: auto; }
+	tr:nth-child(even) { background-color: #f2f2f2 }
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	a:hover { text-decoration: underline }
+	a:visited {
+		color: green;
+		text-decoration: underline;
+	}
+	img { max-width: 100%; }
+	.title {
+		text-align: center;
+		margin-bottom: .2em;
+	}
+	.subtitle { 
+		text-align: center;
+		font-size: medium;
+		font-weight: bold;
+		margin-top:0;
+	}
+	.todo     { font-family: monospace; color: red;    }
+	.done     { font-family: monospace; color: green;  }
+	.priority { font-family: monospace; color: orange; }
+	.tag      { 
+		background-color: #eee; 
+		font-family: monospace;
+		padding: 2px;
+		font-size: 80%;
+		font-weight: normal;
+	}
+	.timestamp     { color: #bebebe; }
+	.timestamp-kwd { color: #5f9ea0; }
+	.org-right  { margin-left: auto; margin-right: 0px;  text-align: right;  }
+	.org-left   { margin-left: 0px;  margin-right: auto; text-align: left;   }
+	.org-center { margin-left: auto; margin-right: auto; text-align: center; }
+	.underline  { text-decoration: underline; }
+	#postamble p, #preamble p { font-size: 90%; margin: .2em; }
+	p.verse { margin-left: 3%; }
+	pre {
+		border: 1px solid #e6e6e6;
+		border-radius: 3px;
+		background-color: #f2f2f2;
+		padding: 8pt;
+		font-family: monospace;
+		overflow: auto;
+		margin: 1.2em;
+	}
+	pre.src {
+		position: relative;
+		overflow: auto;
+	}
+	pre.src:before {
+		display: none;
+		position: absolute;
+		top: -8px;
+		right: 12px;
+		padding: 3px;
+		color: #555;
+		background-color: #f2f2f299;
+	}
+	pre.src:hover:before { 
+		display: inline; 
+		margin-top: 14px;
+	}
+
+	/* Languages per Org manual */
+	pre.src-asymptote:before  { content: 'Asymptote' }
+	pre.src-awk:before        { content: 'Awk'       }
+	pre.src-authinfo::before  { content: 'Authinfo'  }
+	pre.src-C:before          { content: 'C'         }
+	/* pre.src-C++ doesn't work in CSS */
+	pre.src-clojure:before    { content: 'Clojure'        }
+	pre.src-css:before        { content: 'CSS'            }
+	pre.src-D:before          { content: 'D'              }
+	pre.src-ditaa:before      { content: 'ditaa'          }
+	pre.src-dot:before        { content: 'Graphviz'       }
+	pre.src-calc:before       { content: 'Emacs Calc'     }
+	pre.src-emacs-lisp:before { content: 'Emacs Lisp'     }
+	pre.src-fortran:before    { content: 'Fortran'        }
+	pre.src-gnuplot:before    { content: 'gnuplot'        }
+	pre.src-haskell:before    { content: 'Haskell'        }
+	pre.src-hledger:before    { content: 'hledger'        }
+	pre.src-java:before       { content: 'Java'           }
+	pre.src-js:before         { content: 'Javascript'     }
+	pre.src-latex:before      { content: 'LaTeX'          }
+	pre.src-ledger:before     { content: 'Ledger'         }
+	pre.src-lisp:before       { content: 'Lisp'           }
+	pre.src-lilypond:before   { content: 'Lilypond'       }
+	pre.src-lua:before        { content: 'Lua'            }
+	pre.src-matlab:before     { content: 'MATLAB'         }
+	pre.src-mscgen:before     { content: 'Mscgen'         }
+	pre.src-ocaml:before      { content: 'Objective Caml' }
+	pre.src-octave:before     { content: 'Octave'         }
+	pre.src-org:before        { content: 'Org mode'       }
+	pre.src-oz:before         { content: 'OZ'             }
+	pre.src-plantuml:before   { content: 'Plantuml'       }
+	pre.src-processing:before { content: 'Processing.js'  }
+	pre.src-python:before     { content: 'Python'         }
+	pre.src-R:before          { content: 'R'              }
+	pre.src-ruby:before       { content: 'Ruby'           }
+	pre.src-sass:before       { content: 'Sass'           }
+	pre.src-scheme:before     { content: 'Scheme'         }
+	pre.src-screen:before     { content: 'Gnu Screen'     }
+	pre.src-sed:before        { content: 'Sed'            }
+	pre.src-sh:before         { content: 'shell'          }
+	pre.src-sql:before        { content: 'SQL'            }
+	pre.src-sqlite:before     { content: 'SQLite'         }
+	/* additional languages in org.el's org-babel-load-languages alist */
+	pre.src-forth:before      { content: 'Forth'        }
+	pre.src-io:before         { content: 'IO'           }
+	pre.src-J:before          { content: 'J'            }
+	pre.src-makefile:before   { content: 'Makefile'     }
+	pre.src-maxima:before     { content: 'Maxima'       }
+	pre.src-perl:before       { content: 'Perl'         }
+	pre.src-picolisp:before   { content: 'Pico Lisp'    }
+	pre.src-scala:before      { content: 'Scala'        }
+	pre.src-shell:before      { content: 'Shell Script' }
+	pre.src-ebnf2ps:before    { content: 'ebfn2ps'      }
+	/* additional language identifiers per "defun org-babel-execute" in ob-*.el */
+	pre.src-cpp:before     { content: 'C++'    }
+	pre.src-abc:before     { content: 'ABC'    }
+	pre.src-coq:before     { content: 'Coq'    }
+	pre.src-groovy:before  { content: 'Groovy' }
+	/* additional language identifiers from org-babel-shell-names in
+	 * ob-shell.el: ob-shell is the only babel language using a lambda to put
+	 * the execution function name together. 
+	 */
+	pre.src-bash:before { content: 'bash' }
+	pre.src-csh:before  { content: 'csh'  }
+	pre.src-ash:before  { content: 'ash'  }
+	pre.src-dash:before { content: 'dash' }
+	pre.src-ksh:before  { content: 'ksh'  }
+	pre.src-mksh:before { content: 'mksh' }
+	pre.src-posh:before { content: 'posh' }
+	/* Additional Emacs modes also supported by the LaTeX listings package */
+	pre.src-ada:before       { content: 'Ada'        }
+	pre.src-asm:before       { content: 'Assembler'  }
+	pre.src-caml:before      { content: 'Caml'       }
+	pre.src-delphi:before    { content: 'Delphi'     }
+	pre.src-html:before      { content: 'HTML'       }
+	pre.src-idl:before       { content: 'IDL'        }
+	pre.src-mercury:before   { content: 'Mercury'    }
+	pre.src-metapost:before  { content: 'MetaPost'   }
+	pre.src-modula-2:before  { content: 'Modula-2'   }
+	pre.src-pascal:before    { content: 'Pascal'     }
+	pre.src-ps:before        { content: 'PostScript' }
+	pre.src-prolog:before    { content: 'Prolog'     }
+	pre.src-simula:before    { content: 'Simula'     }
+	pre.src-tcl:before       { content: 'tcl'        }
+	pre.src-tex:before       { content: 'TeX'        }
+	pre.src-plain-tex:before { content: 'Plain TeX'  }
+	pre.src-verilog:before   { content: 'Verilog'    }
+	pre.src-vhdl:before      { content: 'VHDL'       }
+	pre.src-xml:before       { content: 'XML'        }
+	pre.src-nxml:before      { content: 'XML'        }
+	/* add a generic configuration mode; LaTeX export needs an additional
+	 (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+	pre.src-conf:before { content: 'Configuration File' }
+
+	table            { border-collapse:collapse }
+	caption.t-above  { caption-side: top    }
+	caption.t-bottom { caption-side: bottom }
+	td, th           { vertical-align:top   }
+	th.org-right     { text-align: center   }
+	th.org-left      { text-align: center   }
+	th.org-center    { text-align: center   }
+	td.org-right     { text-align: right    }
+	td.org-left      { text-align: left     }
+	td.org-center    { text-align: center   }
+	dt               { font-weight: bold    }
+	.footpara { display: inline    }
+	.footdef  { margin-bottom: 1em }
+	.figure   { padding: 1em       }
+	.figure p { text-align: center }
+	.equation-container {
+		display: table;
+		text-align: center;
+		width: 100%;
+	}
+	.equation { vertical-align: middle }
+	.equation-label {
+		display: table-cell;
+		text-align: right;
+		vertical-align: middle;
+	}
+	.inlinetask {
+		padding: 10px;
+		border: 2px solid gray;
+		margin: 10px;
+		background: #ffffcc;
+	}
+	#org-div-home-and-up { text-align: right; font-size: 70%; white-space: nowrap; }
+	textarea { overflow-x: auto   }
+	.linenr  { font-size: smaller }
+	.code-highlighted { background-color: #ffff00 }
+	.org-info-js_info-navigation { border-style: none }
+	#org-info-js_console-label { font-size: 10px; font-weight: bold; white-space: nowrap; }
+	.org-info-js_search-highlight { background-color: #ffff00; color: #000000; font-weight: bold; }
+	.org-svg { width: 90% }
+	/*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">VIM Cheat Sheet</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3b6df5b">1. VIM Cheatsheet</a>
+<ul>
+<li><a href="#orgcd4b8c3">1.1. Basics</a>
+<ul>
+<li><a href="#org152b99a">1.1.1. Basic Movements &amp; Commands</a></li>
+<li><a href="#org70c97a9">1.1.2. Cursor Location &amp; File Status</a></li>
+<li><a href="#org2556feb">1.1.3. Search Command / and ?</a></li>
+<li><a href="#orge1c6733">1.1.4. Matching (Parenthesis)</a></li>
+<li><a href="#org3ed0cf2">1.1.5. Searching</a></li>
+<li><a href="#orgd684e84">1.1.6. Substitution</a></li>
+<li><a href="#orgd5bedfc">1.1.7. Execute External Commands:</a></li>
+<li><a href="#orgdcebd36">1.1.8. Make External copy of current file:</a></li>
+<li><a href="#org7be4b1f">1.1.9. Retrieve &amp; Merge Files:</a></li>
+<li><a href="#org4d866b7">1.1.10. To go insert mode:</a></li>
+<li><a href="#orgbaccb1b">1.1.11. Basic Text Manipulation</a></li>
+<li><a href="#org48e718d">1.1.12. set option :set</a></li>
+</ul>
+</li>
+<li><a href="#orgd7afbe5">1.2. Vim Language Synopsis</a>
+<ul>
+<li><a href="#org4b83ad2">1.2.1. Verbs and Nouns in VimL</a></li>
+</ul>
+</li>
+<li><a href="#org351ad4d">1.3. Some built-in configuration additions</a>
+<ul>
+<li><a href="#org92065d1">1.3.1. Fuzzy Buffer File Search</a></li>
+<li><a href="#orga280d46">1.3.2. Tag Jumping</a></li>
+<li><a href="#org97428ef">1.3.3. Autocomplete</a></li>
+<li><a href="#org825ff29">1.3.4. File Browsing</a></li>
+<li><a href="#orgbf18d48">1.3.5. Snippets</a></li>
+<li><a href="#orgd8ec742">1.3.6. Build Integration</a></li>
+</ul>
+</li>
+<li><a href="#orgefd73d3">1.4. NeoVim User Manual Synopsis</a>
+<ul>
+<li><a href="#orgf9260c4">1.4.1. <code>usr_02.txt</code>: First Steps in Vim</a></li>
+<li><a href="#orgd242270">1.4.2. <code>usr_03.txt</code>: Moving Around</a></li>
+<li><a href="#orgf8ef476">1.4.3. <code>usr_04.txt</code>: Making Small Changes</a></li>
+<li><a href="#org0e94216">1.4.4. more someday&#x2026;</a></li>
+</ul>
+</li>
+<li><a href="#orgb3dca9c">1.5. Let vim do the typing</a></li>
+<li><a href="#orgb66c9af">1.6. More Unsorted Magic</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3b6df5b" class="outline-2">
+<h2 id="org3b6df5b"><span class="section-number-2">1</span> VIM Cheatsheet</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A lifetime worth of vim knowledge in a file.
+</p>
+</div>
+<div id="outline-container-orgcd4b8c3" class="outline-3">
+<h3 id="orgcd4b8c3"><span class="section-number-3">1.1</span> Basics</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org152b99a" class="outline-4">
+<h4 id="org152b99a"><span class="section-number-4">1.1.1</span> Basic Movements &amp; Commands</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<pre class="example" id="org10907af">
++-----------------+   For Japanese users, Hiroshi Iwatani suggested using this:
+|  Movements:     | -----------------------------------------------------------
++-----------------+                   Komsomolsk
+|                 |                       ^
+|       ^         |                       |
+|       k         |          Huan Ho  &lt;---0---&gt; Los Angeles
+| &lt; h       l &gt;   |	(Yellow river)    |
+|       j         |                       v
+|       v         |                       Java (the island,
+|                 |                       not the programming language)
++-----------------+
+
+Basic Commands:
+- :q! → Exit discarding anything you did.(cause u suck!)
+- x   → Delete Char. (Normal Mode, N.M.)
+- i   → Insert (move cursor, press i and insert text) (N.M)
+- A   → Append ("--") (N.M.)
+- wq  → Exit and Save Changes.
+- dw  → DeleteWord after cursor (N.Mode)
+- d$  → Delete Until End Of Line (N.M.)
+</pre>
+</div>
+</div>
+<div id="outline-container-org70c97a9" class="outline-4">
+<h4 id="org70c97a9"><span class="section-number-4">1.1.2</span> Cursor Location &amp; File Status</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>CTRL + G → Shows Ur Location in file &amp; file status.</li>
+<li>G    → Move to Bottom of File</li>
+<li>gg   → Move to Top of File.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2556feb" class="outline-4">
+<h4 id="org2556feb"><span class="section-number-4">1.1.3</span> Search Command / and ?</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>/test
+<ul class="org-ul">
+<li>Searches for "skatata"</li>
+<li>press n to Find Next</li>
+<li>press N to Find Next on Opposite Direction.</li>
+</ul></li>
+<li>?skatata
+<ul class="org-ul">
+<li>Searches for "skatata" on the Opposite Direction.</li>
+<li>Press CTRL + O to go back where you came, keep pressing o, to repeat</li>
+<li>Press CTRL + I to go Forward.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge1c6733" class="outline-4">
+<h4 id="orge1c6733"><span class="section-number-4">1.1.4</span> Matching (Parenthesis)</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<ul class="org-ul">
+<li>% → Place cursor on any (,[,{ and type % to find it's match ),] or }.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3ed0cf2" class="outline-4">
+<h4 id="org3ed0cf2"><span class="section-number-4">1.1.5</span> Searching</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<ul class="org-ul">
+<li>/term
+<ul class="org-ul">
+<li>Searches for the term 'term'</li>
+<li>Press 'n' and 'b' to go back and forth.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd684e84" class="outline-4">
+<h4 id="orgd684e84"><span class="section-number-4">1.1.6</span> Substitution</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<pre class="example" id="org954148b">
+:s/old/new	    → Change first occurence of "old" to "new".
+:s/old/new/     → Adding the g Flag makes it Global
+		      all occurences of "thee" replaced.
+:#,#s/old/new/g → where #,# are the line numbers of the range
+		  of lines where the substitution is to be done.
+:%s/old/new/gc  → to find every occurrence in the whole file,
+		  with a prompt whether to substitute or not.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd5bedfc" class="outline-4">
+<h4 id="orgd5bedfc"><span class="section-number-4">1.1.7</span> Execute External Commands:</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<ul class="org-ul">
+<li>!ls → Execute ls command inside vim.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdcebd36" class="outline-4">
+<h4 id="orgdcebd36"><span class="section-number-4">1.1.8</span> Make External copy of current file:</h4>
+<div class="outline-text-4" id="text-1-1-8">
+<ul class="org-ul">
+<li>:w NewFile
+<ul class="org-ul">
+<li>Make exact copy of current file as NewFile.</li>
+<li>To save part of the file, type v, select and :w NewFile.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7be4b1f" class="outline-4">
+<h4 id="org7be4b1f"><span class="section-number-4">1.1.9</span> Retrieve &amp; Merge Files:</h4>
+<div class="outline-text-4" id="text-1-1-9">
+<ul class="org-ul">
+<li>:r Filename
+<ul class="org-ul">
+<li>Insert the contents of the file Filename into the current one.</li>
+</ul></li>
+<li>:r !ls
+<ul class="org-ul">
+<li>Insert the output of ls command under your cursor &lt;3LifeHack.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4d866b7" class="outline-4">
+<h4 id="org4d866b7"><span class="section-number-4">1.1.10</span> To go insert mode:</h4>
+<div class="outline-text-4" id="text-1-1-10">
+<ul class="org-ul">
+<li>o → open Command, puts you in I mode, to the line bellow the cursor.</li>
+<li>O → Open Command, puts you in I mode, to the line Above the cursor.</li>
+<li>a → Append Command, Puts you to I mode (almost same as i, A)</li>
+<li>A → Append Command, Puts you to I mode, append text at the end of line.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbaccb1b" class="outline-4">
+<h4 id="orgbaccb1b"><span class="section-number-4">1.1.11</span> Basic Text Manipulation</h4>
+<div class="outline-text-4" id="text-1-1-11">
+<ul class="org-ul">
+<li>R → Replace Command, Replace More than One Character.</li>
+<li>y → yank=copy, type v, select text you need, type y to yank.</li>
+<li>p → put=paste, move the cursor where you want, type p to put that you yanked.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org48e718d" class="outline-4">
+<h4 id="org48e718d"><span class="section-number-4">1.1.12</span> set option :set</h4>
+<div class="outline-text-4" id="text-1-1-12">
+<ul class="org-ul">
+<li>:set ic
+<ul class="org-ul">
+<li>Type :set ic and /skata to search for skata (ic=IgnoreCase).</li>
+<li>Type :set noic to Disable Ingoring Case.</li>
+<li>Type /skata\c to Ignore Case for just this search.</li>
+<li>Type :set hls is and /skata to highligt all skata occurences.</li>
+<li>Type :nohlsearch to remove the highlightings.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7afbe5" class="outline-3">
+<h3 id="orgd7afbe5"><span class="section-number-3">1.2</span> Vim Language Synopsis</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Vim's killer feature is the language it provides for making changes.
+</p>
+<pre class="example" id="orgacb28c5">
+The Syntax of the VIM Language:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    - Verb + Noun
+
+    - d for Delete }
+		   } =&gt; Delete Word :)
+    - w for Word   }
+
+- Commands are: Repeatable &amp; Undoable.
+</pre>
+</div>
+
+<div id="outline-container-org4b83ad2" class="outline-4">
+<h4 id="org4b83ad2"><span class="section-number-4">1.2.1</span> Verbs and Nouns in VimL</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>Verbs: The operations you want to make on the text.
+<ul class="org-ul">
+<li>"d" → Delete</li>
+<li>"dd → Delete Line.</li>
+<li>"D" → Delete from Cursor pos. until end of line.(=d$)</li>
+<li>"c" → Change (Delete &amp; go to Insert Mode)</li>
+<li>"&gt;" → Indent</li>
+<li>"&lt;" → Outdent</li>
+<li>"v" → Visually Select</li>
+<li>"y" → Yank (copy)</li>
+<li>"u" → Undo</li>
+<li>"r" → Replace</li>
+<li>"J" → Join current live with following one.</li>
+<li>"w" → Save</li>
+<li>"x" → Delete Character</li>
+<li>"i" → Insert Mode.</li>
+<li>"o" → open (puts you to Imode to the line bellow)</li>
+<li>"O" → Open (puts you to Imode to the line above)</li>
+<li>"a" → append (like i)</li>
+<li>"A" → Append (Append text to the end of current line.)</li>
+<li>"p" → Put (Paste)</li>
+<li>"gg: → Go to 1st Line of the file.</li>
+<li>"g" → (k,h,l,j): Move to logical line.</li>
+<li>"G" → Go to Last Line of the file.</li>
+<li>"q" → Quit.</li>
+<li>"/" → Search Forward.</li>
+<li>"?" → Search Backward.</li>
+<li>"%" → Marching (,[,{.</li>
+<li>"s" → Substitute.</li>
+<li>"!" → Execute External Command.</li>
+<li>"." → Repeat my previous command</li>
+<li><code>+++</code></li>
+</ul></li>
+
+<li>Nouns: Motions.
+<ul class="org-ul">
+<li>"w" → Word (forward by a "word")</li>
+<li>"e" → End of the word.</li>
+<li>"b" → Back (back by a "word")</li>
+<li>"j" → One Line Down.</li>
+<li>"k" → One Line Up.</li>
+<li>"0" → Start of Line</li>
+<li>"$" → End of Line. (including last char.)</li>
+<li>"s" → Sentence (ex: das (Delete Arround Sentence</li>
+<li>"p" → Paragraph.</li>
+<li>"i" → Inner (ex: ciw change all current word)</li>
+<li>"a" → Arround (ex: das delete arround sent. deletes sentence &amp; its whitespace)</li>
+<li>"t" → Tag (ex: cit change inner tag
+→ change the contents of a &lt;p&gt;sdasew12r&lt;/p&gt; tag;)
+→ Vim understands tags! you dont even have to be inside one.🤘</li>
+<li><code>+++</code></li>
+</ul></li>
+
+<li>Examples:
+<ul class="org-ul">
+<li>"iw" → inner word (works from anywhere in the word).</li>
+<li>"i"" → inner quotes.</li>
+<li>"it" → inner tag (contents of HTML tag see above).</li>
+<li>"ip" → inner paragraph.</li>
+<li>"as" → "a sentence" (ap = a paragraph).</li>
+</ul></li>
+
+<li>Parameterized Text Objects:
+<b><b>(You have some of those on Verbs cause u're NoOb deal with it!)</b></b>
+      Not Official Term, but means that they need text after them, to do something with it:
+<ul class="org-ul">
+<li>"f", "F" → "find" the next character(including that character).</li>
+<li>"t", "T" → "find" the next character(NOT including that character).</li>
+<li>"/" → Search (up to the next term).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org351ad4d" class="outline-3">
+<h3 id="org351ad4d"><span class="section-number-3">1.3</span> Some built-in configuration additions</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The following settings in the next 6 sections require no plugins
+to be installed, just vanilla vim or neovim.
+</p>
+<pre class="example" id="org752f71c">
+" Enter the current millenium:
+set nocompatible
+
+" Enable syntax and plugins (for metrw)
+syntax enable
+filetype plugin on
+</pre>
+</div>
+
+<div id="outline-container-org92065d1" class="outline-4">
+<h4 id="org92065d1"><span class="section-number-4">1.3.1</span> Fuzzy Buffer File Search</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Search down into subfolders
+Provides tab-complition for all file-related tasks
+</p>
+
+<pre class="example" id="org848663d">
+set path +=**
+
+" Display all matching files when we tab autocomplete
+set wildmenu
+</pre>
+
+<p>
+NOW YOU CAN:
+</p>
+<ul class="org-ul">
+<li>Hit tad to :find by partial match</li>
+<li>Use * to make it fuzzy</li>
+<li>Remove a file from buffer with :bd</li>
+<li>:b lets you autocomplete any buffer:</li>
+</ul>
+
+<p>
+One cool thing you can do is play with ur vim buffers finally:
+( You have more that you could possibly handle! )
+</p>
+<ol class="org-ol">
+<li>If you have multiple files opened in vim,
+you can use the :ls command, to view all opened buffers.</li>
+<li><p>
+Then you can use the :b command along with a substring:
+(part of the filename of the file u need from the buffer)
+</p>
+<pre class="example" id="orgc1b85fe">
+:b flname
+</pre>
+<p>
+If ur substring Isn't Unique vim'll let u know.
+</p></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga280d46" class="outline-4">
+<h4 id="orga280d46"><span class="section-number-4">1.3.2</span> Tag Jumping</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Create the 'tags' file (may need ctags if urnot in Linux.)
+</p>
+<pre class="example" id="org570253b">
+command! MakeTags !ctags -R .
+</pre>
+<p>
+NOW YOU CAN: (^=&lt;CTRL&gt;)
+</p>
+<ol class="org-ol">
+<li>Use ^] to jump to tag under cursor.</li>
+<li>Use g^] for ambiguous tags.</li>
+<li>Use ^t to jump back up the stack.</li>
+<li>This doesn't help if you want a visual list of tags.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org97428ef" class="outline-4">
+<h4 id="org97428ef"><span class="section-number-4">1.3.3</span> Autocomplete</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+The good stuff is documented in |:help ins-completion|
+</p>
+
+<p>
+HIGHLIGHTS:
+</p>
+<ul class="org-ul">
+<li>^x<sup>n</sup> for JUST this file.</li>
+<li>^x<sup>f</sup> for filenames (works with our path tricks.) &lt;&#x2013; FIND FLNMS in INSERT MODE!</li>
+<li>^x^] for tags only</li>
+<li>^n for anything specified by the 'complete' option.</li>
+</ul>
+
+<p>
+NOW YOU CAN:
+</p>
+<ul class="org-ul">
+<li>Press ^n to see suggestions and</li>
+<li>Use ^n and ^p to go back and forth in the suggestion list menu.</li>
+<li>Cool if you asked me. Also:</li>
+<li>Type ~/Code/myPython/ ^x<sup>f</sup> to list all files in there specifically.
+<ul class="org-ul">
+<li>Vim ins autocompletion supports BRE. Find out if needed.</li>
+<li>Go to :help ins-completion for more crazy toys.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org825ff29" class="outline-4">
+<h4 id="org825ff29"><span class="section-number-4">1.3.4</span> File Browsing</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<p>
+Tweak for browsing:
+</p>
+<pre class="example" id="org3246a4b">
+let g:netrw_banner=0		" disable annoying banner.
+let g:netrw_browse_split=4	" open in prior windows.
+let g:netrw_altv=1		" open splits to the right.
+let g:netrw_liststyle=3		" tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+</pre>
+
+<p>
+NOW YOU CAN:
+</p>
+<ul class="org-ul">
+<li>:edit a folder to open a file browser.</li>
+<li>&lt;CR&gt;/v/t to open in a h-split/v-split/tab</li>
+<li>check ":help netrw-browse-maps" for more mappings.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbf18d48" class="outline-4">
+<h4 id="orgbf18d48"><span class="section-number-4">1.3.5</span> Snippets</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<pre class="example" id="org4d2052e">
+nnoremap ,html :-1read $HOME/.config/nvim/.skeleton.html&lt;CR&gt;3jwf&gt;a
+</pre>
+
+<p>
+NOW YOU CAN:
+</p>
+<ul class="org-ul">
+<li>Take over the world! (with much fewer keystrokes)</li>
+<li>"read" =&gt; ":read file.html" put contents of file.html in my current file.</li>
+<li>The :-1 before the read on the command is there before read, adds a \n, and the cursor would move.</li>
+<li>The "3jwf" is for moving cursor in the &lt;title&gt;👇&lt;/title&gt;.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd8ec742" class="outline-4">
+<h4 id="orgd8ec742"><span class="section-number-4">1.3.6</span> Build Integration</h4>
+<div class="outline-text-4" id="text-1-3-6">
+<p>
+Steal Mr. Bradley's formatter &amp; add it to our <code>spec_helper</code>
+<a href="http://philipbradley.net/rspec-into-vim-with-quickfix">http://philipbradley.net/rspec-into-vim-with-quickfix</a>
+</p>
+
+<p>
+Configure the 'make' command to run RSpec
+</p>
+<pre class="example" id="orgcda48c2">
+set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
+</pre>
+
+<p>
+NOW YOU CAN:
+</p>
+
+<p>
+Run
+</p>
+<ul class="org-ul">
+<li>:make to run RSpec.</li>
+<li>:cl to list errors.</li>
+<li>:cc# to jump tp error by number.</li>
+<li>:cn and :cp to navigate back &amp; forward.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgefd73d3" class="outline-3">
+<h3 id="orgefd73d3"><span class="section-number-3">1.4</span> NeoVim User Manual Synopsis</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+NEOVIM USER MANUAL - by Bram Mooleanaar - Not all of it but the stuff i needed most.
+</p>
+</div>
+<div id="outline-container-orgf9260c4" class="outline-4">
+<h4 id="orgf9260c4"><span class="section-number-4">1.4.1</span> <code>usr_02.txt</code>: First Steps in Vim</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<ol class="org-ol">
+<li>Go to Insert Mode:	"i"</li>
+<li>Go to Normal Mode:	"&lt;ESC&gt;"</li>
+<li>Go to Command-line Mode: ":"</li>
+<li>See what mode u are in: ":set showmode"</li>
+<li>Move cursor left/down/up/right: "h"<i>"j"</i>"k"/"l"</li>
+<li>Delete char under cursor: "x"</li>
+<li>Delete line cursor is at: "dd"</li>
+<li>Delete line brake (join lines): "J"</li>
+<li>Undo Last Edit: "u"</li>
+<li>Redo Last Undo: "&lt;CTRL&gt;+R"</li>
+<li>Append (Go to Insert mode &amp; Append to end of line: "a"</li>
+<li>Open new line (Go to I. mode and add \n before the cursor: "o"</li>
+<li>Open new line above cursor: "O"</li>
+<li>You can use counts to (almost) all the above commands, examples: "3a", "3dd", "3x", "9k"</li>
+<li><p>
+Getting Help (Stop Googling!): ":help {subject}"
+a. Get help for the x command: ":help x"
+b. Find out how to delete: ":help deleting"
+c. Index all Vim Commands: ":help index"
+d. Get help for CTRL+"": ":help CTRL-A"
+e. Help for CTRL+H in Normal Mode: ":help CTRL-H"
+f. Help for CTRL+H in Insert Mode: ":help i<sub>CTRL</sub>-H"
+g. Help for cmd-line args: ":help -t"
+h. Help on cmd options: Options are enclosed with signle quotes 'opt':-&gt; ":help 'number'"
+i. Special Keys are enclosed by &lt;angle&gt; brackets: ":help i_&lt;Up&gt;"
+j. If you see an Error you don't know of: ":help E37"
+</p>
+<ul class="org-ul">
+<li>(like this: E37: No write since last&#x2026; &#x2026;change (use ! to override))</li>
+<li>DON'T PANIC copy the code "E37" and: ":help E37"</li>
+</ul>
+<p>
+k. Follow linkstorelatted topics:	":help usr<sub>13.txt</sub>"
+l. Autocomplete help topics: ":help ind&lt;Tab&gt;" or "&lt;CTRL&gt;+D"
+m. For more on help see: ":help helphelp" or ":help usr<sub>02.txt</sub>" :)
+</p></li>
+<li>Save &amp; Exit (NoBackup): "ZZ"</li>
+<li>Save &amp; Discard Changes: ":q!"</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd242270" class="outline-4">
+<h4 id="orgd242270"><span class="section-number-4">1.4.2</span> <code>usr_03.txt</code>: Moving Around</h4>
+<div class="outline-text-4" id="text-1-4-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgd8ba558"></a>Word Movement:<br />
+<div class="outline-text-5" id="text-1-4-2-1">
+<ol class="org-ol">
+<li>Move (3) word(s) Forward: "3w"</li>
+<li>Move backword to start of previous word: "b"</li>
+<li>Move to next end of a word: "e"</li>
+<li>Move to previous end of a word: "ge"</li>
+<li>Make Vim consider as words, words that
+end with a non-word char like . - &#x2026; : ":set iskeyword&amp;"</li>
+</ol>
+</div>
+</li>
+<li><a id="org550305a"></a>Moving to start or end of file:<br />
+<div class="outline-text-5" id="text-1-4-2-2">
+<ol class="org-ol">
+<li>Move to end of Current Line: "&amp;"</li>
+<li>Move to end of 4rth Line: "4$"</li>
+<li>Move to start of Line: "0"</li>
+</ol>
+</div>
+</li>
+
+<li><a id="orge6ee572"></a>Moving to a specific character:<br />
+<div class="outline-text-5" id="text-1-4-2-3">
+<ol class="org-ol">
+<li>(f)ind forward in line specific char: "fx" search for "x"
+<ul class="org-ul">
+<li>Go to the l if the "foul" word: "3fl"</li>
+</ul></li>
+<li>(F)ind backwords in line specific char: "Fx"</li>
+<li>Same as f but stops one char before: "tx"</li>
+<li>Same as F but stops one char before: "Tx"</li>
+<li>You can repeat those 4 commands by using: ";"/","</li>
+</ol>
+</div>
+</li>
+
+<li><a id="orgc60e587"></a>Matching Parenthesis:<br />
+<div class="outline-text-5" id="text-1-4-2-4">
+<ol class="org-ol">
+<li>Match (,[,[ by going on top of one and: "%"</li>
+</ol>
+</div>
+</li>
+
+<li><a id="orge75e46a"></a>Moving to a specific line:<br />
+<div class="outline-text-5" id="text-1-4-2-5">
+<ol class="org-ol">
+<li>Go to Last line in file: "G"</li>
+<li>Go to 7th line of the file: "7G"</li>
+<li>Go to 1st line of the file: "gg"</li>
+<li>Go to the middle of the file: "50%"</li>
+<li>Go to near the end: "90%"</li>
+<li>Move on top of the visible text area: "H" 1st visible line</li>
+<li>Move on middle of the visible text area:	"M" Middle</li>
+<li>Move to end of the visible text area: "L"	Last visible line</li>
+</ol>
+</div>
+</li>
+
+<li><a id="org53a7e5f"></a>Telling where you are:<br />
+<div class="outline-text-5" id="text-1-4-2-6">
+<ol class="org-ol">
+<li>See current filename, line number,
+position(%), column: "&lt;CTRL&gt; + G"</li>
+<li>Display Line Numbers: ":set number"</li>
+<li>Switch of displaying line numbers: ":set nonumber"</li>
+<li>Display cursor posit. in low right corner: ":set ruler"</li>
+</ol>
+</div>
+</li>
+
+<li><a id="org3da02ad"></a>Scrolling around:<br />
+<div class="outline-text-5" id="text-1-4-2-7">
+<ol class="org-ol">
+<li>Scrolling Carefully Up: "&lt;CTRL&gt; + U" or "u"</li>
+<li>Scrolling Carefully Down: "&lt;CTRL&gt; + D" or "d"</li>
+<li>Scrolling Carefully One Line Up: "&lt;CTRL&gt; + E" or "e"</li>
+<li>Scrolling Carefully One Line Down: "&lt;CTRL&gt; + Y" or "y"</li>
+<li>Scroll by a whole screen forward: "&lt;CTRL&gt; + F" or "f"</li>
+<li>Scroll by a whole screen Backwards: "&lt;CTRL&gt; + B" or "b"</li>
+<li>Scroll screen carefully down without,
+moving the cursor, to see below: "zz"</li>
+<li>Save as above but puts cursor on top: "zt"</li>
+<li>Save but puts cursor on the bottom: "zb"</li>
+</ol>
+</div>
+</li>
+
+<li><a id="org5fec0f8"></a>Simple Searches:<br />
+<div class="outline-text-5" id="text-1-4-2-8">
+<ol class="org-ol">
+<li>Search for a string: <code>"\string_to_find"</code></li>
+<li>Find next occurence: "n"</li>
+<li>Go to 3rd occurence: "3n"</li>
+<li>Search backwards for string: "?string"</li>
+<li>Find next occurence on backwards: "N"</li>
+<li>Set Ignore case: ":set ignorecase"</li>
+<li>Unset Ignore case: ":set noignorecase"</li>
+<li>Search History: "/" or "?" and &lt;Up&gt;/&lt;Down&gt;</li>
+<li>Command History: ":" and &lt;Up&gt;/&lt;Down&gt;</li>
+<li>Match String to Search with cursor:	"<code>*</code>"
+<ul class="org-ul">
+<li>Put cursor on the word and press "*"</li>
+</ul></li>
+<li>Find Next Occurence of Current Word:
+<ul class="org-ul">
+<li>Put the cursor on top of the word, type "*"
+to grab the word as search string.</li>
+<li>"#" is the same for the other direction.</li>
+<li>"3*" matches the 3rd oc/nce.</li>
+</ul></li>
+<li>Search for exact words:
+<ul class="org-ul">
+<li>"/the\" if not use \ u'll also match there, these, &#x2026;</li>
+</ul></li>
+<li>Match the beginning of a word:
+<ul class="org-ul">
+<li>"/\&lt;the\" search the word "the"</li>
+</ul></li>
+<li>Hightlight All Occurence of a Search: ":set hlsearch"</li>
+<li>Disable the above: ":set nohlsearch"</li>
+<li>Just remove the hightlight:	"nohlsearch"</li>
+<li>Search Specifically in the file: ":set nowrepscan"</li>
+<li>Disable display anwers while typing: ":set noincsearch"</li>
+<li>Set any of the above options on vimrc: ":edit ~/.config/nvim/init.vim"</li>
+</ol>
+</div>
+</li>
+
+<li><a id="orgf6c5ea1"></a>Simple Search Patterns - Simple REs:<br />
+<div class="outline-text-5" id="text-1-4-2-9">
+<ol class="org-ol">
+<li>Match a word at beginning of line Only: "<sup>the</sup>"</li>
+<li>Match word at the end of a line Only: "the$"</li>
+<li>Search for word at begin/end of line: "/<sup>the</sup>" / "the$"</li>
+<li>Match a line containing only the pattern: "/<sup>the</sup>$"</li>
+<li>Match any signle character: "."</li>
+<li>Match special characters with eskeetit: "\.", "\^"</li>
+</ol>
+</div>
+</li>
+
+<li><a id="org44a9b51"></a>Using marks<br />
+<div class="outline-text-5" id="text-1-4-2-10">
+<p>
+When u move arround vim remembers the position u came from, this position is called mark.
+</p>
+<ol class="org-ol">
+<li>Go back to your previous position: "``"</li>
+<li>Jump to older positions: "&lt;Ctrl&gt;" + "O"</li>
+<li>Jump to newer positions: "&lt;Ctrl&gt;" + "I" Same as &lt;TAB&gt;</li>
+<li>Consider the following sequence:	"33G /<sup>The</sup> CTRL + O"</li>
+<li>List all positions you jumped to: ":jumps"</li>
+</ol>
+
+<p>
+NAMED MARKS - Use your own marks, you can have 26 of them,
+(A-Z) in your text, you cant see them, vim remembers them:
+</p>
+<ol class="org-ol">
+<li>Mark the place under your cursor as "a":	"ma"</li>
+<li>Now to go to your "a" mark use the "`":	"`a"</li>
+<li>Go to the beginning of the line that contains the mark: "'a" (single quote')</li>
+<li>A good usage is the following:
+Put a mark "s" for start at the start of the file u're working,
+and a "e" end mark at the end of the file and go back and
+forth easilly with: "'s" / "'e"</li>
+<li>List all marks: ":marks"</li>
+<li>Some Special Marks:
+<ul class="org-ul">
+<li>The cursor position before doing a jump: "'"</li>
+<li>The cursor position when last editing the file: '"'</li>
+<li>Start of the last change: "["</li>
+<li>End of the last change: "]"</li>
+</ul></li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgf8ef476" class="outline-4">
+<h4 id="orgf8ef476"><span class="section-number-4">1.4.3</span> <code>usr_04.txt</code>: Making Small Changes</h4>
+<div class="outline-text-4" id="text-1-4-3">
+</div>
+<ol class="org-ol">
+<li><a id="org21626ab"></a>Operators and Motions<br />
+<div class="outline-text-5" id="text-1-4-3-1">
+<ol class="org-ol">
+<li>Delete 2 words (w): "d2w"</li>
+<li>Delete 2 words up until the last char (e): "d2e" (delete 2 end)</li>
+<li>Delete from cursor until end of line: "d$"</li>
+<li>Operate on any text u can move over: "d4k"</li>
+</ol>
+</div>
+</li>
+<li><a id="org5ab0502"></a>Changing Text<br />
+<div class="outline-text-5" id="text-1-4-3-2">
+<ol class="org-ol">
+<li>Replace part of a line with ur string: "c2wbe&lt;Esc&gt;"
+<ul class="org-ul">
+<li>"c": the change operator.</li>
+<li>"2w": move two words (they're deleted and Insert mode started)</li>
+<li>"be": insert this text &lt;Esc&gt; back to Normal Mode. Cool ;)</li>
+</ul></li>
+<li>Delete a Whole Line: "dd"
+a. Delete to the end of Line: "d$"
+b. Delete to the end of Line: "D"</li>
+<li>Change a Whole Line: "cc"
+a. Change a Whole Line: "S"
+b. Change to the end of Line: "c$"
+c. Change to the end of Line: "C"</li>
+</ol>
+</div>
+</li>
+<li><a id="org5db9b30"></a>SHORTCUTS:<br />
+<div class="outline-text-5" id="text-1-4-3-3">
+<p>
+Some operator-motion commands are used so often that they
+have been given a single letter command:
+</p>
+<ul class="org-ul">
+<li>x stands for dl (delete character under cursor)</li>
+<li>X stands for dh (delete character left of the cursor)</li>
+<li>D stands for d$ (delete to the end of the line)</li>
+<li>C stands for c$ (change to the end of the line)</li>
+<li>s stands for cl (change one character)</li>
+<li>S stands for cc (change a whole line)</li>
+</ul>
+</div>
+</li>
+<li><a id="org0824f55"></a>WHERE TO PUT THE COUNT:<br />
+<div class="outline-text-5" id="text-1-4-3-4">
+<ol class="org-ol">
+<li>Delete 1 word 3 times: "3dw"</li>
+<li>Delete 3 words 1 time: "d3w"</li>
+<li>Delete 2 words, repeated 3 times for a total of 6 words: "3d2w"</li>
+</ol>
+</div>
+</li>
+<li><a id="orge7e91b0"></a>REPLACING WITH ONE CHARACTER:<br />
+<div class="outline-text-5" id="text-1-4-3-5">
+<ol class="org-ol">
+<li>Replace char with "T" in NormalMode: "rT"</li>
+<li>Replace 5 chars with "x"s in NormalMode: "5rx"</li>
+<li>Replace 4 characters with breakline: "4r&lt;Enter&gt;"</li>
+</ol>
+</div>
+</li>
+<li><a id="org80808af"></a>Repeating a Change<br />
+<div class="outline-text-5" id="text-1-4-3-6">
+<ol class="org-ol">
+<li>Repeat the last change: "."</li>
+</ol>
+</div>
+</li>
+<li><a id="org15d63db"></a>Visual Mode - (v/V)<br />
+<div class="outline-text-5" id="text-1-4-3-7">
+<ol class="org-ol">
+<li>Select text: "v" + movement(h/j/k/l)</li>
+<li>Select text to delete: "v" + movement + "d"</li>
+<li>Select WHole Lines: "V"+ movement + action</li>
+<li>Select Blocks (like tables): "&lt;Ctrl&gt;+V" + move + act</li>
+<li>Go to end the selection: "o"</li>
+</ol>
+</div>
+</li>
+<li><a id="org89654e2"></a>Moving Text<br />
+<div class="outline-text-5" id="text-1-4-3-8">
+<p>
+When you Delete something with "d", "x", or another command,
+the text is saved. You can paste it back by using the "p" put command.
+</p>
+<ol class="org-ol">
+<li>Put deleted text before the cursor: "p"</li>
+<li>Put deleted text before the cursor: "P"</li>
+<li>You can repeat p/P as many times you need, the same text will be printed.</li>
+<li>Put deleted text 3times: "3p"</li>
+<li>Swap 2 characters("teh"~&gt;"the"): "xp" 1st move cursor on the "e"</li>
+</ol>
+</div>
+</li>
+<li><a id="org3b55a70"></a>Copying - Yanking Text - Inside vim<br />
+<div class="outline-text-5" id="text-1-4-3-9">
+<ol class="org-ol">
+<li>Yank selected text: "y"</li>
+<li>Yank word: "yw"</li>
+<li>Yank 2 words: "y2w"</li>
+<li>Yank 2 words without whitespaces: "y2e"</li>
+<li>Yank whole line:"yy" or "Y"</li>
+<li>Delete from cursor until end: "D"</li>
+<li>Yank from cursor until end of line: "y$"</li>
+</ol>
+</div>
+</li>
+<li><a id="orgbcdc56c"></a>Using the Clipboard - (y + p + "*)<br />
+<div class="outline-text-5" id="text-1-4-3-10">
+<ol class="org-ol">
+<li>Yank line into clipboard: "*yy</li>
+<li>Put text from clipboard into text: "*p</li>
+</ol>
+</div>
+</li>
+<li><a id="org530bab0"></a>Text objects<br />
+<div class="outline-text-5" id="text-1-4-3-11">
+<p>
+These commands move over three kinds of text objects:
+Sentence, Paragraph, Section
+</p>
+<ol class="org-ol">
+<li>Delete A Word under cursor no whitespace: "diw"</li>
+<li>Delete Word under cursor with whitespace: "daw"</li>
+<li>Change Inner Sentence: "cis"</li>
+<li>Same as above, includes whitespace: "cas"</li>
+<li>Delete Until End of file: "dG"</li>
+<li>Delete Until Start of file: "dgg"</li>
+<li>text-objects-summary:
+<ol class="org-ol">
+<li>sentences backward: "("</li>
+<li>sentences forward: ")"</li>
+<li>paragraph backward: "{"</li>
+<li>paragraph forward: "}"</li>
+<li>section forward or to the next '{': "]]"</li>
+<li>section forward or to the next '}': "]["</li>
+<li>section backward or to previous '{': "[["</li>
+<li>section backward or to previous '}': "[]"</li>
+</ol></li>
+</ol>
+</div>
+</li>
+<li><a id="org7373332"></a>Replace mode - R<br />
+<div class="outline-text-5" id="text-1-4-3-12">
+<ol class="org-ol">
+<li>The R command cause vim to enter the replace mode.
+In this mode every character u type replaces the one
+under ur cursor, until u press &lt;Esc&gt;</li>
+<li>Switch from Replace to Insert mode: "&lt;Insert&gt;"</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org0e94216" class="outline-4">
+<h4 id="org0e94216"><span class="section-number-4">1.4.4</span> more someday&#x2026;</h4>
+</div>
+</div>
+<div id="outline-container-orgb3dca9c" class="outline-3">
+<h3 id="orgb3dca9c"><span class="section-number-3">1.5</span> Let vim do the typing</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Let Vim do the typing - Insert Mode
+</p>
+<ul class="org-ul">
+<li>Insert Text from a Register: "&lt;Ctrl&gt; + r"</li>
+<li>Last Inserted text: "&lt;Ctrl&gt; + a"</li>
+<li>Go to sub completion mode: "&lt;Ctrl&gt; + x"</li>
+<li>Tag Completion: "&lt;Ctrl&gt; + x + &lt;Ctrl&gt; + ]"</li>
+<li>Filename Completion: "&lt;Ctrl&gt; + x + &lt;Ctrl&gt; + f"</li>
+<li>Context Aware Word Completion: "&lt;Ctrl&gt; + x + &lt;Ctrl&gt; + p"</li>
+<li>Same as above but searches forward: "&lt;Ctrl&gt; + x + &lt;Ctrl&gt; + n"</li>
+<li>Context Aware Line Completion: "&lt;Ctrl&gt; + x + &lt;Ctrl&gt; + l"</li>
+<li>Omni Completion (ex python methods): "&lt;Ctrl&gt; + x + &lt;Ctrl&gt; + o"</li>
+<li>Where vim looks for completion: ":set complete"</li>
+<li>To add there: ":set complete+=i,kspell"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb66c9af" class="outline-3">
+<h3 id="orgb66c9af"><span class="section-number-3">1.6</span> More Unsorted Magic</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>To delete forward up to character: "'X' type dtX"</li>
+<li>To delete forward through character: "'X' type dfX"</li>
+<li>To delete backward up to character: "'X' type dTX"</li>
+<li>To delete backward through character: "'X' type dFX"</li>
+<li>Open Multiple Files in buffers: ":n file1 file2"</li>
+<li>Loop through Multiple Files in ur buffers: ":b &lt;Tab&gt;" (:b&lt;space&gt;&lt;Tab&gt;)</li>
+<li>Create visual block: "&lt;Ctrl&gt; + v"</li>
+<li>Comment Mupliple Lines: Ctrl + v from down to up, Shift + I, type the comment char (#, //), and press Esc</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Manos Vasilakis (advizor.gr)</p>
+<p class="date">Created: 2021-09-16 Thu 22:51</p>
+</div>
+</body>
+</html>

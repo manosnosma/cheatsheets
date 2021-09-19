@@ -1,0 +1,2535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-16 Thu 22:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python Cheat Sheet</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Manos Vasilakis (advizor.gr)" />
+<style type="text/css">
+	<!--/*--><![CDATA[/*><!--*/
+	#content { max-width: 60em; margin: auto; }
+	tr:nth-child(even) { background-color: #f2f2f2 }
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	a:hover { text-decoration: underline }
+	a:visited {
+		color: green;
+		text-decoration: underline;
+	}
+	img { max-width: 100%; }
+	.title {
+		text-align: center;
+		margin-bottom: .2em;
+	}
+	.subtitle { 
+		text-align: center;
+		font-size: medium;
+		font-weight: bold;
+		margin-top:0;
+	}
+	.todo     { font-family: monospace; color: red;    }
+	.done     { font-family: monospace; color: green;  }
+	.priority { font-family: monospace; color: orange; }
+	.tag      { 
+		background-color: #eee; 
+		font-family: monospace;
+		padding: 2px;
+		font-size: 80%;
+		font-weight: normal;
+	}
+	.timestamp     { color: #bebebe; }
+	.timestamp-kwd { color: #5f9ea0; }
+	.org-right  { margin-left: auto; margin-right: 0px;  text-align: right;  }
+	.org-left   { margin-left: 0px;  margin-right: auto; text-align: left;   }
+	.org-center { margin-left: auto; margin-right: auto; text-align: center; }
+	.underline  { text-decoration: underline; }
+	#postamble p, #preamble p { font-size: 90%; margin: .2em; }
+	p.verse { margin-left: 3%; }
+	pre {
+		border: 1px solid #e6e6e6;
+		border-radius: 3px;
+		background-color: #f2f2f2;
+		padding: 8pt;
+		font-family: monospace;
+		overflow: auto;
+		margin: 1.2em;
+	}
+	pre.src {
+		position: relative;
+		overflow: auto;
+	}
+	pre.src:before {
+		display: none;
+		position: absolute;
+		top: -8px;
+		right: 12px;
+		padding: 3px;
+		color: #555;
+		background-color: #f2f2f299;
+	}
+	pre.src:hover:before { 
+		display: inline; 
+		margin-top: 14px;
+	}
+
+	/* Languages per Org manual */
+	pre.src-asymptote:before  { content: 'Asymptote' }
+	pre.src-awk:before        { content: 'Awk'       }
+	pre.src-authinfo::before  { content: 'Authinfo'  }
+	pre.src-C:before          { content: 'C'         }
+	/* pre.src-C++ doesn't work in CSS */
+	pre.src-clojure:before    { content: 'Clojure'        }
+	pre.src-css:before        { content: 'CSS'            }
+	pre.src-D:before          { content: 'D'              }
+	pre.src-ditaa:before      { content: 'ditaa'          }
+	pre.src-dot:before        { content: 'Graphviz'       }
+	pre.src-calc:before       { content: 'Emacs Calc'     }
+	pre.src-emacs-lisp:before { content: 'Emacs Lisp'     }
+	pre.src-fortran:before    { content: 'Fortran'        }
+	pre.src-gnuplot:before    { content: 'gnuplot'        }
+	pre.src-haskell:before    { content: 'Haskell'        }
+	pre.src-hledger:before    { content: 'hledger'        }
+	pre.src-java:before       { content: 'Java'           }
+	pre.src-js:before         { content: 'Javascript'     }
+	pre.src-latex:before      { content: 'LaTeX'          }
+	pre.src-ledger:before     { content: 'Ledger'         }
+	pre.src-lisp:before       { content: 'Lisp'           }
+	pre.src-lilypond:before   { content: 'Lilypond'       }
+	pre.src-lua:before        { content: 'Lua'            }
+	pre.src-matlab:before     { content: 'MATLAB'         }
+	pre.src-mscgen:before     { content: 'Mscgen'         }
+	pre.src-ocaml:before      { content: 'Objective Caml' }
+	pre.src-octave:before     { content: 'Octave'         }
+	pre.src-org:before        { content: 'Org mode'       }
+	pre.src-oz:before         { content: 'OZ'             }
+	pre.src-plantuml:before   { content: 'Plantuml'       }
+	pre.src-processing:before { content: 'Processing.js'  }
+	pre.src-python:before     { content: 'Python'         }
+	pre.src-R:before          { content: 'R'              }
+	pre.src-ruby:before       { content: 'Ruby'           }
+	pre.src-sass:before       { content: 'Sass'           }
+	pre.src-scheme:before     { content: 'Scheme'         }
+	pre.src-screen:before     { content: 'Gnu Screen'     }
+	pre.src-sed:before        { content: 'Sed'            }
+	pre.src-sh:before         { content: 'shell'          }
+	pre.src-sql:before        { content: 'SQL'            }
+	pre.src-sqlite:before     { content: 'SQLite'         }
+	/* additional languages in org.el's org-babel-load-languages alist */
+	pre.src-forth:before      { content: 'Forth'        }
+	pre.src-io:before         { content: 'IO'           }
+	pre.src-J:before          { content: 'J'            }
+	pre.src-makefile:before   { content: 'Makefile'     }
+	pre.src-maxima:before     { content: 'Maxima'       }
+	pre.src-perl:before       { content: 'Perl'         }
+	pre.src-picolisp:before   { content: 'Pico Lisp'    }
+	pre.src-scala:before      { content: 'Scala'        }
+	pre.src-shell:before      { content: 'Shell Script' }
+	pre.src-ebnf2ps:before    { content: 'ebfn2ps'      }
+	/* additional language identifiers per "defun org-babel-execute" in ob-*.el */
+	pre.src-cpp:before     { content: 'C++'    }
+	pre.src-abc:before     { content: 'ABC'    }
+	pre.src-coq:before     { content: 'Coq'    }
+	pre.src-groovy:before  { content: 'Groovy' }
+	/* additional language identifiers from org-babel-shell-names in
+	 * ob-shell.el: ob-shell is the only babel language using a lambda to put
+	 * the execution function name together. 
+	 */
+	pre.src-bash:before { content: 'bash' }
+	pre.src-csh:before  { content: 'csh'  }
+	pre.src-ash:before  { content: 'ash'  }
+	pre.src-dash:before { content: 'dash' }
+	pre.src-ksh:before  { content: 'ksh'  }
+	pre.src-mksh:before { content: 'mksh' }
+	pre.src-posh:before { content: 'posh' }
+	/* Additional Emacs modes also supported by the LaTeX listings package */
+	pre.src-ada:before       { content: 'Ada'        }
+	pre.src-asm:before       { content: 'Assembler'  }
+	pre.src-caml:before      { content: 'Caml'       }
+	pre.src-delphi:before    { content: 'Delphi'     }
+	pre.src-html:before      { content: 'HTML'       }
+	pre.src-idl:before       { content: 'IDL'        }
+	pre.src-mercury:before   { content: 'Mercury'    }
+	pre.src-metapost:before  { content: 'MetaPost'   }
+	pre.src-modula-2:before  { content: 'Modula-2'   }
+	pre.src-pascal:before    { content: 'Pascal'     }
+	pre.src-ps:before        { content: 'PostScript' }
+	pre.src-prolog:before    { content: 'Prolog'     }
+	pre.src-simula:before    { content: 'Simula'     }
+	pre.src-tcl:before       { content: 'tcl'        }
+	pre.src-tex:before       { content: 'TeX'        }
+	pre.src-plain-tex:before { content: 'Plain TeX'  }
+	pre.src-verilog:before   { content: 'Verilog'    }
+	pre.src-vhdl:before      { content: 'VHDL'       }
+	pre.src-xml:before       { content: 'XML'        }
+	pre.src-nxml:before      { content: 'XML'        }
+	/* add a generic configuration mode; LaTeX export needs an additional
+	 (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+	pre.src-conf:before { content: 'Configuration File' }
+
+	table            { border-collapse:collapse }
+	caption.t-above  { caption-side: top    }
+	caption.t-bottom { caption-side: bottom }
+	td, th           { vertical-align:top   }
+	th.org-right     { text-align: center   }
+	th.org-left      { text-align: center   }
+	th.org-center    { text-align: center   }
+	td.org-right     { text-align: right    }
+	td.org-left      { text-align: left     }
+	td.org-center    { text-align: center   }
+	dt               { font-weight: bold    }
+	.footpara { display: inline    }
+	.footdef  { margin-bottom: 1em }
+	.figure   { padding: 1em       }
+	.figure p { text-align: center }
+	.equation-container {
+		display: table;
+		text-align: center;
+		width: 100%;
+	}
+	.equation { vertical-align: middle }
+	.equation-label {
+		display: table-cell;
+		text-align: right;
+		vertical-align: middle;
+	}
+	.inlinetask {
+		padding: 10px;
+		border: 2px solid gray;
+		margin: 10px;
+		background: #ffffcc;
+	}
+	#org-div-home-and-up { text-align: right; font-size: 70%; white-space: nowrap; }
+	textarea { overflow-x: auto   }
+	.linenr  { font-size: smaller }
+	.code-highlighted { background-color: #ffff00 }
+	.org-info-js_info-navigation { border-style: none }
+	#org-info-js_console-label { font-size: 10px; font-weight: bold; white-space: nowrap; }
+	.org-info-js_search-highlight { background-color: #ffff00; color: #000000; font-weight: bold; }
+	.org-svg { width: 90% }
+	/*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Python Cheat Sheet</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org82d2de0">1. Comments.</a></li>
+<li><a href="#org5b82194">2. Primitive Datatypes and Operators</a>
+<ul>
+<li><a href="#orgbd16467">2.1. Numbers</a></li>
+<li><a href="#orgcd91c9a">2.2. Basic Math</a></li>
+<li><a href="#orgcf40daf">2.3. Integer division</a></li>
+<li><a href="#org483bf80">2.4. Division's result is always a float</a></li>
+<li><a href="#orgcc8b42c">2.5. Modulo Operation</a></li>
+<li><a href="#org90cb410">2.6. Exponentiation</a></li>
+<li><a href="#org6f97180">2.7. Enforce precedence</a></li>
+<li><a href="#org2fa693f">2.8. Boolean values are primitives</a></li>
+<li><a href="#org8fbda4a">2.9. Negate with not</a></li>
+<li><a href="#org91b48ef">2.10. Boolean Operators</a></li>
+<li><a href="#orgf2036be">2.11. True and False are actually 1 and 0</a></li>
+<li><a href="#org0585b2b">2.12. Comparison operators</a></li>
+<li><a href="#orgbf88878">2.13. Using boolean logical operators on ints</a></li>
+<li><a href="#orgdaf4662">2.14. Equality is ==</a></li>
+<li><a href="#org8cf4907">2.15. Inequality is !=</a></li>
+<li><a href="#org4ba185a">2.16. More comparisons</a></li>
+<li><a href="#org18c1fac">2.17. Is value in range?</a>
+<ul>
+<li><a href="#orgce4bde9">2.17.1. Chaining makes this look nicer</a></li>
+</ul>
+</li>
+<li><a href="#org9df6ccf">2.18. is VS. <code>==</code></a></li>
+<li><a href="#org8b0c279">2.19. Strings are created with " or '</a></li>
+<li><a href="#orgeca72bd">2.20. Strings can be added too!</a></li>
+<li><a href="#org2ed1c71">2.21. Concatenate strings without using '+'</a></li>
+<li><a href="#org7f46507">2.22. A string ~ list of chars</a></li>
+<li><a href="#org03b2c76">2.23. Length of a string</a></li>
+<li><a href="#org52011a6">2.24. Format strings with .format</a></li>
+<li><a href="#org44ef300">2.25. Repeat the formatting arguments to save some typing.</a></li>
+<li><a href="#org0b66615">2.26. Use keywords if you don't want to count.</a></li>
+<li><a href="#org1f3e152">2.27. The old style of formatting:</a></li>
+<li><a href="#org80831f0">2.28. Format using f-strings or formatted string literals (in Python 3.6+)</a></li>
+<li><a href="#org7672e92">2.29. None is an object</a></li>
+<li><a href="#org4379e71">2.30. Don't use the equality "==" symbol to compare objects to None</a></li>
+<li><a href="#org66fc14d">2.31. None, 0, and empty strings/lists/dicts/tuples</a></li>
+</ul>
+</li>
+<li><a href="#orgd30a68e">3. Variables and Collections</a>
+<ul>
+<li><a href="#org2a8e975">3.1. The print function</a>
+<ul>
+<li><a href="#org05251e2">3.1.1. Default newline at the end.</a></li>
+</ul>
+</li>
+<li><a href="#org976f776">3.2. The input function</a></li>
+<li><a href="#org8c6e0e7">3.3. Only assignments, No declarations.</a></li>
+<li><a href="#org1649b79">3.4. Accessing Unassigned variable</a></li>
+<li><a href="#org4593d24">3.5. Ternary operator</a></li>
+<li><a href="#orgc57346a">3.6. Lists (~arraylike)</a>
+<ul>
+<li><a href="#org9b26571">3.6.1. Pre-filled list</a></li>
+<li><a href="#orga230b7b">3.6.2. append - Add to the end</a></li>
+<li><a href="#orgff900cb">3.6.3. pop - Remove from the end</a></li>
+<li><a href="#org2710c34">3.6.4. Access list element</a></li>
+<li><a href="#org7a5cad4">3.6.5. Last element</a></li>
+<li><a href="#orgd0d8445">3.6.6. Out of bounds is an IndexError</a></li>
+<li><a href="#orgf87b953">3.6.7. Ranges with slice syntax.</a></li>
+<li><a href="#orgf0cbe3c">3.6.8. Closed/open range</a></li>
+<li><a href="#org0c31b4d">3.6.9. Omit the beginning and return the list</a></li>
+<li><a href="#org6c705cc">3.6.10. Omit the end and return the list</a></li>
+<li><a href="#org0e9c17a">3.6.11. Select every second entry</a></li>
+<li><a href="#org93111d6">3.6.12. Return a reversed copy</a></li>
+<li><a href="#orgd59c05b">3.6.13. Advanced Slice Syntax</a></li>
+<li><a href="#org0e993f3">3.6.14. Copy list</a></li>
+<li><a href="#orgf8b1308">3.6.15. del - Remove arbitrary elements</a></li>
+<li><a href="#orge4a8324">3.6.16. Remove first occurrence of a value</a></li>
+<li><a href="#orgeeba8bb">3.6.17. Insert element at specific index</a></li>
+<li><a href="#org79e40ec">3.6.18. Get the index of the first item found match</a></li>
+<li><a href="#orga95b9c1">3.6.19. Add lists</a></li>
+<li><a href="#org2cadfc5">3.6.20. extend - Concatenate lists</a></li>
+<li><a href="#org9f46974">3.6.21. in - Check for existence</a></li>
+<li><a href="#org8e11d4b">3.6.22. len - Length of list</a></li>
+</ul>
+</li>
+<li><a href="#org0ff9e29">3.7. Tuples (~immutable lists).</a>
+<ul>
+<li><a href="#orgdd4dad2">3.7.1. length</a></li>
+<li><a href="#org1b2b15c">3.7.2. Operations</a></li>
+<li><a href="#orgd833e96">3.7.3. Unpack tuples</a></li>
+<li><a href="#org6abb853">3.7.4. Extended unpacking</a></li>
+<li><a href="#org9176bdd">3.7.5. Tuples by default</a></li>
+<li><a href="#org7257984">3.7.6. Swap 2 values</a></li>
+</ul>
+</li>
+<li><a href="#org8b76876">3.8. Dictionaries (~key-value pairs)</a>
+<ul>
+<li><a href="#orgaa88686">3.8.1. Prefilled dictionary</a></li>
+<li><a href="#orgc852d66">3.8.2. Immutable types</a></li>
+<li><a href="#orga21b2f6">3.8.3. Look up values with []</a></li>
+<li><a href="#org72279bc">3.8.4. keys() - Get all keys</a></li>
+<li><a href="#orgc3e6b5a">3.8.5. values() - Get all values</a></li>
+<li><a href="#org8388657">3.8.6. in - Check for existence of keys</a></li>
+<li><a href="#orgd2eefc9">3.8.7. Non-existing key is a KeyError</a></li>
+<li><a href="#orga9f1c35">3.8.8. setdefault()</a></li>
+<li><a href="#org9ec28c4">3.8.9. Adding to a dictionary</a></li>
+<li><a href="#orgfb24b8a">3.8.10. del - Remove keys</a></li>
+<li><a href="#orgec4b075">3.8.11. Additional unpacking options</a></li>
+</ul>
+</li>
+<li><a href="#orgba59fd2">3.9. Sets (~unique elements)</a>
+<ul>
+<li><a href="#org1490fc0">3.9.1. Initialize a set with values.</a></li>
+<li><a href="#org2b95caf">3.9.2. The elements of a set have to be immutable.</a></li>
+<li><a href="#org2e8ffcf">3.9.3. Add item to the set</a></li>
+<li><a href="#org2e1b352">3.9.4. None duplicate elements</a></li>
+<li><a href="#org4054ee7">3.9.5. Set intersection with &amp;</a></li>
+<li><a href="#org40fc252">3.9.6. Set union with |</a></li>
+<li><a href="#orge3c34f8">3.9.7. Set difference with -</a></li>
+<li><a href="#org52c4185">3.9.8. Set symmetric difference with ^</a></li>
+<li><a href="#orgc4a7905">3.9.9. Set Superset</a></li>
+<li><a href="#org341d52d">3.9.10. Set Subset</a></li>
+<li><a href="#orgd3c168d">3.9.11. in - Check for existence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org79bf2df">4. Control Flow and Iterables</a>
+<ul>
+<li><a href="#orgceffe24">4.1. If statement</a></li>
+<li><a href="#org208229e">4.2. For loop</a>
+<ul>
+<li><a href="#orge1f3d16">4.2.1. range</a></li>
+</ul>
+</li>
+<li><a href="#org177fda0">4.3. While loop</a></li>
+<li><a href="#orgb6eda34">4.4. try/except - Handle exceptions</a></li>
+<li><a href="#org3993878">4.5. Iterables</a></li>
+</ul>
+</li>
+<li><a href="#orga3c9b13">5. Functions</a>
+<ul>
+<li><a href="#orgbcc9705">5.1. def - Create new functions</a></li>
+<li><a href="#orgf3f9699">5.2. Calling functions with parameters</a></li>
+<li><a href="#org0f89e1e">5.3. Another way to call functions</a></li>
+<li><a href="#org3720db0">5.4. Arguments</a>
+<ul>
+<li><a href="#org04ace81">5.4.1. Variable number of positional arguments</a></li>
+<li><a href="#orgdb2017b">5.4.2. Variable number of keyword arguments</a></li>
+<li><a href="#orgaaac3bd">5.4.3. Both at once</a></li>
+<li><a href="#org66321ae">5.4.4. Shorthand</a></li>
+</ul>
+</li>
+<li><a href="#orgb7cd2b8">5.5. Returning multiple values</a></li>
+<li><a href="#orgccb56b4">5.6. Function Scope</a></li>
+<li><a href="#org44882c0">5.7. First class functions</a></li>
+<li><a href="#org1dddda8">5.8. Anonymous functions</a></li>
+<li><a href="#org03e4c2f">5.9. Built-in higher order funcs</a></li>
+<li><a href="#org0853e8b">5.10. List comprehensions</a></li>
+<li><a href="#org995ecf1">5.11. Dict comprehensions</a></li>
+</ul>
+</li>
+<li><a href="#org82a1f8c">6. Modules</a>
+<ul>
+<li><a href="#orge1d88c6">6.1. import - Import module</a></li>
+<li><a href="#org670f1ec">6.2. Get specific func from module</a></li>
+<li><a href="#orgc9a7d5b">6.3. Import all funcs from module.</a></li>
+<li><a href="#orgd37d432">6.4. Shorten module names</a></li>
+<li><a href="#orgc5d24f0">6.5. Find which functions and attributes are defined in a module.</a></li>
+</ul>
+</li>
+<li><a href="#org0a0db37">7. Classes</a>
+<ul>
+<li><a href="#org600a181">7.1. Basics</a></li>
+<li><a href="#org8c52514">7.2. Inheritance</a>
+<ul>
+<li><a href="#orgce1b29a">7.2.1. Inherit from the Human class (superhero.py)</a></li>
+</ul>
+</li>
+<li><a href="#org545e58c">7.3. Multiple Inheritance</a>
+<ul>
+<li><a href="#org2f1250e">7.3.1. Multiple Inheritance Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org12c9dbd">8. Advanced</a>
+<ul>
+<li><a href="#orga33ac09">8.1. Generators</a></li>
+<li><a href="#org4204684">8.2. Decorators</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org82d2de0" class="outline-2">
+<h2 id="org82d2de0"><span class="section-number-2">1</span> Comments.</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-python"># Single line comments
+
+""" Multiline comment
+    can be written like
+    this and can be as
+    ....
+
+	   ....
+
+		   ....
+    long as you need it
+    to be.
+"""
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b82194" class="outline-2">
+<h2 id="org5b82194"><span class="section-number-2">2</span> Primitive Datatypes and Operators</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgbd16467" class="outline-3">
+<h3 id="orgbd16467"><span class="section-number-3">2.1</span> Numbers</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-python">3    # =&gt; 3    =&gt; integer
+3.14 # =&gt; 3.14 =&gt; float
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd91c9a" class="outline-3">
+<h3 id="orgcd91c9a"><span class="section-number-3">2.2</span> Basic Math</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-python">1 + 1   # =&gt; 2
+8 - 1   # =&gt; 7
+10 * 2  # =&gt; 20
+35 / 5  # =&gt; 7.0
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf40daf" class="outline-3">
+<h3 id="orgcf40daf"><span class="section-number-3">2.3</span> Integer division</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-python">5 // 3       # =&gt; 1
+5.0 // 3.0   # =&gt; 1.0 # works on floats too
+-5 // 3      # =&gt; -2
+-5.0 // 3.0  # =&gt; -2.0
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org483bf80" class="outline-3">
+<h3 id="org483bf80"><span class="section-number-3">2.4</span> Division's result is always a float</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+<pre class="src src-python">10.0 / 3  # =&gt; 3.3333333333333335
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc8b42c" class="outline-3">
+<h3 id="orgcc8b42c"><span class="section-number-3">2.5</span> Modulo Operation</h3>
+<div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+<pre class="src src-python">7 % 3  # =&gt; 1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90cb410" class="outline-3">
+<h3 id="org90cb410"><span class="section-number-3">2.6</span> Exponentiation</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+(x**y, x to the yth power)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">2**3  # =&gt; 8
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6f97180" class="outline-3">
+<h3 id="org6f97180"><span class="section-number-3">2.7</span> Enforce precedence</h3>
+<div class="outline-text-3" id="text-2-7">
+<div class="org-src-container">
+<pre class="src src-python">(1 + 3) * 2  # =&gt; 8
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2fa693f" class="outline-3">
+<h3 id="org2fa693f"><span class="section-number-3">2.8</span> Boolean values are primitives</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+(Note: the capitalization)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">True
+False
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8fbda4a" class="outline-3">
+<h3 id="org8fbda4a"><span class="section-number-3">2.9</span> Negate with not</h3>
+<div class="outline-text-3" id="text-2-9">
+<div class="org-src-container">
+<pre class="src src-python">not True   # =&gt; False
+not False  # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91b48ef" class="outline-3">
+<h3 id="org91b48ef"><span class="section-number-3">2.10</span> Boolean Operators</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+Note "and" and "or" are case-sensitive
+</p>
+<div class="org-src-container">
+<pre class="src src-python">True and False  # =&gt; False
+False or True   # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf2036be" class="outline-3">
+<h3 id="orgf2036be"><span class="section-number-3">2.11</span> True and False are actually 1 and 0</h3>
+<div class="outline-text-3" id="text-2-11">
+<div class="org-src-container">
+<pre class="src src-python">True + True # =&gt; 2
+True * 8    # =&gt; 8
+False - 5   # =&gt; -5
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0585b2b" class="outline-3">
+<h3 id="org0585b2b"><span class="section-number-3">2.12</span> Comparison operators</h3>
+<div class="outline-text-3" id="text-2-12">
+<div class="org-src-container">
+<pre class="src src-python">0 == False  # =&gt; True
+1 == True   # =&gt; True
+2 == True   # =&gt; False
+-5 != False # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbf88878" class="outline-3">
+<h3 id="orgbf88878"><span class="section-number-3">2.13</span> Using boolean logical operators on ints</h3>
+<div class="outline-text-3" id="text-2-13">
+<p>
+Boolean logical operators on ints casts them to booleans for
+evaluation, but their non-cast value is returned
+</p>
+
+<p>
+Don't mix up with bool(ints) and bitwise and/or (&amp;,|)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">bool(0)     # =&gt; False
+bool(4)     # =&gt; True
+bool(-6)    # =&gt; True
+0 and 2     # =&gt; 0
+-5 or 0     # =&gt; -5
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdaf4662" class="outline-3">
+<h3 id="orgdaf4662"><span class="section-number-3">2.14</span> Equality is ==</h3>
+<div class="outline-text-3" id="text-2-14">
+<div class="org-src-container">
+<pre class="src src-python">1 == 1  # =&gt; True
+2 == 1  # =&gt; False
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8cf4907" class="outline-3">
+<h3 id="org8cf4907"><span class="section-number-3">2.15</span> Inequality is !=</h3>
+<div class="outline-text-3" id="text-2-15">
+<div class="org-src-container">
+<pre class="src src-python">1 != 1  # =&gt; False
+2 != 1  # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4ba185a" class="outline-3">
+<h3 id="org4ba185a"><span class="section-number-3">2.16</span> More comparisons</h3>
+<div class="outline-text-3" id="text-2-16">
+<div class="org-src-container">
+<pre class="src src-python">1 &lt; 10  # =&gt; True
+1 &gt; 10  # =&gt; False
+2 &lt;= 2  # =&gt; True
+2 &gt;= 2  # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org18c1fac" class="outline-3">
+<h3 id="org18c1fac"><span class="section-number-3">2.17</span> Is value in range?</h3>
+<div class="outline-text-3" id="text-2-17">
+<div class="org-src-container">
+<pre class="src src-python">1 &lt; 2 and 2 &lt; 3  # =&gt; True
+2 &lt; 3 and 3 &lt; 2  # =&gt; False
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgce4bde9" class="outline-4">
+<h4 id="orgce4bde9"><span class="section-number-4">2.17.1</span> Chaining makes this look nicer</h4>
+<div class="outline-text-4" id="text-2-17-1">
+<div class="org-src-container">
+<pre class="src src-python">1 &lt; 2 &lt; 3  # =&gt; True
+2 &lt; 3 &lt; 2  # =&gt; False
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9df6ccf" class="outline-3">
+<h3 id="org9df6ccf"><span class="section-number-3">2.18</span> is VS. <code>==</code></h3>
+<div class="outline-text-3" id="text-2-18">
+<p>
+'is' checks if two variables refer to the same object, but == checks
+</p>
+
+<p>
+If the objects pointed to have the same values.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">a = [1, 2, 3, 4]  # Point a at a new list, [1, 2, 3, 4]
+b = a             # Point b at what a is pointing to
+b is a            # =&gt; True, a and b refer to the same object
+b == a            # =&gt; True, a's and b's objects are equal
+b = [1, 2, 3, 4]  # Point b at a new list, [1, 2, 3, 4]
+b is a            # =&gt; False, a and b do not refer to the same object
+b == a            # =&gt; True, a's and b's objects are equal
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8b0c279" class="outline-3">
+<h3 id="org8b0c279"><span class="section-number-3">2.19</span> Strings are created with " or '</h3>
+<div class="outline-text-3" id="text-2-19">
+<div class="org-src-container">
+<pre class="src src-python">"This is a string."
+'This is also a string.'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeca72bd" class="outline-3">
+<h3 id="orgeca72bd"><span class="section-number-3">2.20</span> Strings can be added too!</h3>
+<div class="outline-text-3" id="text-2-20">
+<div class="org-src-container">
+<pre class="src src-python">"Hello " + "world!"  # =&gt; "Hello world!"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2ed1c71" class="outline-3">
+<h3 id="org2ed1c71"><span class="section-number-3">2.21</span> Concatenate strings without using '+'</h3>
+<div class="outline-text-3" id="text-2-21">
+<div class="org-src-container">
+<pre class="src src-python">"Hello " "world!"    # =&gt; "Hello world!"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7f46507" class="outline-3">
+<h3 id="org7f46507"><span class="section-number-3">2.22</span> A string ~ list of chars</h3>
+<div class="outline-text-3" id="text-2-22">
+<div class="org-src-container">
+<pre class="src src-python">"This is a string"[0]  # =&gt; 'T'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03b2c76" class="outline-3">
+<h3 id="org03b2c76"><span class="section-number-3">2.23</span> Length of a string</h3>
+<div class="outline-text-3" id="text-2-23">
+<div class="org-src-container">
+<pre class="src src-python">len("This is a string")  # =&gt; 16
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52011a6" class="outline-3">
+<h3 id="org52011a6"><span class="section-number-3">2.24</span> Format strings with .format</h3>
+<div class="outline-text-3" id="text-2-24">
+<div class="org-src-container">
+<pre class="src src-python">"{} can be {}".format("Strings", "interpolated")  # =&gt; "Strings can be interpolated"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org44ef300" class="outline-3">
+<h3 id="org44ef300"><span class="section-number-3">2.25</span> Repeat the formatting arguments to save some typing.</h3>
+<div class="outline-text-3" id="text-2-25">
+<div class="org-src-container">
+<pre class="src src-python">"{0} be nimble, {0} be quick, {0} jump over the {1}".format("Jack", "candle stick")
+# =&gt; "Jack be nimble, Jack be quick, Jack jump over the candle stick"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b66615" class="outline-3">
+<h3 id="org0b66615"><span class="section-number-3">2.26</span> Use keywords if you don't want to count.</h3>
+<div class="outline-text-3" id="text-2-26">
+<div class="org-src-container">
+<pre class="src src-python">"{name} wants to eat {food}".format(name="Bob", food="lasagna")  # =&gt; "Bob wants to eat lasagna"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1f3e152" class="outline-3">
+<h3 id="org1f3e152"><span class="section-number-3">2.27</span> The old style of formatting:</h3>
+<div class="outline-text-3" id="text-2-27">
+<div class="org-src-container">
+<pre class="src src-python">"%s can be %s the %s way" % ("Strings", "interpolated", "old")  # =&gt; "Strings can be interpolated the old way"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org80831f0" class="outline-3">
+<h3 id="org80831f0"><span class="section-number-3">2.28</span> Format using f-strings or formatted string literals (in Python 3.6+)</h3>
+<div class="outline-text-3" id="text-2-28">
+<div class="org-src-container">
+<pre class="src src-python">name = "Reiko"
+f"She said her name is {name}." # =&gt; "She said her name is Reiko"
+</pre>
+</div>
+
+<p>
+You can basically put any Python statement inside the braces and it will be output in the string.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">f"{name} is {len(name)} characters long."
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7672e92" class="outline-3">
+<h3 id="org7672e92"><span class="section-number-3">2.29</span> None is an object</h3>
+<div class="outline-text-3" id="text-2-29">
+<div class="org-src-container">
+<pre class="src src-python">None  # =&gt; None
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4379e71" class="outline-3">
+<h3 id="org4379e71"><span class="section-number-3">2.30</span> Don't use the equality "==" symbol to compare objects to None</h3>
+<div class="outline-text-3" id="text-2-30">
+<p>
+Use "is" instead. This checks for equality of object identity.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">"etc" is None  # =&gt; False
+None is None   # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org66fc14d" class="outline-3">
+<h3 id="org66fc14d"><span class="section-number-3">2.31</span> None, 0, and empty strings/lists/dicts/tuples</h3>
+<div class="outline-text-3" id="text-2-31">
+<p>
+None, 0, and empty strings/lists/dicts/tuples all evaluate to False.
+</p>
+
+<p>
+All other values are True.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">bool(0)   # =&gt; False
+bool("")  # =&gt; False
+bool([])  # =&gt; False
+bool({})  # =&gt; False
+bool(())  # =&gt; False
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd30a68e" class="outline-2">
+<h2 id="orgd30a68e"><span class="section-number-2">3</span> Variables and Collections</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org2a8e975" class="outline-3">
+<h3 id="org2a8e975"><span class="section-number-3">3.1</span> The print function</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-python">print("I'm Python. Nice to meet you!")  # =&gt; I'm Python. Nice to meet you!
+</pre>
+</div>
+</div>
+<div id="outline-container-org05251e2" class="outline-4">
+<h4 id="org05251e2"><span class="section-number-4">3.1.1</span> Default newline at the end.</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+By default the print function also prints out a newline at the end.
+</p>
+
+<p>
+Use the optional argument end to change the end string.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">print("Hello, World", end="!")  # =&gt; Hello, World!
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org976f776" class="outline-3">
+<h3 id="org976f776"><span class="section-number-3">3.2</span> The input function</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python">input_string_var = input("Enter some data: ") # Returns the data as a string
+</pre>
+</div>
+<p>
+Note: In earlier versions of Python, input() method was named as raw<sub>input</sub>()
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8c6e0e7" class="outline-3">
+<h3 id="org8c6e0e7"><span class="section-number-3">3.3</span> Only assignments, No declarations.</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Convention is to use lower<sub>case</sub><sub>with</sub><sub>underscores</sub>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">some_var = 5
+some_var  # =&gt; 5
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1649b79" class="outline-3">
+<h3 id="org1649b79"><span class="section-number-3">3.4</span> Accessing Unassigned variable</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Accessing a previously unassigned variable is an exception.
+See Control Flow to learn more about exception handling.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">some_unknown_var  # Raises a NameError
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4593d24" class="outline-3">
+<h3 id="org4593d24"><span class="section-number-3">3.5</span> Ternary operator</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Equivalent of C's '?:' ternary operator
+</p>
+<div class="org-src-container">
+<pre class="src src-python">"yahoo!" if 3 &gt; 2 else 2  # =&gt; "yahoo!"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc57346a" class="outline-3">
+<h3 id="orgc57346a"><span class="section-number-3">3.6</span> Lists (~arraylike)</h3>
+<div class="outline-text-3" id="text-3-6">
+<div class="org-src-container">
+<pre class="src src-python">li = []
+</pre>
+</div>
+</div>
+<div id="outline-container-org9b26571" class="outline-4">
+<h4 id="org9b26571"><span class="section-number-4">3.6.1</span> Pre-filled list</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<div class="org-src-container">
+<pre class="src src-python">other_li = [4, 5, 6]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga230b7b" class="outline-4">
+<h4 id="orga230b7b"><span class="section-number-4">3.6.2</span> append - Add to the end</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<div class="org-src-container">
+<pre class="src src-python">li.append(1)    # li is now [1]
+li.append(2)    # li is now [1, 2]
+li.append(4)    # li is now [1, 2, 4]
+li.append(3)    # li is now [1, 2, 4, 3]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgff900cb" class="outline-4">
+<h4 id="orgff900cb"><span class="section-number-4">3.6.3</span> pop - Remove from the end</h4>
+<div class="outline-text-4" id="text-3-6-3">
+<div class="org-src-container">
+<pre class="src src-python">li.pop()        # =&gt; 3 and li is now [1, 2, 4]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2710c34" class="outline-4">
+<h4 id="org2710c34"><span class="section-number-4">3.6.4</span> Access list element</h4>
+<div class="outline-text-4" id="text-3-6-4">
+<div class="org-src-container">
+<pre class="src src-python">li[0]   # =&gt; 1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7a5cad4" class="outline-4">
+<h4 id="org7a5cad4"><span class="section-number-4">3.6.5</span> Last element</h4>
+<div class="outline-text-4" id="text-3-6-5">
+<div class="org-src-container">
+<pre class="src src-python">li[-1]  # =&gt; 3
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd0d8445" class="outline-4">
+<h4 id="orgd0d8445"><span class="section-number-4">3.6.6</span> Out of bounds is an IndexError</h4>
+<div class="outline-text-4" id="text-3-6-6">
+<div class="org-src-container">
+<pre class="src src-python">li[4]  # Raises an IndexError
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf87b953" class="outline-4">
+<h4 id="orgf87b953"><span class="section-number-4">3.6.7</span> Ranges with slice syntax.</h4>
+<div class="outline-text-4" id="text-3-6-7">
+<p>
+The start index is included, the end index is not
+</p>
+</div>
+</div>
+<div id="outline-container-orgf0cbe3c" class="outline-4">
+<h4 id="orgf0cbe3c"><span class="section-number-4">3.6.8</span> Closed/open range</h4>
+<div class="outline-text-4" id="text-3-6-8">
+<div class="org-src-container">
+<pre class="src src-python">li[1:3]   # =&gt; [2, 4]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0c31b4d" class="outline-4">
+<h4 id="org0c31b4d"><span class="section-number-4">3.6.9</span> Omit the beginning and return the list</h4>
+<div class="outline-text-4" id="text-3-6-9">
+<div class="org-src-container">
+<pre class="src src-python">li[2:]    # =&gt; [4, 3]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6c705cc" class="outline-4">
+<h4 id="org6c705cc"><span class="section-number-4">3.6.10</span> Omit the end and return the list</h4>
+<div class="outline-text-4" id="text-3-6-10">
+<div class="org-src-container">
+<pre class="src src-python">li[:3]    # =&gt; [1, 2, 4]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0e9c17a" class="outline-4">
+<h4 id="org0e9c17a"><span class="section-number-4">3.6.11</span> Select every second entry</h4>
+<div class="outline-text-4" id="text-3-6-11">
+<div class="org-src-container">
+<pre class="src src-python">li[::2]   # =&gt;[1, 4]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org93111d6" class="outline-4">
+<h4 id="org93111d6"><span class="section-number-4">3.6.12</span> Return a reversed copy</h4>
+<div class="outline-text-4" id="text-3-6-12">
+<div class="org-src-container">
+<pre class="src src-python">li[::-1]  # =&gt; [3, 4, 2, 1]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd59c05b" class="outline-4">
+<h4 id="orgd59c05b"><span class="section-number-4">3.6.13</span> Advanced Slice Syntax</h4>
+<div class="outline-text-4" id="text-3-6-13">
+<div class="org-src-container">
+<pre class="src src-python">li[start:end:step]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0e993f3" class="outline-4">
+<h4 id="org0e993f3"><span class="section-number-4">3.6.14</span> Copy list</h4>
+<div class="outline-text-4" id="text-3-6-14">
+<div class="org-src-container">
+<pre class="src src-python">li2 = li[:]  # =&gt; li2 = [1, 2, 4, 3] but (li2 is li) will result in false.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf8b1308" class="outline-4">
+<h4 id="orgf8b1308"><span class="section-number-4">3.6.15</span> del - Remove arbitrary elements</h4>
+<div class="outline-text-4" id="text-3-6-15">
+<div class="org-src-container">
+<pre class="src src-python">del li[2]  # li is now [1, 2, 3]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4a8324" class="outline-4">
+<h4 id="orge4a8324"><span class="section-number-4">3.6.16</span> Remove first occurrence of a value</h4>
+<div class="outline-text-4" id="text-3-6-16">
+<div class="org-src-container">
+<pre class="src src-python">li.remove(2)  # li is now [1, 3]
+li.remove(2)  # Raises a ValueError as 2 is not in the list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeeba8bb" class="outline-4">
+<h4 id="orgeeba8bb"><span class="section-number-4">3.6.17</span> Insert element at specific index</h4>
+<div class="outline-text-4" id="text-3-6-17">
+<div class="org-src-container">
+<pre class="src src-python">li.insert(1, 2)  # li is now [1, 2, 3] again
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79e40ec" class="outline-4">
+<h4 id="org79e40ec"><span class="section-number-4">3.6.18</span> Get the index of the first item found match</h4>
+<div class="outline-text-4" id="text-3-6-18">
+<div class="org-src-container">
+<pre class="src src-python">li.index(2)  # =&gt; 1
+li.index(4)  # Raises a ValueError as 4 is not in the list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga95b9c1" class="outline-4">
+<h4 id="orga95b9c1"><span class="section-number-4">3.6.19</span> Add lists</h4>
+<div class="outline-text-4" id="text-3-6-19">
+<p>
+Note: values for li and for other<sub>li</sub> are not modified.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">li + other_li  # =&gt; [1, 2, 3, 4, 5, 6]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2cadfc5" class="outline-4">
+<h4 id="org2cadfc5"><span class="section-number-4">3.6.20</span> extend - Concatenate lists</h4>
+<div class="outline-text-4" id="text-3-6-20">
+<div class="org-src-container">
+<pre class="src src-python">li.extend(other_li)  # Now li is [1, 2, 3, 4, 5, 6]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9f46974" class="outline-4">
+<h4 id="org9f46974"><span class="section-number-4">3.6.21</span> in - Check for existence</h4>
+<div class="outline-text-4" id="text-3-6-21">
+<div class="org-src-container">
+<pre class="src src-python">1 in li  # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e11d4b" class="outline-4">
+<h4 id="org8e11d4b"><span class="section-number-4">3.6.22</span> len - Length of list</h4>
+<div class="outline-text-4" id="text-3-6-22">
+<div class="org-src-container">
+<pre class="src src-python">len(li)  # =&gt; 6
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0ff9e29" class="outline-3">
+<h3 id="org0ff9e29"><span class="section-number-3">3.7</span> Tuples (~immutable lists).</h3>
+<div class="outline-text-3" id="text-3-7">
+<div class="org-src-container">
+<pre class="src src-python">tup = (1, 2, 3)
+tup[0]      # =&gt; 1
+tup[0] = 3  # Raises a TypeError
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdd4dad2" class="outline-4">
+<h4 id="orgdd4dad2"><span class="section-number-4">3.7.1</span> length</h4>
+<div class="outline-text-4" id="text-3-7-1">
+<p>
+Note that a tuple of length one has to have a comma after the last element but tuples of other lengths, even zero, do not.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">type((1))   # =&gt; &lt;class 'int'&gt;
+type((1,))  # =&gt; &lt;class 'tuple'&gt;
+type(())    # =&gt; &lt;class 'tuple'&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1b2b15c" class="outline-4">
+<h4 id="org1b2b15c"><span class="section-number-4">3.7.2</span> Operations</h4>
+<div class="outline-text-4" id="text-3-7-2">
+<p>
+You can do most of the list operations on tuples too
+</p>
+<div class="org-src-container">
+<pre class="src src-python">len(tup)         # =&gt; 3
+tup + (4, 5, 6)  # =&gt; (1, 2, 3, 4, 5, 6)
+tup[:2]          # =&gt; (1, 2)
+2 in tup         # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd833e96" class="outline-4">
+<h4 id="orgd833e96"><span class="section-number-4">3.7.3</span> Unpack tuples</h4>
+<div class="outline-text-4" id="text-3-7-3">
+<p>
+You can unpack tuples (or lists) into variables
+</p>
+<div class="org-src-container">
+<pre class="src src-python">a, b, c = (1, 2, 3)  # a is now 1, b is now 2 and c is now 3
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6abb853" class="outline-4">
+<h4 id="org6abb853"><span class="section-number-4">3.7.4</span> Extended unpacking</h4>
+<div class="outline-text-4" id="text-3-7-4">
+<p>
+You can also do extended unpacking
+</p>
+<div class="org-src-container">
+<pre class="src src-python">a, *b, c = (1, 2, 3, 4)  # a is now 1, b is now [2, 3] and c is now 4
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9176bdd" class="outline-4">
+<h4 id="org9176bdd"><span class="section-number-4">3.7.5</span> Tuples by default</h4>
+<div class="outline-text-4" id="text-3-7-5">
+<p>
+Tuples are created by default if you leave out the parentheses
+</p>
+<div class="org-src-container">
+<pre class="src src-python">d, e, f = 4, 5, 6  # tuple 4, 5, 6 is unpacked into variables d, e and f
+# respectively such that d = 4, e = 5 and f = 6
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7257984" class="outline-4">
+<h4 id="org7257984"><span class="section-number-4">3.7.6</span> Swap 2 values</h4>
+<div class="outline-text-4" id="text-3-7-6">
+<p>
+Swap two values easily
+</p>
+<div class="org-src-container">
+<pre class="src src-python">e, d = d, e  # d is now 5 and e is now 4
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8b76876" class="outline-3">
+<h3 id="org8b76876"><span class="section-number-3">3.8</span> Dictionaries (~key-value pairs)</h3>
+<div class="outline-text-3" id="text-3-8">
+<div class="org-src-container">
+<pre class="src src-python">empty_dict = {}
+</pre>
+</div>
+</div>
+<div id="outline-container-orgaa88686" class="outline-4">
+<h4 id="orgaa88686"><span class="section-number-4">3.8.1</span> Prefilled dictionary</h4>
+<div class="outline-text-4" id="text-3-8-1">
+<div class="org-src-container">
+<pre class="src src-python">filled_dict = {"one": 1, "two": 2, "three": 3}
+</pre>
+</div>
+
+<p>
+Note keys for dictionaries have to be immutable types. This is to ensure that
+the key can be converted to a constant hash value for quick look-ups.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc852d66" class="outline-4">
+<h4 id="orgc852d66"><span class="section-number-4">3.8.2</span> Immutable types</h4>
+<div class="outline-text-4" id="text-3-8-2">
+<p>
+Immutable types include ints, floats, strings, tuples.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">invalid_dict = {[1,2,3]: "123"}  # =&gt; Raises a TypeError: unhashable type: 'list'
+valid_dict = {(1,2,3):[1,2,3]}   # Values can be of any type, however.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga21b2f6" class="outline-4">
+<h4 id="orga21b2f6"><span class="section-number-4">3.8.3</span> Look up values with []</h4>
+<div class="outline-text-4" id="text-3-8-3">
+<div class="org-src-container">
+<pre class="src src-python">filled_dict["one"]  # =&gt; 1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org72279bc" class="outline-4">
+<h4 id="org72279bc"><span class="section-number-4">3.8.4</span> keys() - Get all keys</h4>
+<div class="outline-text-4" id="text-3-8-4">
+<p>
+Get all keys as an iterable with "keys()".
+We need to wrap the call in list()
+to turn it into a list. We'll talk about those later.  Note - Dictionary key
+ordering is not guaranteed. Your results might not match this exactly.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">list(filled_dict.keys())  # =&gt; ["three", "two", "one"]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc3e6b5a" class="outline-4">
+<h4 id="orgc3e6b5a"><span class="section-number-4">3.8.5</span> values() - Get all values</h4>
+<div class="outline-text-4" id="text-3-8-5">
+<p>
+Get all values as an iterable.
+Once again we need to wrap it
+in list() to get it out of the iterable.
+</p>
+
+<p>
+Note - Same as above regarding key ordering.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">list(filled_dict.values())  # =&gt; [3, 2, 1]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8388657" class="outline-4">
+<h4 id="org8388657"><span class="section-number-4">3.8.6</span> in - Check for existence of keys</h4>
+<div class="outline-text-4" id="text-3-8-6">
+<div class="org-src-container">
+<pre class="src src-python">"one" in filled_dict  # =&gt; True
+1 in filled_dict      # =&gt; False
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd2eefc9" class="outline-4">
+<h4 id="orgd2eefc9"><span class="section-number-4">3.8.7</span> Non-existing key is a KeyError</h4>
+<div class="outline-text-4" id="text-3-8-7">
+<div class="org-src-container">
+<pre class="src src-python">filled_dict["four"]  # KeyError
+</pre>
+</div>
+</div>
+
+<ol class="org-ol">
+<li><a id="org54ff0ef"></a>Use "get()" to avoid the KeyError<br />
+<div class="outline-text-5" id="text-3-8-7-1">
+<div class="org-src-container">
+<pre class="src src-python">filled_dict.get("one")      # =&gt; 1
+filled_dict.get("four")     # =&gt; None
+</pre>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org06a6a67"></a>The get method supports a default argument when the value is missing<br />
+<div class="outline-text-6" id="text-3-8-7-1-1">
+<div class="org-src-container">
+<pre class="src src-python">filled_dict.get("one", 4)   # =&gt; 1
+filled_dict.get("four", 4)  # =&gt; 4
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orga9f1c35" class="outline-4">
+<h4 id="orga9f1c35"><span class="section-number-4">3.8.8</span> setdefault()</h4>
+<div class="outline-text-4" id="text-3-8-8">
+<p>
+"setdefault()" inserts into a dictionary only if the given key isn't present.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">filled_dict.setdefault("five", 5)  # filled_dict["five"] is set to 5
+filled_dict.setdefault("five", 6)  # filled_dict["five"] is still 5
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9ec28c4" class="outline-4">
+<h4 id="org9ec28c4"><span class="section-number-4">3.8.9</span> Adding to a dictionary</h4>
+<div class="outline-text-4" id="text-3-8-9">
+<div class="org-src-container">
+<pre class="src src-python">filled_dict.update({"four":4})  # =&gt; {"one": 1, "two": 2, "three": 3, "four": 4}
+filled_dict["four"] = 4         # another way to add to dict
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfb24b8a" class="outline-4">
+<h4 id="orgfb24b8a"><span class="section-number-4">3.8.10</span> del - Remove keys</h4>
+<div class="outline-text-4" id="text-3-8-10">
+<div class="org-src-container">
+<pre class="src src-python">del filled_dict["one"]  # Removes the key "one" from filled dict
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec4b075" class="outline-4">
+<h4 id="orgec4b075"><span class="section-number-4">3.8.11</span> Additional unpacking options</h4>
+<div class="outline-text-4" id="text-3-8-11">
+<p>
+(Python &gt;= 3.5)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">{'a': 1, **{'b': 2}}  # =&gt; {'a': 1, 'b': 2}
+{'a': 1, **{'a': 2}}  # =&gt; {'a': 2}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba59fd2" class="outline-3">
+<h3 id="orgba59fd2"><span class="section-number-3">3.9</span> Sets (~unique elements)</h3>
+<div class="outline-text-3" id="text-3-9">
+<div class="org-src-container">
+<pre class="src src-python">empty_set = set()
+</pre>
+</div>
+</div>
+<div id="outline-container-org1490fc0" class="outline-4">
+<h4 id="org1490fc0"><span class="section-number-4">3.9.1</span> Initialize a set with values.</h4>
+<div class="outline-text-4" id="text-3-9-1">
+<p>
+It looks a bit like a dict.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">some_set = {1, 1, 2, 2, 3, 4}  # some_set is now {1, 2, 3, 4}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2b95caf" class="outline-4">
+<h4 id="org2b95caf"><span class="section-number-4">3.9.2</span> The elements of a set have to be immutable.</h4>
+<div class="outline-text-4" id="text-3-9-2">
+<p>
+Similar to keys of a dictionary, elements of a set have to be immutable.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">invalid_set = {[1], 1}  # =&gt; Raises a TypeError: unhashable type: 'list'
+valid_set = {(1,), 1}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e8ffcf" class="outline-4">
+<h4 id="org2e8ffcf"><span class="section-number-4">3.9.3</span> Add item to the set</h4>
+<div class="outline-text-4" id="text-3-9-3">
+<div class="org-src-container">
+<pre class="src src-python">filled_set = some_set
+filled_set.add(5)  # filled_set is now {1, 2, 3, 4, 5}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e1b352" class="outline-4">
+<h4 id="org2e1b352"><span class="section-number-4">3.9.4</span> None duplicate elements</h4>
+<div class="outline-text-4" id="text-3-9-4">
+<div class="org-src-container">
+<pre class="src src-python">filled_set.add(5)  # it remains as before {1, 2, 3, 4, 5}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4054ee7" class="outline-4">
+<h4 id="org4054ee7"><span class="section-number-4">3.9.5</span> Set intersection with &amp;</h4>
+<div class="outline-text-4" id="text-3-9-5">
+<div class="org-src-container">
+<pre class="src src-python">other_set = {3, 4, 5, 6}
+filled_set &amp; other_set  # =&gt; {3, 4, 5}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org40fc252" class="outline-4">
+<h4 id="org40fc252"><span class="section-number-4">3.9.6</span> Set union with |</h4>
+<div class="outline-text-4" id="text-3-9-6">
+<div class="org-src-container">
+<pre class="src src-python">filled_set | other_set  # =&gt; {1, 2, 3, 4, 5, 6}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge3c34f8" class="outline-4">
+<h4 id="orge3c34f8"><span class="section-number-4">3.9.7</span> Set difference with -</h4>
+<div class="outline-text-4" id="text-3-9-7">
+<div class="org-src-container">
+<pre class="src src-python">{1, 2, 3, 4} - {2, 3, 5}  # =&gt; {1, 4}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52c4185" class="outline-4">
+<h4 id="org52c4185"><span class="section-number-4">3.9.8</span> Set symmetric difference with ^</h4>
+<div class="outline-text-4" id="text-3-9-8">
+<div class="org-src-container">
+<pre class="src src-python">{1, 2, 3, 4} ^ {2, 3, 5}  # =&gt; {1, 4, 5}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc4a7905" class="outline-4">
+<h4 id="orgc4a7905"><span class="section-number-4">3.9.9</span> Set Superset</h4>
+<div class="outline-text-4" id="text-3-9-9">
+<p>
+Check if set on the left is a superset of set on the right
+</p>
+<div class="org-src-container">
+<pre class="src src-python">{1, 2} &gt;= {1, 2, 3} # =&gt; False
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org341d52d" class="outline-4">
+<h4 id="org341d52d"><span class="section-number-4">3.9.10</span> Set Subset</h4>
+<div class="outline-text-4" id="text-3-9-10">
+<p>
+Check if set on the left is a subset of set on the right
+</p>
+<div class="org-src-container">
+<pre class="src src-python">{1, 2} &lt;= {1, 2, 3} # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd3c168d" class="outline-4">
+<h4 id="orgd3c168d"><span class="section-number-4">3.9.11</span> in - Check for existence</h4>
+<div class="outline-text-4" id="text-3-9-11">
+<div class="org-src-container">
+<pre class="src src-python">2 in filled_set   # =&gt; True
+10 in filled_set  # =&gt; False
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79bf2df" class="outline-2">
+<h2 id="org79bf2df"><span class="section-number-2">4</span> Control Flow and Iterables</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgceffe24" class="outline-3">
+<h3 id="orgceffe24"><span class="section-number-3">4.1</span> If statement</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Here is an if statement.
+</p>
+
+<p>
+Indentation is significant in Python!
+Convention is to use four spaces, not tabs.
+</p>
+
+<p>
+This prints "some<sub>var</sub> is smaller than 10"
+</p>
+<div class="org-src-container">
+<pre class="src src-python">some_var = 5
+if some_var &gt; 10:
+    print("some_var is totally bigger than 10.")
+elif some_var &lt; 10:    # This elif clause is optional.
+    print("some_var is smaller than 10.")
+else:                  # This is optional too.
+    print("some_var is indeed 10.")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org208229e" class="outline-3">
+<h3 id="org208229e"><span class="section-number-3">4.2</span> For loop</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+For loops iterate over lists
+</p>
+<pre class="example" id="org519a2ee">
+prints:
+    dog is a mammal
+    cat is a mammal
+    mouse is a mammal
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python">for animal in ["dog", "cat", "mouse"]:
+    # You can use format() to interpolate formatted strings
+    print("{} is a mammal".format(animal))
+</pre>
+</div>
+</div>
+<div id="outline-container-orge1f3d16" class="outline-4">
+<h4 id="orge1f3d16"><span class="section-number-4">4.2.1</span> range</h4>
+<div class="outline-text-4" id="text-4-2-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgc5cb0d0"></a>range(number)<br />
+<div class="outline-text-5" id="text-4-2-1-1">
+<p>
+Returns an iterable of numbers from zero to the given number
+</p>
+<pre class="example" id="org79b25b8">
+prints:
+    0
+    1
+    2
+    3
+</pre>
+<div class="org-src-container">
+<pre class="src src-python">for i in range(4):
+    print(i)
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org200a02d"></a>range(lower, upper)<br />
+<div class="outline-text-5" id="text-4-2-1-2">
+<p>
+Returns an iterable of numbers
+from the lower number to the upper number
+</p>
+<pre class="example" id="org2c70664">
+prints:
+    4
+    5
+    6
+    7
+</pre>
+<div class="org-src-container">
+<pre class="src src-python">for i in range(4, 8):
+    print(i)
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="orgde20cfd"></a>range(lower, upper, step)<br />
+<div class="outline-text-5" id="text-4-2-1-3">
+<p>
+Returns an iterable of numbers
+from the lower number to the upper number, while incrementing
+by step. If step is not indicated, the default value is 1.
+</p>
+<pre class="example" id="org24ce9ad">
+prints:
+    4
+    6
+</pre>
+<div class="org-src-container">
+<pre class="src src-python">for i in range(4, 8, 2):
+    print(i)
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org177fda0" class="outline-3">
+<h3 id="org177fda0"><span class="section-number-3">4.3</span> While loop</h3>
+<div class="outline-text-3" id="text-4-3">
+<pre class="example" id="org1f0ea51">
+prints:
+    0
+    1
+    2
+    3
+</pre>
+<div class="org-src-container">
+<pre class="src src-python">x = 0
+while x &lt; 4:
+    print(x)
+    x += 1  # Shorthand for x = x + 1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb6eda34" class="outline-3">
+<h3 id="orgb6eda34"><span class="section-number-3">4.4</span> try/except - Handle exceptions</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-python">try:
+    # Use "raise" to raise an error
+    raise IndexError("This is an index error")
+except IndexError as e:
+    pass                 # Pass is just a no-op. Usually you would do recovery here.
+except (TypeError, NameError):
+    pass                 # Multiple exceptions can be handled together, if required.
+else:                    # Optional clause to the try/except block. Must follow all except blocks
+    print("All good!")   # Runs only if the code in try raises no exceptions
+finally:                 #  Execute under all circumstances
+    print("We can clean up resources here")
+
+# Instead of try/finally to cleanup resources you can use a with statement
+with open("myfile.txt") as f:
+    for line in f:
+	print(line)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3993878" class="outline-3">
+<h3 id="org3993878"><span class="section-number-3">4.5</span> Iterables</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Python offers a fundamental abstraction called the Iterable.
+An iterable is an object that can be treated as a sequence.
+The object returned by the range function, is an iterable.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">filled_dict = {"one": 1, "two": 2, "three": 3}
+our_iterable = filled_dict.keys()
+print(our_iterable)  # =&gt; dict_keys(['one', 'two', 'three']). This is an object that implements our Iterable interface.
+
+# We can loop over it.
+for i in our_iterable:
+    print(i)  # Prints one, two, three
+
+# However we cannot address elements by index.
+our_iterable[1]  # Raises a TypeError
+
+# An iterable is an object that knows how to create an iterator.
+our_iterator = iter(our_iterable)
+
+# Our iterator is an object that can remember the state as we traverse through it.
+# We get the next object with "next()".
+next(our_iterator)  # =&gt; "one"
+
+# It maintains state as we iterate.
+next(our_iterator)  # =&gt; "two"
+next(our_iterator)  # =&gt; "three"
+
+# After the iterator has returned all of its data, it raises a StopIteration exception
+next(our_iterator)  # Raises StopIteration
+
+# You can grab all the elements of an iterator by calling list() on it.
+list(filled_dict.keys())  # =&gt; Returns ["one", "two", "three"]
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga3c9b13" class="outline-2">
+<h2 id="orga3c9b13"><span class="section-number-2">5</span> Functions</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgbcc9705" class="outline-3">
+<h3 id="orgbcc9705"><span class="section-number-3">5.1</span> def - Create new functions</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-python">def add(x, y):
+    print("x is {} and y is {}".format(x, y))
+    return x + y  # Return values with a return statement
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf3f9699" class="outline-3">
+<h3 id="orgf3f9699"><span class="section-number-3">5.2</span> Calling functions with parameters</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-python">add(5, 6)  # =&gt; prints out "x is 5 and y is 6" and returns 11
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0f89e1e" class="outline-3">
+<h3 id="org0f89e1e"><span class="section-number-3">5.3</span> Another way to call functions</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-python">add(y=6, x=5)  # Keyword arguments can arrive in any order.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3720db0" class="outline-3">
+<h3 id="org3720db0"><span class="section-number-3">5.4</span> Arguments</h3>
+<div class="outline-text-3" id="text-5-4">
+</div>
+<div id="outline-container-org04ace81" class="outline-4">
+<h4 id="org04ace81"><span class="section-number-4">5.4.1</span> Variable number of positional arguments</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+You can define functions that take a variable number of
+positional arguments
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def varargs(*args):
+    return args
+
+varargs(1, 2, 3)  # =&gt; (1, 2, 3)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb2017b" class="outline-4">
+<h4 id="orgdb2017b"><span class="section-number-4">5.4.2</span> Variable number of keyword arguments</h4>
+<div class="outline-text-4" id="text-5-4-2">
+<p>
+You can define functions that take a variable number of
+keyword arguments, as well
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def keyword_args(**kwargs):
+    return kwargs
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaaac3bd" class="outline-4">
+<h4 id="orgaaac3bd"><span class="section-number-4">5.4.3</span> Both at once</h4>
+<div class="outline-text-4" id="text-5-4-3">
+<div class="org-src-container">
+<pre class="src src-python">keyword_args(big="foot", loch="ness")  # =&gt; {"big": "foot", "loch": "ness"}
+# You can do both at once, if you like
+def all_the_args(*args, **kwargs):
+    print(args)
+    print(kwargs)
+"""
+all_the_args(1, 2, a=3, b=4) prints:
+    (1, 2)
+    {"a": 3, "b": 4}
+"""
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org66321ae" class="outline-4">
+<h4 id="org66321ae"><span class="section-number-4">5.4.4</span> Shorthand</h4>
+<div class="outline-text-4" id="text-5-4-4">
+<p>
+When calling functions, you can do the opposite of args/kwargs!
+Use * to expand tuples and use ** to expand kwargs.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">args = (1, 2, 3, 4)
+kwargs = {"a": 3, "b": 4}
+all_the_args(*args)            # equivalent to all_the_args(1, 2, 3, 4)
+all_the_args(**kwargs)         # equivalent to all_the_args(a=3, b=4)
+all_the_args(*args, **kwargs)  # equivalent to all_the_args(1, 2, 3, 4, a=3, b=4)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb7cd2b8" class="outline-3">
+<h3 id="orgb7cd2b8"><span class="section-number-3">5.5</span> Returning multiple values</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+Returning multiple values (with tuple assignments)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def swap(x, y):
+    return y, x  # Return multiple values as a tuple without the parenthesis.
+		 # (Note: parenthesis have been excluded but can be included)
+x = 1
+y = 2
+x, y = swap(x, y)     # =&gt; x = 2, y = 1
+# (x, y) = swap(x,y)  # Again parenthesis have been excluded but can be included.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgccb56b4" class="outline-3">
+<h3 id="orgccb56b4"><span class="section-number-3">5.6</span> Function Scope</h3>
+<div class="outline-text-3" id="text-5-6">
+<div class="org-src-container">
+<pre class="src src-python">x = 5
+
+def set_x(num):
+    # Local var x not the same as global variable x
+    x = num    # =&gt; 43
+    print(x)   # =&gt; 43
+
+def set_global_x(num):
+    global x
+    print(x)   # =&gt; 5
+    x = num    # global var x is now set to 6
+    print(x)   # =&gt; 6
+
+set_x(43)
+set_global_x(6)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org44882c0" class="outline-3">
+<h3 id="org44882c0"><span class="section-number-3">5.7</span> First class functions</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+Python has first class functions
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def create_adder(x):
+    def adder(y):
+	return x + y
+    return adder
+
+add_10 = create_adder(10)
+add_10(3)   # =&gt; 13
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1dddda8" class="outline-3">
+<h3 id="org1dddda8"><span class="section-number-3">5.8</span> Anonymous functions</h3>
+<div class="outline-text-3" id="text-5-8">
+<p>
+There are also anonymous functions
+</p>
+<div class="org-src-container">
+<pre class="src src-python">(lambda x: x &gt; 2)(3)                  # =&gt; True
+(lambda x, y: x ** 2 + y ** 2)(2, 1)  # =&gt; 5
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03e4c2f" class="outline-3">
+<h3 id="org03e4c2f"><span class="section-number-3">5.9</span> Built-in higher order funcs</h3>
+<div class="outline-text-3" id="text-5-9">
+<p>
+There are built-in higher order functions
+</p>
+<div class="org-src-container">
+<pre class="src src-python">list(map(add_10, [1, 2, 3]))          # =&gt; [11, 12, 13]
+list(map(max, [1, 2, 3], [4, 2, 1]))  # =&gt; [4, 2, 3]
+
+list(filter(lambda x: x &gt; 5, [3, 4, 5, 6, 7]))  # =&gt; [6, 7]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0853e8b" class="outline-3">
+<h3 id="org0853e8b"><span class="section-number-3">5.10</span> List comprehensions</h3>
+<div class="outline-text-3" id="text-5-10">
+<p>
+We can use list comprehensions for nice maps and filters
+List comprehension stores the output as a list which can itself be a nested list
+</p>
+<div class="org-src-container">
+<pre class="src src-python">[add_10(i) for i in [1, 2, 3]]         # =&gt; [11, 12, 13]
+[x for x in [3, 4, 5, 6, 7] if x &gt; 5]  # =&gt; [6, 7]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org995ecf1" class="outline-3">
+<h3 id="org995ecf1"><span class="section-number-3">5.11</span> Dict comprehensions</h3>
+<div class="outline-text-3" id="text-5-11">
+<p>
+You can construct set and dict comprehensions as well.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">{x for x in 'abcddeef' if x not in 'abc'}  # =&gt; {'d', 'e', 'f'}
+{x: x**2 for x in range(5)}  # =&gt; {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org82a1f8c" class="outline-2">
+<h2 id="org82a1f8c"><span class="section-number-2">6</span> Modules</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Python modules are just ordinary Python files. You
+can write your own, and import them. The name of the
+module is the same as the name of the file.
+</p>
+
+<p>
+If you have a Python script named math.py in the same
+folder as your current script, the file math.py will
+be loaded instead of the built-in Python module.
+This happens because the local folder has priority
+over Python's built-in libraries.
+</p>
+</div>
+
+<div id="outline-container-orge1d88c6" class="outline-3">
+<h3 id="orge1d88c6"><span class="section-number-3">6.1</span> import - Import module</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+You can import modules with the import keyword:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import math
+print(math.sqrt(16))  # =&gt; 4.0
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org670f1ec" class="outline-3">
+<h3 id="org670f1ec"><span class="section-number-3">6.2</span> Get specific func from module</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-python">from math import ceil, floor
+
+print(ceil(3.7))   # =&gt; 4.0
+print(floor(3.7))  # =&gt; 3.0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc9a7d5b" class="outline-3">
+<h3 id="orgc9a7d5b"><span class="section-number-3">6.3</span> Import all funcs from module.</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Warning: this is not recommended
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from math import *
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd37d432" class="outline-3">
+<h3 id="orgd37d432"><span class="section-number-3">6.4</span> Shorten module names</h3>
+<div class="outline-text-3" id="text-6-4">
+<div class="org-src-container">
+<pre class="src src-python">import math as m
+math.sqrt(16) == m.sqrt(16)  # =&gt; True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5d24f0" class="outline-3">
+<h3 id="orgc5d24f0"><span class="section-number-3">6.5</span> Find which functions and attributes are defined in a module.</h3>
+<div class="outline-text-3" id="text-6-5">
+<div class="org-src-container">
+<pre class="src src-python">import math
+dir(math)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0a0db37" class="outline-2">
+<h2 id="org0a0db37"><span class="section-number-2">7</span> Classes</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org600a181" class="outline-3">
+<h3 id="org600a181"><span class="section-number-3">7.1</span> Basics</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Create a new Human class: (human.py)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Human:
+
+    # A class attribute.
+    # It is shared by all instances of this class
+
+    species = "H. sapiens"
+
+    # Basic initializer, this is called when this class is instantiated.
+
+    # Note:
+    #      the double leading and trailing underscores denote objects
+    #      or attributes that are used by Python but that live in
+    #      user-controlled namespaces.
+    # ###############################################################
+    # Methods(or objects or attributes) like: __init__, __str__, __repr__ etc.
+    # are called special methods (or sometimes called dunder methods)
+    # ###############################################################
+    # You should not invent such names on your own.
+
+    def __init__(self, name):
+	# Assign the argument to the instance's name attribute
+	self.name = name
+
+	# Initialize property
+	self._age = 0
+
+    # An instance method.
+    # All methods take "self" as the first argument
+    def say(self, msg):
+	print("{name}: {message}".format(name=self.name, message=msg))
+
+    # Another instance method
+    def sing(self):
+	return 'yo... yo... microphone check... one two... one two...'
+
+    # A class method is shared among all instances
+    # They are called with the calling class as the first argument
+    @classmethod
+    def get_species(cls):
+	return cls.species
+
+    # A static method is called without a class or instance reference
+    @staticmethod
+    def grunt():
+	return "*grunt*"
+
+    # A property is just like a getter.
+    # It turns the method age() into an read-only attribute of the same name.
+    # There's no need to write trivial getters and setters in Python, though.
+    @property
+    def age(self):
+	return self._age
+
+    # This allows the property to be set
+    @age.setter
+    def age(self, age):
+	self._age = age
+
+    # This allows the property to be deleted
+    @age.deleter
+    def age(self):
+	del self._age
+
+
+# When a Python interpreter reads a source file it executes all its code.
+#
+# This __name__ check makes sure this code block is only executed when this
+# module is the main program.
+
+if __name__ == '__main__':
+    # Instantiate a class
+    i = Human(name="Ian")
+    i.say("hi")                     # "Ian: hi"
+    j = Human("Joel")
+    j.say("hello")                  # "Joel: hello"
+    # i and j are instances of type Human, or in other words: they are Human objects
+
+    # Call our class method
+    i.say(i.get_species())          # "Ian: H. sapiens"
+    # Change the shared attribute
+    Human.species = "H. neanderthalensis"
+    i.say(i.get_species())          # =&gt; "Ian: H. neanderthalensis"
+    j.say(j.get_species())          # =&gt; "Joel: H. neanderthalensis"
+
+    # Call the static method
+    print(Human.grunt())            # =&gt; "*grunt*"
+
+    # Cannot call static method with instance of object
+    # because i.grunt() will automatically put "self" (the object i) as an argument
+    print(i.grunt())                # =&gt; TypeError: grunt() takes 0 positional arguments but 1 was given
+
+    # Update the property for this instance
+    i.age = 42
+    # Get the property
+    i.say(i.age)                    # =&gt; "Ian: 42"
+    j.say(j.age)                    # =&gt; "Joel: 0"
+    # Delete the property
+    del i.age
+    # i.age                         # =&gt; this would raise an AttributeError
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c52514" class="outline-3">
+<h3 id="org8c52514"><span class="section-number-3">7.2</span> Inheritance</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Inheritance allows new child classes to be defined that inherit methods and
+variables from their parent class.
+</p>
+
+<p>
+Using the Human class defined above as the base or parent class, we can
+define a child class, Superhero, which inherits the class variables like
+"species", "name", and "age", as well as methods, like "sing" and "grunt"
+from the Human class, but can also have its own unique properties.
+</p>
+
+<p>
+To take advantage of modularization by file you could place the classes above
+in their own files, say, human.py
+</p>
+
+<p>
+To import functions from other files use the following format
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from "filename-without-extension" import "function-or-class"
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-python">from human import Human
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgce1b29a" class="outline-4">
+<h4 id="orgce1b29a"><span class="section-number-4">7.2.1</span> Inherit from the Human class (superhero.py)</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<div class="org-src-container">
+<pre class="src src-python"># Specify the parent class(es) as parameters to the class definition
+class Superhero(Human):
+
+    # If the child class should inherit all of the parent's definitions without
+    # any modifications, you can just use the "pass" keyword (and nothing else)
+    # but in this case it is commented out to allow for a unique child class:
+    # pass
+
+    # Child classes can override their parents' attributes
+    species = 'Superhuman'
+
+    # Children automatically inherit their parent class's constructor including
+    # its arguments, but can also define additional arguments or definitions
+    # and override its methods such as the class constructor.
+    # This constructor inherits the "name" argument from the "Human" class and
+    # adds the "superpower" and "movie" arguments:
+    def __init__(self, name, movie=False,
+		 superpowers=["super strength", "bulletproofing"]):
+
+	# add additional class attributes:
+	self.fictional = True
+	self.movie = movie
+	self.superpowers = superpowers
+
+	# The "super" function lets you access the parent class's methods
+	# that are overridden by the child, in this case, the __init__ method.
+	# This calls the parent class constructor:
+	super().__init__(name)
+
+    # override the sing method
+    def sing(self):
+	return 'Dun, dun, DUN!'
+
+    # add an additional instance method
+    def boast(self):
+	for power in self.superpowers:
+	    print("I wield the power of {pow}!".format(pow=power))
+
+
+if __name__ == '__main__':
+    sup = Superhero(name="Tick")
+
+    # Instance type checks
+    if isinstance(sup, Human):
+	print('I am human')
+    if type(sup) is Superhero:
+	print('I am a superhero')
+
+    # Get the Method Resolution search Order used by both getattr() and super()
+    # This attribute is dynamic and can be updated
+    print(Superhero.__mro__)    # =&gt; (&lt;class '__main__.Superhero'&gt;,
+				# =&gt; &lt;class 'human.Human'&gt;, &lt;class 'object'&gt;)
+
+    # Calls parent method but uses its own class attribute
+    print(sup.get_species())    # =&gt; Superhuman
+
+    # Calls overridden method
+    print(sup.sing())           # =&gt; Dun, dun, DUN!
+
+    # Calls method from Human
+    sup.say('Spoon')            # =&gt; Tick: Spoon
+
+    # Call method that exists only in Superhero
+    sup.boast()                 # =&gt; I wield the power of super strength!
+				# =&gt; I wield the power of bulletproofing!
+
+    # Inherited class attribute
+    sup.age = 31
+    print(sup.age)              # =&gt; 31
+
+    # Attribute that only exists within Superhero
+    print('Am I Oscar eligible? ' + str(sup.movie))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org545e58c" class="outline-3">
+<h3 id="org545e58c"><span class="section-number-3">7.3</span> Multiple Inheritance</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+Another class example for Batman to inherit bellow (bat.py)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Bat:
+
+    species = 'Baty'
+
+    def __init__(self, can_fly=True):
+	self.fly = can_fly
+
+    # This class also has a say method
+    def say(self, msg):
+	msg = '... ... ...'
+	return msg
+
+    # And its own method as well
+    def sonar(self):
+	return '))) ... ((('
+
+if __name__ == '__main__':
+    b = Bat()
+    print(b.say('hello'))
+    print(b.fly)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2f1250e" class="outline-4">
+<h4 id="org2f1250e"><span class="section-number-4">7.3.1</span> Multiple Inheritance Example</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<p>
+The class Batman inherits from the class Human and Bat to create a Batman class.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"># And yet another class definition that inherits from Superhero and Bat
+# superhero.py
+from superhero import Superhero
+from bat import Bat
+
+# Define Batman as a child that inherits from both Superhero and Bat
+class Batman(Superhero, Bat):
+
+    def __init__(self, *args, **kwargs):
+	# Typically to inherit attributes you have to call super:
+	# super(Batman, self).__init__(*args, **kwargs)
+	# However we are dealing with multiple inheritance here, and super()
+	# only works with the next base class in the MRO list.
+	# So instead we explicitly call __init__ for all ancestors.
+	# The use of *args and **kwargs allows for a clean way to pass arguments,
+	# with each parent "peeling a layer of the onion".
+	Superhero.__init__(self, 'anonymous', movie=True,
+			   superpowers=['Wealthy'], *args, **kwargs)
+	Bat.__init__(self, *args, can_fly=False, **kwargs)
+	# override the value for the name attribute
+	self.name = 'Sad Affleck'
+
+    def sing(self):
+	return 'nan nan nan nan nan batman!'
+
+
+if __name__ == '__main__':
+    sup = Batman()
+
+    # Get the Method Resolution search Order used by both getattr() and super().
+    # This attribute is dynamic and can be updated
+    print(Batman.__mro__)       # =&gt; (&lt;class '__main__.Batman'&gt;,
+				# =&gt; &lt;class 'superhero.Superhero'&gt;,
+				# =&gt; &lt;class 'human.Human'&gt;,
+				# =&gt; &lt;class 'bat.Bat'&gt;, &lt;class 'object'&gt;)
+
+    # Calls parent method but uses its own class attribute
+    print(sup.get_species())    # =&gt; Superhuman
+
+    # Calls overridden method
+    print(sup.sing())           # =&gt; nan nan nan nan nan batman!
+
+    # Calls method from Human, because inheritance order matters
+    sup.say('I agree')          # =&gt; Sad Affleck: I agree
+
+    # Call method that exists only in 2nd ancestor
+    print(sup.sonar())          # =&gt; ))) ... (((
+
+    # Inherited class attribute
+    sup.age = 100
+    print(sup.age)              # =&gt; 100
+
+    # Inherited attribute from 2nd ancestor whose default value was overridden.
+    print('Can I fly? ' + str(sup.fly)) # =&gt; Can I fly? False
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org12c9dbd" class="outline-2">
+<h2 id="org12c9dbd"><span class="section-number-2">8</span> Advanced</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-orga33ac09" class="outline-3">
+<h3 id="orga33ac09"><span class="section-number-3">8.1</span> Generators</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Generators help you make lazy code.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def double_numbers(iterable):
+    for i in iterable:
+	yield i + i
+</pre>
+</div>
+
+<p>
+Generators are memory-efficient because they only load the data needed to
+process the next value in the iterable.
+</p>
+
+<p>
+This allows them to perform operations on otherwise prohibitively large value ranges.
+<span class="underline"><b>NOTE: `range` replaces `xrange` in Python 3</b></span>.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">for i in double_numbers(range(1, 900000000)):  # `range` is a generator.
+    print(i)
+    if i &gt;= 30:
+	break
+</pre>
+</div>
+
+<p>
+Just as you can create a list comprehension, you can create generator
+comprehensions as well.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">values = (-x for x in [1,2,3,4,5])
+for x in values:
+    print(x)  # prints -1 -2 -3 -4 -5 to console/terminal
+</pre>
+</div>
+
+<p>
+You can also cast a generator comprehension directly to a list.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">values = (-x for x in [1,2,3,4,5])
+gen_to_list = list(values)
+print(gen_to_list)  # =&gt; [-1, -2, -3, -4, -5]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4204684" class="outline-3">
+<h3 id="org4204684"><span class="section-number-3">8.2</span> Decorators</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+In this example `beg` wraps `say`. If <code>say_please</code> is True then it
+will change the returned message.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">from functools import wraps
+
+def beg(target_function):
+    @wraps(target_function)
+    def wrapper(*args, **kwargs):
+	msg, say_please = target_function(*args, **kwargs)
+	if say_please:
+	    return "{} {}".format(msg, "Please! I am poor :(")
+	return msg
+
+    return wrapper
+
+@beg
+def say(say_please=False):
+    msg = "Can you buy me a beer?"
+    return msg, say_please
+
+
+print(say())                 # Can you buy me a beer?
+print(say(say_please=True))  # Can you buy me a beer? Please! I am poor :(
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Manos Vasilakis (advizor.gr)</p>
+<p class="date">Created: 2021-09-16 Thu 22:51</p>
+</div>
+</body>
+</html>

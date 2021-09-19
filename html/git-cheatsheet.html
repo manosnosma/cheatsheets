@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-16 Thu 22:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Git Cheat Sheet</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Manos Vasilakis (advizor.gr)" />
+<style type="text/css">
+	<!--/*--><![CDATA[/*><!--*/
+	#content { max-width: 60em; margin: auto; }
+	tr:nth-child(even) { background-color: #f2f2f2 }
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	a:hover { text-decoration: underline }
+	a:visited {
+		color: green;
+		text-decoration: underline;
+	}
+	img { max-width: 100%; }
+	.title {
+		text-align: center;
+		margin-bottom: .2em;
+	}
+	.subtitle { 
+		text-align: center;
+		font-size: medium;
+		font-weight: bold;
+		margin-top:0;
+	}
+	.todo     { font-family: monospace; color: red;    }
+	.done     { font-family: monospace; color: green;  }
+	.priority { font-family: monospace; color: orange; }
+	.tag      { 
+		background-color: #eee; 
+		font-family: monospace;
+		padding: 2px;
+		font-size: 80%;
+		font-weight: normal;
+	}
+	.timestamp     { color: #bebebe; }
+	.timestamp-kwd { color: #5f9ea0; }
+	.org-right  { margin-left: auto; margin-right: 0px;  text-align: right;  }
+	.org-left   { margin-left: 0px;  margin-right: auto; text-align: left;   }
+	.org-center { margin-left: auto; margin-right: auto; text-align: center; }
+	.underline  { text-decoration: underline; }
+	#postamble p, #preamble p { font-size: 90%; margin: .2em; }
+	p.verse { margin-left: 3%; }
+	pre {
+		border: 1px solid #e6e6e6;
+		border-radius: 3px;
+		background-color: #f2f2f2;
+		padding: 8pt;
+		font-family: monospace;
+		overflow: auto;
+		margin: 1.2em;
+	}
+	pre.src {
+		position: relative;
+		overflow: auto;
+	}
+	pre.src:before {
+		display: none;
+		position: absolute;
+		top: -8px;
+		right: 12px;
+		padding: 3px;
+		color: #555;
+		background-color: #f2f2f299;
+	}
+	pre.src:hover:before { 
+		display: inline; 
+		margin-top: 14px;
+	}
+
+	/* Languages per Org manual */
+	pre.src-asymptote:before  { content: 'Asymptote' }
+	pre.src-awk:before        { content: 'Awk'       }
+	pre.src-authinfo::before  { content: 'Authinfo'  }
+	pre.src-C:before          { content: 'C'         }
+	/* pre.src-C++ doesn't work in CSS */
+	pre.src-clojure:before    { content: 'Clojure'        }
+	pre.src-css:before        { content: 'CSS'            }
+	pre.src-D:before          { content: 'D'              }
+	pre.src-ditaa:before      { content: 'ditaa'          }
+	pre.src-dot:before        { content: 'Graphviz'       }
+	pre.src-calc:before       { content: 'Emacs Calc'     }
+	pre.src-emacs-lisp:before { content: 'Emacs Lisp'     }
+	pre.src-fortran:before    { content: 'Fortran'        }
+	pre.src-gnuplot:before    { content: 'gnuplot'        }
+	pre.src-haskell:before    { content: 'Haskell'        }
+	pre.src-hledger:before    { content: 'hledger'        }
+	pre.src-java:before       { content: 'Java'           }
+	pre.src-js:before         { content: 'Javascript'     }
+	pre.src-latex:before      { content: 'LaTeX'          }
+	pre.src-ledger:before     { content: 'Ledger'         }
+	pre.src-lisp:before       { content: 'Lisp'           }
+	pre.src-lilypond:before   { content: 'Lilypond'       }
+	pre.src-lua:before        { content: 'Lua'            }
+	pre.src-matlab:before     { content: 'MATLAB'         }
+	pre.src-mscgen:before     { content: 'Mscgen'         }
+	pre.src-ocaml:before      { content: 'Objective Caml' }
+	pre.src-octave:before     { content: 'Octave'         }
+	pre.src-org:before        { content: 'Org mode'       }
+	pre.src-oz:before         { content: 'OZ'             }
+	pre.src-plantuml:before   { content: 'Plantuml'       }
+	pre.src-processing:before { content: 'Processing.js'  }
+	pre.src-python:before     { content: 'Python'         }
+	pre.src-R:before          { content: 'R'              }
+	pre.src-ruby:before       { content: 'Ruby'           }
+	pre.src-sass:before       { content: 'Sass'           }
+	pre.src-scheme:before     { content: 'Scheme'         }
+	pre.src-screen:before     { content: 'Gnu Screen'     }
+	pre.src-sed:before        { content: 'Sed'            }
+	pre.src-sh:before         { content: 'shell'          }
+	pre.src-sql:before        { content: 'SQL'            }
+	pre.src-sqlite:before     { content: 'SQLite'         }
+	/* additional languages in org.el's org-babel-load-languages alist */
+	pre.src-forth:before      { content: 'Forth'        }
+	pre.src-io:before         { content: 'IO'           }
+	pre.src-J:before          { content: 'J'            }
+	pre.src-makefile:before   { content: 'Makefile'     }
+	pre.src-maxima:before     { content: 'Maxima'       }
+	pre.src-perl:before       { content: 'Perl'         }
+	pre.src-picolisp:before   { content: 'Pico Lisp'    }
+	pre.src-scala:before      { content: 'Scala'        }
+	pre.src-shell:before      { content: 'Shell Script' }
+	pre.src-ebnf2ps:before    { content: 'ebfn2ps'      }
+	/* additional language identifiers per "defun org-babel-execute" in ob-*.el */
+	pre.src-cpp:before     { content: 'C++'    }
+	pre.src-abc:before     { content: 'ABC'    }
+	pre.src-coq:before     { content: 'Coq'    }
+	pre.src-groovy:before  { content: 'Groovy' }
+	/* additional language identifiers from org-babel-shell-names in
+	 * ob-shell.el: ob-shell is the only babel language using a lambda to put
+	 * the execution function name together. 
+	 */
+	pre.src-bash:before { content: 'bash' }
+	pre.src-csh:before  { content: 'csh'  }
+	pre.src-ash:before  { content: 'ash'  }
+	pre.src-dash:before { content: 'dash' }
+	pre.src-ksh:before  { content: 'ksh'  }
+	pre.src-mksh:before { content: 'mksh' }
+	pre.src-posh:before { content: 'posh' }
+	/* Additional Emacs modes also supported by the LaTeX listings package */
+	pre.src-ada:before       { content: 'Ada'        }
+	pre.src-asm:before       { content: 'Assembler'  }
+	pre.src-caml:before      { content: 'Caml'       }
+	pre.src-delphi:before    { content: 'Delphi'     }
+	pre.src-html:before      { content: 'HTML'       }
+	pre.src-idl:before       { content: 'IDL'        }
+	pre.src-mercury:before   { content: 'Mercury'    }
+	pre.src-metapost:before  { content: 'MetaPost'   }
+	pre.src-modula-2:before  { content: 'Modula-2'   }
+	pre.src-pascal:before    { content: 'Pascal'     }
+	pre.src-ps:before        { content: 'PostScript' }
+	pre.src-prolog:before    { content: 'Prolog'     }
+	pre.src-simula:before    { content: 'Simula'     }
+	pre.src-tcl:before       { content: 'tcl'        }
+	pre.src-tex:before       { content: 'TeX'        }
+	pre.src-plain-tex:before { content: 'Plain TeX'  }
+	pre.src-verilog:before   { content: 'Verilog'    }
+	pre.src-vhdl:before      { content: 'VHDL'       }
+	pre.src-xml:before       { content: 'XML'        }
+	pre.src-nxml:before      { content: 'XML'        }
+	/* add a generic configuration mode; LaTeX export needs an additional
+	 (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+	pre.src-conf:before { content: 'Configuration File' }
+
+	table            { border-collapse:collapse }
+	caption.t-above  { caption-side: top    }
+	caption.t-bottom { caption-side: bottom }
+	td, th           { vertical-align:top   }
+	th.org-right     { text-align: center   }
+	th.org-left      { text-align: center   }
+	th.org-center    { text-align: center   }
+	td.org-right     { text-align: right    }
+	td.org-left      { text-align: left     }
+	td.org-center    { text-align: center   }
+	dt               { font-weight: bold    }
+	.footpara { display: inline    }
+	.footdef  { margin-bottom: 1em }
+	.figure   { padding: 1em       }
+	.figure p { text-align: center }
+	.equation-container {
+		display: table;
+		text-align: center;
+		width: 100%;
+	}
+	.equation { vertical-align: middle }
+	.equation-label {
+		display: table-cell;
+		text-align: right;
+		vertical-align: middle;
+	}
+	.inlinetask {
+		padding: 10px;
+		border: 2px solid gray;
+		margin: 10px;
+		background: #ffffcc;
+	}
+	#org-div-home-and-up { text-align: right; font-size: 70%; white-space: nowrap; }
+	textarea { overflow-x: auto   }
+	.linenr  { font-size: smaller }
+	.code-highlighted { background-color: #ffff00 }
+	.org-info-js_info-navigation { border-style: none }
+	#org-info-js_console-label { font-size: 10px; font-weight: bold; white-space: nowrap; }
+	.org-info-js_search-highlight { background-color: #ffff00; color: #000000; font-weight: bold; }
+	.org-svg { width: 90% }
+ 	/*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Git Cheat Sheet</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1ea6ffc">1. Git Cheat Sheet</a>
+<ul>
+<li><a href="#org3f8360c">1.1. Basics</a>
+<ul>
+<li><a href="#orgb193de8">1.1.1. Basic Commands</a></li>
+</ul>
+</li>
+<li><a href="#orga7b6375">1.2. Aliases for Commands</a></li>
+<li><a href="#org951c770">1.3. Mistake on commit message</a></li>
+<li><a href="#org96e37f0">1.4. List repository's history of commits</a></li>
+<li><a href="#orgf95608f">1.5. Update the last commit with new files (if not pushed yet!)</a></li>
+<li><a href="#org75e2b9a">1.6. Revert Last (garbage) Commit</a></li>
+<li><a href="#orgfb734da">1.7. Rename the 'master' branch (main, mega, mucho)</a></li>
+<li><a href="#org8a7f406">1.8. Return to a working state of the past (past commit)</a></li>
+<li><a href="#org07579b1">1.9. Squash commits</a></li>
+<li><a href="#org0213648">1.10. Git Hooks (~run code before the commit the committed)</a></li>
+<li><a href="#orgf175e73">1.11. Revert bad local changes back to master (last committed state)</a></li>
+<li><a href="#org4c6ce74">1.12. Switch back to the previous working branch</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1ea6ffc" class="outline-2">
+<h2 id="org1ea6ffc"><span class="section-number-2">1</span> Git Cheat Sheet</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3f8360c" class="outline-3">
+<h3 id="org3f8360c"><span class="section-number-3">1.1</span> Basics</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><p>
+Add all files in directory:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ git add .
+</pre>
+</div></li>
+
+<li><p>
+Commit with message:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ git commit -m "first commit"
+</pre>
+</div></li>
+
+<li>Do both at once with the -am flag* Git Cheat Sheet</li>
+</ul>
+</div>
+
+<div id="outline-container-orgb193de8" class="outline-4">
+<h4 id="orgb193de8"><span class="section-number-4">1.1.1</span> Basic Commands</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">$ git init</td>
+<td class="org-left">Initialize local git repository</td>
+</tr>
+
+<tr>
+<td class="org-left">$ git add &lt;file&gt;</td>
+<td class="org-left">Add File(s) to index ('.' for all files in dir)</td>
+</tr>
+
+<tr>
+<td class="org-left">$ git status</td>
+<td class="org-left">Check the status of the working tree</td>
+</tr>
+
+<tr>
+<td class="org-left">$ git commit</td>
+<td class="org-left">Commit changes to index</td>
+</tr>
+
+<tr>
+<td class="org-left">$ git push</td>
+<td class="org-left">Push to remote repository</td>
+</tr>
+
+<tr>
+<td class="org-left">$ git pull</td>
+<td class="org-left">Pull latest from remote repository</td>
+</tr>
+
+<tr>
+<td class="org-left">$ git clone</td>
+<td class="org-left">Clone repository into a new directory</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7b6375" class="outline-3">
+<h3 id="orga7b6375"><span class="section-number-3">1.2</span> Aliases for Commands</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+For example create an alias for "commit -am" to use with just 2 letters (ac):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git config --global alias.ac "commit -am"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org951c770" class="outline-3">
+<h3 id="org951c770"><span class="section-number-3">1.3</span> Mistake on commit message</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+If you made a mistake on the last commit message, you can use
+the '- -amend' flag to change the last commit message:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git commit --amend -m "new commit message"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org96e37f0" class="outline-3">
+<h3 id="org96e37f0"><span class="section-number-3">1.4</span> List repository's history of commits</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-sh">$ git log
+
+$ git log --oneline
+
+$ git log --graph --oneline --decorate
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf95608f" class="outline-3">
+<h3 id="orgf95608f"><span class="section-number-3">1.5</span> Update the last commit with new files (if not pushed yet!)</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Use the '- -no-edit' flag to keep the existed commit message
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ git add .
+
+$ git commit --amend --no-edit
+</pre>
+</div>
+
+<p>
+If you want to live dangerously, you can overwrite the last pushed commit:
+But if there are any commits you don't have, it'll be forever lost.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ git push origin master --force
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75e2b9a" class="outline-3">
+<h3 id="org75e2b9a"><span class="section-number-3">1.6</span> Revert Last (garbage) Commit</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Ctrl-Z in steroids.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">$ git revert commitName
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfb734da" class="outline-3">
+<h3 id="orgfb734da"><span class="section-number-3">1.7</span> Rename the 'master' branch (main, mega, mucho)</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-sh">$ git branch -M main
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8a7f406" class="outline-3">
+<h3 id="org8a7f406"><span class="section-number-3">1.8</span> Return to a working state of the past (past commit)</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-sh">$ git bisect start
+
+$ git bisect bad
+
+$ git bisect good
+</pre>
+</div>
+
+<p>
+See the documentation: <a href="https://git-scm.com/docs/git-bisect">Git Bisect</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org07579b1" class="outline-3">
+<h3 id="org07579b1"><span class="section-number-3">1.9</span> Squash commits</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+Merge multiple commits (as one merged commit) from another branch (a features branch
+for example) to the <del>master</del> main branch.
+</p>
+
+<p>
+Run:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git rebase main --interactive
+</pre>
+</div>
+
+<p>
+In the file created,
+</p>
+<ul class="org-ul">
+<li>to use a commit, use the <i>pick</i> command,</li>
+<li>change a message, using the <i>reword</i> command, or</li>
+<li>combine (squash) everything, into the original commit,
+using the <i>squash</i> command.</li>
+</ul>
+
+<p>
+Save and close the file.
+Git will pull another file prompting you to update the commit message,
+which by default will be a combination of all messages you have just squashed.
+</p>
+
+<p>
+If you don't want all the messages to be combined you can use '- -fixup' instead
+of '- -squash' when you're doing the rebase.
+</p>
+
+<p>
+To be even more productive you can use the '- -fixup' and '- -squash' flags on
+the commits you are making on your branch, so that it tells git in advance that you
+want to squash them, so when you go to do a rebase ($ git rebase -i - -autosquash)
+with the auto squash flag it can handle all the squashing automatically.
+</p>
+
+<p>
+Read the documentation for more: <a href="https://git-scm.com/docs/git-rebase">Git Rebase</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0213648" class="outline-3">
+<h3 id="org0213648"><span class="section-number-3">1.10</span> Git Hooks (~run code before the commit the committed)</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+For repository maintaining, docs: <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git Hooks</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf175e73" class="outline-3">
+<h3 id="orgf175e73"><span class="section-number-3">1.11</span> Revert bad local changes back to master (last committed state)</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+You made changes on the local repo and you screw up as always.
+To revert the changes back to the origin/master run the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git fetch origin
+</pre>
+</div>
+
+
+<p>
+and,
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git reset --hard origin/master
+</pre>
+</div>
+
+<p>
+to overwrite the local code with the remote.
+</p>
+
+<p>
+If there are any crappy files left after that, use the following
+command to clean the up:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git clean -df
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4c6ce74" class="outline-3">
+<h3 id="org4c6ce74"><span class="section-number-3">1.12</span> Switch back to the previous working branch</h3>
+<div class="outline-text-3" id="text-1-12">
+<div class="org-src-container">
+<pre class="src src-sh">$ git checkout -
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Manos Vasilakis (advizor.gr)</p>
+<p class="date">Created: 2021-09-16 Thu 22:51</p>
+</div>
+</body>
+</html>
