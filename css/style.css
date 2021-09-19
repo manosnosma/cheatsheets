@@ -1,4 +1,5 @@
 #content { max-width: 60em; margin: auto; }
+tr:nth-child(even) { background-color: #f2f2f2 }
 a {
     text-decoration: none;
     color: black;
