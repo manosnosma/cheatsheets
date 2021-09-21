@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-09-16 Thu 22:51 -->
+<!-- 2021-09-21 Tue 23:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git Cheat Sheet</title>
@@ -245,36 +245,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1ea6ffc">1. Git Cheat Sheet</a>
+<li><a href="#org35fba24">1. Git Cheat Sheet</a>
 <ul>
-<li><a href="#org3f8360c">1.1. Basics</a>
+<li><a href="#org445cef4">1.1. Basics</a>
 <ul>
-<li><a href="#orgb193de8">1.1.1. Basic Commands</a></li>
+<li><a href="#org6c16cb5">1.1.1. Basic Commands</a></li>
 </ul>
 </li>
-<li><a href="#orga7b6375">1.2. Aliases for Commands</a></li>
-<li><a href="#org951c770">1.3. Mistake on commit message</a></li>
-<li><a href="#org96e37f0">1.4. List repository's history of commits</a></li>
-<li><a href="#orgf95608f">1.5. Update the last commit with new files (if not pushed yet!)</a></li>
-<li><a href="#org75e2b9a">1.6. Revert Last (garbage) Commit</a></li>
-<li><a href="#orgfb734da">1.7. Rename the 'master' branch (main, mega, mucho)</a></li>
-<li><a href="#org8a7f406">1.8. Return to a working state of the past (past commit)</a></li>
-<li><a href="#org07579b1">1.9. Squash commits</a></li>
-<li><a href="#org0213648">1.10. Git Hooks (~run code before the commit the committed)</a></li>
-<li><a href="#orgf175e73">1.11. Revert bad local changes back to master (last committed state)</a></li>
-<li><a href="#org4c6ce74">1.12. Switch back to the previous working branch</a></li>
+<li><a href="#org997a8e4">1.2. Aliases for Commands</a></li>
+<li><a href="#orgaa46456">1.3. Mistake on commit message</a></li>
+<li><a href="#org6fd5acd">1.4. List repository's history of commits</a></li>
+<li><a href="#orgc33dbc7">1.5. Update the last commit with new files (if not pushed yet!)</a></li>
+<li><a href="#org30df9cf">1.6. Revert Last (garbage) Commit</a></li>
+<li><a href="#orga4533eb">1.7. Rename the 'master' branch (main, mega, mucho)</a></li>
+<li><a href="#org7f4ad07">1.8. Return to a working state of the past (past commit)</a></li>
+<li><a href="#org91dc570">1.9. Squash commits</a></li>
+<li><a href="#org58ed7e6">1.10. Git Hooks (~run code before the commit the committed)</a></li>
+<li><a href="#orgb22c6ba">1.11. Revert bad local changes back to master (last committed state)</a></li>
+<li><a href="#orgd41a0c3">1.12. Switch back to the previous working branch</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1ea6ffc" class="outline-2">
-<h2 id="org1ea6ffc"><span class="section-number-2">1</span> Git Cheat Sheet</h2>
+<div id="outline-container-org35fba24" class="outline-2">
+<h2 id="org35fba24"><span class="section-number-2">1</span> Git Cheat Sheet</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3f8360c" class="outline-3">
-<h3 id="org3f8360c"><span class="section-number-3">1.1</span> Basics</h3>
+<div id="outline-container-org445cef4" class="outline-3">
+<h3 id="org445cef4"><span class="section-number-3">1.1</span> Basics</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><p>
@@ -289,7 +289,7 @@ Add all files in directory:
 Commit with message:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ git commit -m "first commit"
+<pre class="src src-sh">$ git commit -m <span style="color: #8b2252;">"first commit"</span>
 </pre>
 </div></li>
 
@@ -297,8 +297,8 @@ Commit with message:
 </ul>
 </div>
 
-<div id="outline-container-orgb193de8" class="outline-4">
-<h4 id="orgb193de8"><span class="section-number-4">1.1.1</span> Basic Commands</h4>
+<div id="outline-container-org6c16cb5" class="outline-4">
+<h4 id="org6c16cb5"><span class="section-number-4">1.1.1</span> Basic Commands</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -355,22 +355,22 @@ Commit with message:
 </div>
 </div>
 
-<div id="outline-container-orga7b6375" class="outline-3">
-<h3 id="orga7b6375"><span class="section-number-3">1.2</span> Aliases for Commands</h3>
+<div id="outline-container-org997a8e4" class="outline-3">
+<h3 id="org997a8e4"><span class="section-number-3">1.2</span> Aliases for Commands</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 For example create an alias for "commit -am" to use with just 2 letters (ac):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">$ git config --global alias.ac "commit -am"
+<pre class="src src-sh">$ git config --global alias.ac <span style="color: #8b2252;">"commit -am"</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org951c770" class="outline-3">
-<h3 id="org951c770"><span class="section-number-3">1.3</span> Mistake on commit message</h3>
+<div id="outline-container-orgaa46456" class="outline-3">
+<h3 id="orgaa46456"><span class="section-number-3">1.3</span> Mistake on commit message</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 If you made a mistake on the last commit message, you can use
@@ -378,14 +378,14 @@ the '- -amend' flag to change the last commit message:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">$ git commit --amend -m "new commit message"
+<pre class="src src-sh">$ git commit --amend -m <span style="color: #8b2252;">"new commit message"</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org96e37f0" class="outline-3">
-<h3 id="org96e37f0"><span class="section-number-3">1.4</span> List repository's history of commits</h3>
+<div id="outline-container-org6fd5acd" class="outline-3">
+<h3 id="org6fd5acd"><span class="section-number-3">1.4</span> List repository's history of commits</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-sh">$ git log
@@ -398,8 +398,8 @@ $ git log --graph --oneline --decorate
 </div>
 </div>
 
-<div id="outline-container-orgf95608f" class="outline-3">
-<h3 id="orgf95608f"><span class="section-number-3">1.5</span> Update the last commit with new files (if not pushed yet!)</h3>
+<div id="outline-container-orgc33dbc7" class="outline-3">
+<h3 id="orgc33dbc7"><span class="section-number-3">1.5</span> Update the last commit with new files (if not pushed yet!)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Use the '- -no-edit' flag to keep the existed commit message
@@ -422,8 +422,8 @@ But if there are any commits you don't have, it'll be forever lost.
 </div>
 </div>
 
-<div id="outline-container-org75e2b9a" class="outline-3">
-<h3 id="org75e2b9a"><span class="section-number-3">1.6</span> Revert Last (garbage) Commit</h3>
+<div id="outline-container-org30df9cf" class="outline-3">
+<h3 id="org30df9cf"><span class="section-number-3">1.6</span> Revert Last (garbage) Commit</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Ctrl-Z in steroids.
@@ -435,8 +435,8 @@ Ctrl-Z in steroids.
 </div>
 </div>
 
-<div id="outline-container-orgfb734da" class="outline-3">
-<h3 id="orgfb734da"><span class="section-number-3">1.7</span> Rename the 'master' branch (main, mega, mucho)</h3>
+<div id="outline-container-orga4533eb" class="outline-3">
+<h3 id="orga4533eb"><span class="section-number-3">1.7</span> Rename the 'master' branch (main, mega, mucho)</h3>
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
 <pre class="src src-sh">$ git branch -M main
@@ -445,8 +445,8 @@ Ctrl-Z in steroids.
 </div>
 </div>
 
-<div id="outline-container-org8a7f406" class="outline-3">
-<h3 id="org8a7f406"><span class="section-number-3">1.8</span> Return to a working state of the past (past commit)</h3>
+<div id="outline-container-org7f4ad07" class="outline-3">
+<h3 id="org7f4ad07"><span class="section-number-3">1.8</span> Return to a working state of the past (past commit)</h3>
 <div class="outline-text-3" id="text-1-8">
 <div class="org-src-container">
 <pre class="src src-sh">$ git bisect start
@@ -463,8 +463,8 @@ See the documentation: <a href="https://git-scm.com/docs/git-bisect">Git Bisect<
 </div>
 </div>
 
-<div id="outline-container-org07579b1" class="outline-3">
-<h3 id="org07579b1"><span class="section-number-3">1.9</span> Squash commits</h3>
+<div id="outline-container-org91dc570" class="outline-3">
+<h3 id="org91dc570"><span class="section-number-3">1.9</span> Squash commits</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 Merge multiple commits (as one merged commit) from another branch (a features branch
@@ -514,8 +514,8 @@ Read the documentation for more: <a href="https://git-scm.com/docs/git-rebase">G
 </div>
 </div>
 
-<div id="outline-container-org0213648" class="outline-3">
-<h3 id="org0213648"><span class="section-number-3">1.10</span> Git Hooks (~run code before the commit the committed)</h3>
+<div id="outline-container-org58ed7e6" class="outline-3">
+<h3 id="org58ed7e6"><span class="section-number-3">1.10</span> Git Hooks (~run code before the commit the committed)</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 For repository maintaining, docs: <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git Hooks</a>.
@@ -523,8 +523,8 @@ For repository maintaining, docs: <a href="https://git-scm.com/book/en/v2/Custom
 </div>
 </div>
 
-<div id="outline-container-orgf175e73" class="outline-3">
-<h3 id="orgf175e73"><span class="section-number-3">1.11</span> Revert bad local changes back to master (last committed state)</h3>
+<div id="outline-container-orgb22c6ba" class="outline-3">
+<h3 id="orgb22c6ba"><span class="section-number-3">1.11</span> Revert bad local changes back to master (last committed state)</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 You made changes on the local repo and you screw up as always.
@@ -562,8 +562,8 @@ command to clean the up:
 </div>
 </div>
 
-<div id="outline-container-org4c6ce74" class="outline-3">
-<h3 id="org4c6ce74"><span class="section-number-3">1.12</span> Switch back to the previous working branch</h3>
+<div id="outline-container-orgd41a0c3" class="outline-3">
+<h3 id="orgd41a0c3"><span class="section-number-3">1.12</span> Switch back to the previous working branch</h3>
 <div class="outline-text-3" id="text-1-12">
 <div class="org-src-container">
 <pre class="src src-sh">$ git checkout -
@@ -575,7 +575,7 @@ command to clean the up:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Manos Vasilakis (advizor.gr)</p>
-<p class="date">Created: 2021-09-16 Thu 22:51</p>
+<p class="date">Created: 2021-09-21 Tue 23:37</p>
 </div>
 </body>
 </html>

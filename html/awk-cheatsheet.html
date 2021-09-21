@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-09-16 Thu 22:50 -->
+<!-- 2021-09-21 Tue 23:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AWK Cheat Sheet</title>
@@ -267,34 +267,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4a606bb">1. AWK CheatSheet</a>
+<li><a href="#org1df1a81">1. AWK CheatSheet</a>
 <ul>
-<li><a href="#org5de4f1b">1.1. Basic Syntax:</a></li>
-<li><a href="#orgea40fad">1.2. AWK Options:</a></li>
-<li><a href="#org9ffa93a">1.3. Basic Useful Examples:</a></li>
-<li><a href="#org537867e">1.4. AWK BUILT-IN VARIABLES</a>
+<li><a href="#org79c4d91">1.1. Basic Syntax:</a></li>
+<li><a href="#orgef68795">1.2. AWK Options:</a></li>
+<li><a href="#org8f29403">1.3. Basic Useful Examples:</a></li>
+<li><a href="#org313ceda">1.4. AWK BUILT-IN VARIABLES</a>
 <ul>
-<li><a href="#org3033a2e">1.4.1. AWK Data Field &amp; Record Variables:</a></li>
-<li><a href="#orgf263eed">1.4.2. Examples:</a></li>
-<li><a href="#orgc204b02">1.4.3. More AWK Built-in Variables:</a></li>
-<li><a href="#orgf01b375">1.4.4. More Examples:</a></li>
+<li><a href="#orgd9ee4c8">1.4.1. AWK Data Field &amp; Record Variables:</a></li>
+<li><a href="#org90fe6be">1.4.2. Examples:</a></li>
+<li><a href="#org0fdd973">1.4.3. More AWK Built-in Variables:</a></li>
+<li><a href="#orgbd8e770">1.4.4. More Examples:</a></li>
 </ul>
 </li>
-<li><a href="#org76f9029">1.5. AWK USER-DEFINED VARIABLES</a></li>
-<li><a href="#org449ecdb">1.6. AWK example usages:</a></li>
-<li><a href="#orgc394146">1.7. Some cool AWK Stuff:</a></li>
+<li><a href="#org5ec516d">1.5. AWK USER-DEFINED VARIABLES</a></li>
+<li><a href="#orgda20296">1.6. AWK example usages:</a></li>
+<li><a href="#orgb9ae683">1.7. Some cool AWK Stuff:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4a606bb" class="outline-2">
-<h2 id="org4a606bb"><span class="section-number-2">1</span> AWK CheatSheet</h2>
+<div id="outline-container-org1df1a81" class="outline-2">
+<h2 id="org1df1a81"><span class="section-number-2">1</span> AWK CheatSheet</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5de4f1b" class="outline-3">
-<h3 id="org5de4f1b"><span class="section-number-3">1.1</span> Basic Syntax:</h3>
+<div id="outline-container-org79c4d91" class="outline-3">
+<h3 id="org79c4d91"><span class="section-number-3">1.1</span> Basic Syntax:</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-sh">$ awk [-F sepstring] [-v assignemnt]... program [arguments]...
@@ -303,8 +303,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgea40fad" class="outline-3">
-<h3 id="orgea40fad"><span class="section-number-3">1.2</span> AWK Options:</h3>
+<div id="outline-container-orgef68795" class="outline-3">
+<h3 id="orgef68795"><span class="section-number-3">1.2</span> AWK Options:</h3>
 <div class="outline-text-3" id="text-1-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -355,29 +355,29 @@
 </div>
 </div>
 
-<div id="outline-container-org9ffa93a" class="outline-3">
-<h3 id="org9ffa93a"><span class="section-number-3">1.3</span> Basic Useful Examples:</h3>
+<div id="outline-container-org8f29403" class="outline-3">
+<h3 id="org8f29403"><span class="section-number-3">1.3</span> Basic Useful Examples:</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
 Print The 1st Word from each line of a given file:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk '{print $1}' inputfile
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'{print $1}'</span> inputfile
 </pre>
 </div></li>
 <li><p>
 Same but this Field Separator Character Specified:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk -F: '{print $1}' /etc/passwd
+<pre class="src src-sh">$ awk -F: <span style="color: #8b2252;">'{print $1}'</span> /etc/passwd
 </pre>
 </div></li>
 <li><p>
 Replace 4th element of a data stream:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ echo "My name is John" | awk '{$4="Christine"; print $0}'
+<pre class="src src-sh">$ echo <span style="color: #8b2252;">"My name is John"</span> | awk <span style="color: #8b2252;">'{$4="Christine"; print $0}'</span>
 </pre>
 </div></li>
 <li><p>
@@ -391,41 +391,41 @@ Run AWK script saved in file:
 Execute AWK command Before reading the input data stream:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {print "Print this as file header"}
- {print $0}' datafile.txt
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {print "Print this as file header"}</span>
+<span style="color: #8b2252;"> {print $0}'</span> datafile.txt
 </pre>
 </div></li>
 <li><p>
 Execute AWK command Before &amp; After AWK reads the input data stream:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {print "The Header Line"} {print $0}
- {END {print "End of File"}' datafile.txt
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {print "The Header Line"} {print $0}</span>
+<span style="color: #8b2252;"> {END {print "End of File"}'</span> datafile.txt
 </pre>
 </div></li>
 <li><p>
 Cool AWK Script for Report generation:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN { print "The latest list of users and shells"
-    print "UserID \t\t Shell"
-    print "------ \t\t ------"
-    FS=":" }
-    { print $1 " \t\t " $7 }
-    END { print "This includes the listing"
- } ' /etc/passwd
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN { print "The latest list of users and shells"</span>
+<span style="color: #8b2252;">    print "UserID \t\t Shell"</span>
+<span style="color: #8b2252;">    print "------ \t\t ------"</span>
+<span style="color: #8b2252;">    FS=":" }</span>
+<span style="color: #8b2252;">    { print $1 " \t\t " $7 }</span>
+<span style="color: #8b2252;">    END { print "This includes the listing"</span>
+<span style="color: #8b2252;"> } '</span> /etc/passwd
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org537867e" class="outline-3">
-<h3 id="org537867e"><span class="section-number-3">1.4</span> AWK BUILT-IN VARIABLES</h3>
+<div id="outline-container-org313ceda" class="outline-3">
+<h3 id="org313ceda"><span class="section-number-3">1.4</span> AWK BUILT-IN VARIABLES</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org3033a2e" class="outline-4">
-<h4 id="org3033a2e"><span class="section-number-4">1.4.1</span> AWK Data Field &amp; Record Variables:</h4>
+<div id="outline-container-orgd9ee4c8" class="outline-4">
+<h4 id="orgd9ee4c8"><span class="section-number-4">1.4.1</span> AWK Data Field &amp; Record Variables:</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -470,8 +470,8 @@ Cool AWK Script for Report generation:
 </table>
 </div>
 </div>
-<div id="outline-container-orgf263eed" class="outline-4">
-<h4 id="orgf263eed"><span class="section-number-4">1.4.2</span> Examples:</h4>
+<div id="outline-container-org90fe6be" class="outline-4">
+<h4 id="org90fe6be"><span class="section-number-4">1.4.2</span> Examples:</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -519,8 +519,8 @@ Cool AWK Script for Report generation:
 </div>
 </div>
 
-<div id="outline-container-orgc204b02" class="outline-4">
-<h4 id="orgc204b02"><span class="section-number-4">1.4.3</span> More AWK Built-in Variables:</h4>
+<div id="outline-container-org0fdd973" class="outline-4">
+<h4 id="org0fdd973"><span class="section-number-4">1.4.3</span> More AWK Built-in Variables:</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -610,8 +610,8 @@ Cool AWK Script for Report generation:
 </table>
 </div>
 </div>
-<div id="outline-container-orgf01b375" class="outline-4">
-<h4 id="orgf01b375"><span class="section-number-4">1.4.4</span> More Examples:</h4>
+<div id="outline-container-orgbd8e770" class="outline-4">
+<h4 id="orgbd8e770"><span class="section-number-4">1.4.4</span> More Examples:</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -691,23 +691,23 @@ Cool AWK Script for Report generation:
 </div>
 
 
-<div id="outline-container-org76f9029" class="outline-3">
-<h3 id="org76f9029"><span class="section-number-3">1.5</span> AWK USER-DEFINED VARIABLES</h3>
+<div id="outline-container-org5ec516d" class="outline-3">
+<h3 id="org5ec516d"><span class="section-number-3">1.5</span> AWK USER-DEFINED VARIABLES</h3>
 <div class="outline-text-3" id="text-1-5">
 <ol class="org-ol">
 <li><p>
 Variables in AWK can have either numeric of character values:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN { testing="This is a test"; print testing;
-	testing=45; print testing }'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN { testing="This is a test"; print testing;</span>
+<span style="color: #8b2252;">        testing=45; print testing }'</span>
 </pre>
 </div></li>
 <li><p>
 The assignment statement can contain mathematical algorithms to handle numeric values:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {x=4; x=x*2+3; print x}'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {x=4; x=x*2+3; print x}'</span>
 </pre>
 </div></li>
 <li><p>
@@ -715,12 +715,12 @@ You can assign values to variables from the command line: (variables are set aft
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">$ cat script1.awk
-	BEGIN {FS=","}
-	{print $n}
+        BEGIN {<span style="color: #a0522d;">FS</span>=<span style="color: #8b2252;">","</span>}
+        {<span style="color: #483d8b;">print</span> $<span style="color: #a0522d;">n</span>}
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk -f script1.awk n=2 datafile.txt
+<pre class="src src-sh">$ awk -f script1.awk <span style="color: #a0522d;">n</span>=2 datafile.txt
 </pre>
 </div></li>
 <li><p>
@@ -729,22 +729,22 @@ section of the code with the -v parameter:
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">$ cat script2.awk
-	BEGIN {print "The starting value is:",n; FS=","}
-	{print $n}
+        BEGIN {<span style="color: #483d8b;">print</span> <span style="color: #8b2252;">"The starting value is:"</span>,n; <span style="color: #a0522d;">FS</span>=<span style="color: #8b2252;">","</span>}
+        {<span style="color: #483d8b;">print</span> $<span style="color: #a0522d;">n</span>}
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk -f script2.awk n=3 datafie.txt
-	The starting value is:
-	file contents.....
-	......[...]...
-	SOLUTION:
+<pre class="src src-sh">$ awk -f script2.awk <span style="color: #a0522d;">n</span>=3 datafie.txt
+        The starting value is:
+        file contents.....
+        ......[...]...
+        SOLUTION:
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk -v n=3 -f script2.awk datafile.txt
-	The starting value is: 3
-	file contents....[...].
+<pre class="src src-sh">$ awk -v <span style="color: #a0522d;">n</span>=3 -f script2.awk datafile.txt
+        The starting value is: 3
+        file contents....[...].
 </pre>
 </div></li>
 <li>Associative Arrays (like dictionaries):
@@ -753,31 +753,31 @@ section of the code with the -v parameter:
 Declaration Syntax:
 </p>
 <div class="org-src-container">
-<pre class="src src-awk">studentPhones["Nick"] = "210.9323567"
+<pre class="src src-awk">studentPhones[<span style="color: #8b2252;">"Nick"</span>] = <span style="color: #8b2252;">"210.9323567"</span>
 </pre>
 </div></li>
 <li><p>
 Basic Examples:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {capital["Illinois"] = "Springfield";
-	print capital["Illinois"]}'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {capital["Illinois"] = "Springfield";</span>
+<span style="color: #8b2252;">        print capital["Illinois"]}'</span>
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {var[1] = 34; var[2] = 3; total=var[1]+var[2];
-	print total}'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {var[1] = 34; var[2] = 3; total=var[1]+var[2];</span>
+<span style="color: #8b2252;">        print total}'</span>
 </pre>
 </div></li>
 <li><p>
 Iterate through array elements with a for loop:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {var["a"] = 1; var["g"] = 2; var["m"] = 3;
-	var["u"] = 4;
-	for (test in var) {
-		print "Index:", test, " - Value:", var[test]}
-	}'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {var["a"] = 1; var["g"] = 2; var["m"] = 3;</span>
+<span style="color: #8b2252;">        var["u"] = 4;</span>
+<span style="color: #8b2252;">        for (test in var) {</span>
+<span style="color: #8b2252;">                print "Index:", test, " - Value:", var[test]}</span>
+<span style="color: #8b2252;">        }'</span>
 </pre>
 </div></li>
 <li><p>
@@ -788,12 +788,12 @@ Delete Array Variables:
 The delete command removes the associative index value and the associated data element value from the array:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {var["a"] = 1; var["g"] = 2;
-	&gt; for (test iin var) {
-	&gt; print "Index:", test, " - Value:", var[test] }
-	&gt; delete var["g"]; print "---"
-	&gt; for (test in var)
-	&gt; print "Index:", test, " - Value:", var[test] }'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {var["a"] = 1; var["g"] = 2;</span>
+<span style="color: #8b2252;">        &gt; for (test iin var) {</span>
+<span style="color: #8b2252;">        &gt; print "Index:", test, " - Value:", var[test] }</span>
+<span style="color: #8b2252;">        &gt; delete var["g"]; print "---"</span>
+<span style="color: #8b2252;">        &gt; for (test in var)</span>
+<span style="color: #8b2252;">        &gt; print "Index:", test, " - Value:", var[test] }'</span>
 </pre>
 </div></li>
 </ul></li>
@@ -801,19 +801,19 @@ The delete command removes the associative index value and the associated data e
 </div>
 </div>
 
-<div id="outline-container-org449ecdb" class="outline-3">
-<h3 id="org449ecdb"><span class="section-number-3">1.6</span> AWK example usages:</h3>
+<div id="outline-container-orgda20296" class="outline-3">
+<h3 id="orgda20296"><span class="section-number-3">1.6</span> AWK example usages:</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li><p>
 Print Text File:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk '{ print }' /etc/passwd # - or -
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'{ print }'</span> /etc/passwd <span style="color: #b22222;"># </span><span style="color: #b22222;">- or -</span>
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk '{ print $0 }' /etc/passwd
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'{ print $0 }'</span> /etc/passwd
 </pre>
 </div></li>
 
@@ -821,7 +821,7 @@ Print Text File:
 Print Specified Field
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk -F ':' '{ print $1 }' /etc/passwd #| sort
+<pre class="src src-sh">$ awk -F <span style="color: #8b2252;">':'</span> <span style="color: #8b2252;">'{ print $1 }'</span> /etc/passwd <span style="color: #b22222;">#</span><span style="color: #b22222;">| sort</span>
 </pre>
 </div></li>
 
@@ -834,7 +834,7 @@ Pattern Matching:
 9th field log status error code for each https request:)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk '$9 == 500 { print $0}' /var/log/httpd/access.log
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'$9 == 500 { print $0}'</span> /var/log/httpd/access.log
 </pre>
 </div></li>
 
@@ -853,7 +853,7 @@ Pattern Matching:
 Print lines containing: "tom","jerry" or "vivek":
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk '/tom|jerry|vivek/' /etc/passwd
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'/tom|jerry|vivek/'</span> /etc/passwd
 </pre>
 </div></li>
 
@@ -861,8 +861,8 @@ Print lines containing: "tom","jerry" or "vivek":
 Print 1st Line from file:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk "NR==1{print;exit}" /etc/resolv.conf
-$ awk "NR==$line{print;exit}" /etc/resolv.conf
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">"NR==1{print;exit}"</span> /etc/resolv.conf
+$ awk <span style="color: #8b2252;">"NR==$line{print;exit}"</span> /etc/resolv.conf
 </pre>
 </div></li>
 
@@ -870,7 +870,7 @@ $ awk "NR==$line{print;exit}" /etc/resolv.conf
 Simple Arithmetic: Get the sum of numbers in a column:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk '{total += $1'} END {print total}' earnings.txt
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'{total += $1'</span>} END {<span style="color: #483d8b;">print</span> total}<span style="color: #8b2252;">' earnings.txt</span>
 </pre>
 </div></li>
 
@@ -878,7 +878,7 @@ Simple Arithmetic: Get the sum of numbers in a column:
 Shell can't calc floats, but awk can:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {printf "%.3f\n", 2005.50 / 3}'
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {printf "%.3f\n", 2005.50 / 3}'</span>
 </pre>
 </div></li>
 
@@ -886,7 +886,7 @@ Shell can't calc floats, but awk can:
 Multiple AWK Commands
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ echo "Hello Tom" | awk '{$2="Adam"; print $0}'
+<pre class="src src-sh">$ echo <span style="color: #8b2252;">"Hello Tom"</span> | awk <span style="color: #8b2252;">'{$2="Adam"; print $0}'</span>
 </pre>
 </div></li>
 
@@ -896,7 +896,7 @@ Multiple AWK Commands
 Add Title/Header:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {print "The File Contents: "}{print $0}' myfile
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {print "The File Contents: "}{print $0}'</span> myfile
 </pre>
 </div></li>
 </ul></li>
@@ -907,8 +907,8 @@ Add Title/Header:
 Run Script after data has been processed:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ awk 'BEGIN {print "The File Contents:"}{print $0}
-	END {print "File footer}' myfile
+<pre class="src src-sh">$ awk <span style="color: #8b2252;">'BEGIN {print "The File Contents:"}{print $0}</span>
+<span style="color: #8b2252;">        END {print "File footer}'</span> myfile
 </pre>
 </div></li>
 </ul></li>
@@ -919,14 +919,14 @@ Run Script after data has been processed:
 List your 10 favourite commands:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+<pre class="src src-sh">$ history | awk <span style="color: #8b2252;">'{print $2}'</span> | sort | uniq -c | sort -rn | head
 </pre>
 </div></li>
 <li><p>
 Find out domain expiry date:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ whois neoakinito.gr | awk '/Registry Expiry Date:/ { print $4}'
+<pre class="src src-sh">$ whois neoakinito.gr | awk <span style="color: #8b2252;">'/Registry Expiry Date:/ { print $4}'</span>
 </pre>
 </div></li>
 </ul></li>
@@ -934,44 +934,44 @@ Find out domain expiry date:
 </div>
 </div>
 
-<div id="outline-container-orgc394146" class="outline-3">
-<h3 id="orgc394146"><span class="section-number-3">1.7</span> Some cool AWK Stuff:</h3>
+<div id="outline-container-orgb9ae683" class="outline-3">
+<h3 id="orgb9ae683"><span class="section-number-3">1.7</span> Some cool AWK Stuff:</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li><p>
 Rename within the name:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ ls -1 *old* | awk '{print "mv "$1" "$1"}' | sed s/old/new/2 | sh
+<pre class="src src-sh">$ ls -1 *old* | awk <span style="color: #8b2252;">'{print "mv "$1" "$1"}'</span> | sed s/old/new/2 | sh
 </pre>
 </div></li>
 <li><p>
 Remove only Files: (CAUTION we remove files here!)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ ls -l * | grep -v drwx | awk '{print "rm " $9}' | sh
-#     -or- with just awk:
-$ ls -l | awk '$1!~/^drwx/{print $9}' | xargs rm
+<pre class="src src-sh">$ ls -l * | grep -v drwx | awk <span style="color: #8b2252;">'{print "rm " $9}'</span> | sh
+<span style="color: #b22222;">#     </span><span style="color: #b22222;">-or- with just awk:</span>
+$ ls -l | awk <span style="color: #8b2252;">'$1!~/^drwx/{print $9}'</span> | xargs rm
 </pre>
 </div></li>
 <li><p>
 Remove only Directories: (AGAIN CAUTION Removing Shit here!)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ ls -l | grep '^d' | awk '{print "rm -r " $9}' | sh
-#     -or-
-$ ls -p | grep /$ | wk '{print "rm -r " $1}'
-#     -or- just with awk:
-$ ls -l | awk '$1~/^d.*x/{print $9}' | xargs rm -r
+<pre class="src src-sh">$ ls -l | grep <span style="color: #8b2252;">'^d'</span> | awk <span style="color: #8b2252;">'{print "rm -r " $9}'</span> | sh
+<span style="color: #b22222;">#     </span><span style="color: #b22222;">-or-</span>
+$ ls -p | grep /$ | wk <span style="color: #8b2252;">'{print "rm -r " $1}'</span>
+<span style="color: #b22222;">#     </span><span style="color: #b22222;">-or- just with awk:</span>
+$ ls -l | awk <span style="color: #8b2252;">'$1~/^d.*x/{print $9}'</span> | xargs rm -r
 </pre>
 </div></li>
 <li><p>
 Kill Processes by name: kill process called netscape:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ kill `ps auxww | grep netspace | egrep -v grep | awk '{print $2}'`
-#     -or- with just awk:
-$ ps auxww | awk '$0~/netscape/&amp;&amp;$0!~/awk/{print $2}' | xargs kill
+<pre class="src src-sh">$ kill <span style="color: #ff00ff;">`ps auxww | grep netspace | egrep -v grep | awk '{print $2}'`</span>
+<span style="color: #b22222;">#     </span><span style="color: #b22222;">-or- with just awk:</span>
+$ ps auxww | awk <span style="color: #8b2252;">'$0~/netscape/&amp;&amp;$0!~/awk/{print $2}'</span> | xargs kill
 </pre>
 </div></li>
 </ul>
@@ -981,7 +981,7 @@ $ ps auxww | awk '$0~/netscape/&amp;&amp;$0!~/awk/{print $2}' | xargs kill
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Manos Vasilakis (advizor.gr)</p>
-<p class="date">Created: 2021-09-16 Thu 22:50</p>
+<p class="date">Created: 2021-09-21 Tue 23:36</p>
 </div>
 </body>
 </html>

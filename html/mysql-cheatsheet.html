@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-09-16 Thu 22:51 -->
+<!-- 2021-09-21 Tue 23:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MySQL Cheat Sheet</title>
@@ -245,60 +245,60 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org12e986f">1. MySQL Cheat Sheet</a>
+<li><a href="#orgd31f837">1. MySQL Cheat Sheet</a>
 <ul>
-<li><a href="#org8afbd2f">1.1. Login</a></li>
-<li><a href="#org729a3bf">1.2. Show Users</a></li>
-<li><a href="#org8969625">1.3. Create User</a></li>
-<li><a href="#org0221efd">1.4. Grant All Privileges On All Databases</a></li>
-<li><a href="#org5e6bba7">1.5. Show Grants</a></li>
-<li><a href="#org22272b7">1.6. Remove Grants</a></li>
-<li><a href="#orga0ad18c">1.7. Delete User</a></li>
-<li><a href="#orgd60982c">1.8. Exit</a></li>
-<li><a href="#org0bd569d">1.9. Show Databases</a></li>
-<li><a href="#org1c585b2">1.10. Create Database</a></li>
-<li><a href="#orgf0aa6f7">1.11. Delete Database</a></li>
-<li><a href="#orgb928344">1.12. Select Database</a></li>
-<li><a href="#orgdc07020">1.13. Create Table</a></li>
-<li><a href="#org7b82119">1.14. Delete / Drop Table</a></li>
-<li><a href="#org4fc4fac">1.15. Show Tables</a></li>
-<li><a href="#org6017897">1.16. Insert Row / Record</a></li>
-<li><a href="#orgef55be6">1.17. Insert Multiple Rows</a></li>
-<li><a href="#orgee1b1b9">1.18. Select</a></li>
-<li><a href="#orgb6e275e">1.19. Where Clause</a></li>
-<li><a href="#org66586c8">1.20. Delete Row</a></li>
-<li><a href="#org9430acc">1.21. Update Row</a></li>
-<li><a href="#orgd8db7f4">1.22. Add New Column</a></li>
-<li><a href="#org497a6af">1.23. Modify Column</a></li>
-<li><a href="#org9e37325">1.24. Order By (Sort)</a></li>
-<li><a href="#org72b12b4">1.25. Concatenate Columns</a></li>
-<li><a href="#org6946a35">1.26. Select Distinct Rows</a></li>
-<li><a href="#org45a4f49">1.27. Between (Select Range)</a></li>
-<li><a href="#orga3f439a">1.28. Like (Searching)</a></li>
-<li><a href="#org1dc3cb8">1.29. Not Like</a></li>
-<li><a href="#org0833747">1.30. IN</a></li>
-<li><a href="#orgef6a895">1.31. Create &amp; Remove Index</a></li>
-<li><a href="#org0805b66">1.32. New Table With Foreign Key (Posts)</a></li>
-<li><a href="#orgda460d6">1.33. Add Data to Posts Table</a></li>
-<li><a href="#org3a27a54">1.34. INNER JOIN</a></li>
-<li><a href="#orgd6fc924">1.35. New Table With 2 Foriegn Keys</a></li>
-<li><a href="#orge823d61">1.36. Add Data to Comments Table</a></li>
-<li><a href="#orga4b0a6c">1.37. Left Join</a></li>
-<li><a href="#org4a28461">1.38. Join Multiple Tables</a></li>
-<li><a href="#org3f83511">1.39. Aggregate Functions</a></li>
-<li><a href="#org39a8686">1.40. Group By</a></li>
+<li><a href="#orgea32407">1.1. Login</a></li>
+<li><a href="#org89786d7">1.2. Show Users</a></li>
+<li><a href="#orga4b9a0f">1.3. Create User</a></li>
+<li><a href="#orgad61572">1.4. Grant All Privileges On All Databases</a></li>
+<li><a href="#orgfc18355">1.5. Show Grants</a></li>
+<li><a href="#orgd64e2f2">1.6. Remove Grants</a></li>
+<li><a href="#orgd835904">1.7. Delete User</a></li>
+<li><a href="#orgac72162">1.8. Exit</a></li>
+<li><a href="#org90fc7c0">1.9. Show Databases</a></li>
+<li><a href="#org105ad42">1.10. Create Database</a></li>
+<li><a href="#org7681847">1.11. Delete Database</a></li>
+<li><a href="#orgfbe0806">1.12. Select Database</a></li>
+<li><a href="#org3f73a90">1.13. Create Table</a></li>
+<li><a href="#org970bf10">1.14. Delete / Drop Table</a></li>
+<li><a href="#org335ff22">1.15. Show Tables</a></li>
+<li><a href="#org094d320">1.16. Insert Row / Record</a></li>
+<li><a href="#org70170ab">1.17. Insert Multiple Rows</a></li>
+<li><a href="#orgca5e0aa">1.18. Select</a></li>
+<li><a href="#orgdc1803f">1.19. Where Clause</a></li>
+<li><a href="#orga7c0536">1.20. Delete Row</a></li>
+<li><a href="#orge3583ac">1.21. Update Row</a></li>
+<li><a href="#orgc9fce2f">1.22. Add New Column</a></li>
+<li><a href="#orgd1dc0b6">1.23. Modify Column</a></li>
+<li><a href="#orgc1a3a43">1.24. Order By (Sort)</a></li>
+<li><a href="#orga67cd84">1.25. Concatenate Columns</a></li>
+<li><a href="#org981eaea">1.26. Select Distinct Rows</a></li>
+<li><a href="#org4c6a54d">1.27. Between (Select Range)</a></li>
+<li><a href="#orge30367b">1.28. Like (Searching)</a></li>
+<li><a href="#orgb11f8d5">1.29. Not Like</a></li>
+<li><a href="#orgba50883">1.30. IN</a></li>
+<li><a href="#org7aec091">1.31. Create &amp; Remove Index</a></li>
+<li><a href="#orgd29de12">1.32. New Table With Foreign Key (Posts)</a></li>
+<li><a href="#org00f771b">1.33. Add Data to Posts Table</a></li>
+<li><a href="#orgf27ba7a">1.34. INNER JOIN</a></li>
+<li><a href="#orgf0ea0b2">1.35. New Table With 2 Foriegn Keys</a></li>
+<li><a href="#org747f236">1.36. Add Data to Comments Table</a></li>
+<li><a href="#org48887f3">1.37. Left Join</a></li>
+<li><a href="#orgc69b2f8">1.38. Join Multiple Tables</a></li>
+<li><a href="#org5902f21">1.39. Aggregate Functions</a></li>
+<li><a href="#org78ac668">1.40. Group By</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org12e986f" class="outline-2">
-<h2 id="org12e986f"><span class="section-number-2">1</span> MySQL Cheat Sheet</h2>
+<div id="outline-container-orgd31f837" class="outline-2">
+<h2 id="orgd31f837"><span class="section-number-2">1</span> MySQL Cheat Sheet</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org8afbd2f" class="outline-3">
-<h3 id="org8afbd2f"><span class="section-number-3">1.1</span> Login</h3>
+<div id="outline-container-orgea32407" class="outline-3">
+<h3 id="orgea32407"><span class="section-number-3">1.1</span> Login</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-sh">mysql -u root -p
@@ -307,69 +307,69 @@
 </div>
 </div>
 
-<div id="outline-container-org729a3bf" class="outline-3">
-<h3 id="org729a3bf"><span class="section-number-3">1.2</span> Show Users</h3>
+<div id="outline-container-org89786d7" class="outline-3">
+<h3 id="org89786d7"><span class="section-number-3">1.2</span> Show Users</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT User, Host FROM mysql.user;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> <span style="color: #483d8b;">User</span>, <span style="color: #a020f0;">Host</span> <span style="color: #a020f0;">FROM</span> mysql.<span style="color: #483d8b;">user</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8969625" class="outline-3">
-<h3 id="org8969625"><span class="section-number-3">1.3</span> Create User</h3>
+<div id="outline-container-orga4b9a0f" class="outline-3">
+<h3 id="orga4b9a0f"><span class="section-number-3">1.3</span> Create User</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-sql">CREATE USER 'someuser'@'localhost' IDENTIFIED BY 'somepassword';
+<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> <span style="color: #483d8b;">USER</span> <span style="color: #8b2252;">'someuser'</span>@<span style="color: #8b2252;">'localhost'</span> IDENTIFIED <span style="color: #a020f0;">BY</span> <span style="color: #8b2252;">'somepassword'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0221efd" class="outline-3">
-<h3 id="org0221efd"><span class="section-number-3">1.4</span> Grant All Privileges On All Databases</h3>
+<div id="outline-container-orgad61572" class="outline-3">
+<h3 id="orgad61572"><span class="section-number-3">1.4</span> Grant All Privileges On All Databases</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre class="src src-sql">GRANT ALL PRIVILEGES ON * . * TO 'someuser'@'localhost';
-FLUSH PRIVILEGES;
+<pre class="src src-sql"><span style="color: #a020f0;">GRANT</span> <span style="color: #a020f0;">ALL</span> <span style="color: #a020f0;">PRIVILEGES</span> <span style="color: #a020f0;">ON</span> * . * <span style="color: #a020f0;">TO</span> <span style="color: #8b2252;">'someuser'</span>@<span style="color: #8b2252;">'localhost'</span>;
+FLUSH <span style="color: #a020f0;">PRIVILEGES</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5e6bba7" class="outline-3">
-<h3 id="org5e6bba7"><span class="section-number-3">1.5</span> Show Grants</h3>
+<div id="outline-container-orgfc18355" class="outline-3">
+<h3 id="orgfc18355"><span class="section-number-3">1.5</span> Show Grants</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
-<pre class="src src-sql">SHOW GRANTS FOR 'someuser'@'localhost';
+<pre class="src src-sql">SHOW GRANTS <span style="color: #a020f0;">FOR</span> <span style="color: #8b2252;">'someuser'</span>@<span style="color: #8b2252;">'localhost'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org22272b7" class="outline-3">
-<h3 id="org22272b7"><span class="section-number-3">1.6</span> Remove Grants</h3>
+<div id="outline-container-orgd64e2f2" class="outline-3">
+<h3 id="orgd64e2f2"><span class="section-number-3">1.6</span> Remove Grants</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
-<pre class="src src-sql">REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'someuser'@'localhost';
+<pre class="src src-sql"><span style="color: #a020f0;">REVOKE</span> <span style="color: #a020f0;">ALL</span> <span style="color: #a020f0;">PRIVILEGES</span>, <span style="color: #a020f0;">GRANT</span> <span style="color: #a020f0;">OPTION</span> <span style="color: #a020f0;">FROM</span> <span style="color: #8b2252;">'someuser'</span>@<span style="color: #8b2252;">'localhost'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga0ad18c" class="outline-3">
-<h3 id="orga0ad18c"><span class="section-number-3">1.7</span> Delete User</h3>
+<div id="outline-container-orgd835904" class="outline-3">
+<h3 id="orgd835904"><span class="section-number-3">1.7</span> Delete User</h3>
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
-<pre class="src src-sql">DROP USER 'someuser'@'localhost';
+<pre class="src src-sql"><span style="color: #a020f0;">DROP</span> <span style="color: #483d8b;">USER</span> <span style="color: #8b2252;">'someuser'</span>@<span style="color: #8b2252;">'localhost'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd60982c" class="outline-3">
-<h3 id="orgd60982c"><span class="section-number-3">1.8</span> Exit</h3>
+<div id="outline-container-orgac72162" class="outline-3">
+<h3 id="orgac72162"><span class="section-number-3">1.8</span> Exit</h3>
 <div class="outline-text-3" id="text-1-8">
 <div class="org-src-container">
 <pre class="src src-sql">exit;
@@ -378,8 +378,8 @@ FLUSH PRIVILEGES;
 </div>
 </div>
 
-<div id="outline-container-org0bd569d" class="outline-3">
-<h3 id="org0bd569d"><span class="section-number-3">1.9</span> Show Databases</h3>
+<div id="outline-container-org90fc7c0" class="outline-3">
+<h3 id="org90fc7c0"><span class="section-number-3">1.9</span> Show Databases</h3>
 <div class="outline-text-3" id="text-1-9">
 <div class="org-src-container">
 <pre class="src src-sql">SHOW DATABASES
@@ -388,28 +388,28 @@ FLUSH PRIVILEGES;
 </div>
 </div>
 
-<div id="outline-container-org1c585b2" class="outline-3">
-<h3 id="org1c585b2"><span class="section-number-3">1.10</span> Create Database</h3>
+<div id="outline-container-org105ad42" class="outline-3">
+<h3 id="org105ad42"><span class="section-number-3">1.10</span> Create Database</h3>
 <div class="outline-text-3" id="text-1-10">
 <div class="org-src-container">
-<pre class="src src-sql">CREATE DATABASE acme;
+<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> DATABASE acme;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf0aa6f7" class="outline-3">
-<h3 id="orgf0aa6f7"><span class="section-number-3">1.11</span> Delete Database</h3>
+<div id="outline-container-org7681847" class="outline-3">
+<h3 id="org7681847"><span class="section-number-3">1.11</span> Delete Database</h3>
 <div class="outline-text-3" id="text-1-11">
 <div class="org-src-container">
-<pre class="src src-sql">DROP DATABASE acme;
+<pre class="src src-sql"><span style="color: #a020f0;">DROP</span> DATABASE acme;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb928344" class="outline-3">
-<h3 id="orgb928344"><span class="section-number-3">1.12</span> Select Database</h3>
+<div id="outline-container-orgfbe0806" class="outline-3">
+<h3 id="orgfbe0806"><span class="section-number-3">1.12</span> Select Database</h3>
 <div class="outline-text-3" id="text-1-12">
 <div class="org-src-container">
 <pre class="src src-sql">USE acme;
@@ -418,39 +418,39 @@ FLUSH PRIVILEGES;
 </div>
 </div>
 
-<div id="outline-container-orgdc07020" class="outline-3">
-<h3 id="orgdc07020"><span class="section-number-3">1.13</span> Create Table</h3>
+<div id="outline-container-org3f73a90" class="outline-3">
+<h3 id="org3f73a90"><span class="section-number-3">1.13</span> Create Table</h3>
 <div class="outline-text-3" id="text-1-13">
 <div class="org-src-container">
-<pre class="src src-sql">CREATE TABLE users(
-id INT AUTO_INCREMENT,
-   first_name VARCHAR(100),
-   last_name VARCHAR(100),
-   email VARCHAR(50),
-   password VARCHAR(20),
-   location VARCHAR(100),
-   dept VARCHAR(100),
+<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">users</span>(
+id <span style="color: #228b22;">INT</span> AUTO_INCREMENT,
+   first_name <span style="color: #228b22;">VARCHAR</span>(100),
+   last_name <span style="color: #228b22;">VARCHAR</span>(100),
+   email <span style="color: #228b22;">VARCHAR</span>(50),
+   password <span style="color: #228b22;">VARCHAR</span>(20),
+   location <span style="color: #228b22;">VARCHAR</span>(100),
+   dept <span style="color: #228b22;">VARCHAR</span>(100),
    is_admin TINYINT(1),
    register_date DATETIME,
-   PRIMARY KEY(id)
+   <span style="color: #a020f0;">PRIMARY</span> <span style="color: #a020f0;">KEY</span>(id)
 );
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7b82119" class="outline-3">
-<h3 id="org7b82119"><span class="section-number-3">1.14</span> Delete / Drop Table</h3>
+<div id="outline-container-org970bf10" class="outline-3">
+<h3 id="org970bf10"><span class="section-number-3">1.14</span> Delete / Drop Table</h3>
 <div class="outline-text-3" id="text-1-14">
 <div class="org-src-container">
-<pre class="src src-sql">DROP TABLE tablename;
+<pre class="src src-sql"><span style="color: #a020f0;">DROP</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">tablename</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4fc4fac" class="outline-3">
-<h3 id="org4fc4fac"><span class="section-number-3">1.15</span> Show Tables</h3>
+<div id="outline-container-org335ff22" class="outline-3">
+<h3 id="org335ff22"><span class="section-number-3">1.15</span> Show Tables</h3>
 <div class="outline-text-3" id="text-1-15">
 <div class="org-src-container">
 <pre class="src src-sql">SHOW TABLES;
@@ -459,304 +459,304 @@ id INT AUTO_INCREMENT,
 </div>
 </div>
 
-<div id="outline-container-org6017897" class="outline-3">
-<h3 id="org6017897"><span class="section-number-3">1.16</span> Insert Row / Record</h3>
+<div id="outline-container-org094d320" class="outline-3">
+<h3 id="org094d320"><span class="section-number-3">1.16</span> Insert Row / Record</h3>
 <div class="outline-text-3" id="text-1-16">
 <div class="org-src-container">
-<pre class="src src-sql">INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
+<pre class="src src-sql"><span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> users (first_name, last_name, email, password, location, dept, is_admin, register_date) <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'Brad'</span>, <span style="color: #8b2252;">'Traversy'</span>, <span style="color: #8b2252;">'brad@gmail.com'</span>, <span style="color: #8b2252;">'123456'</span>,<span style="color: #8b2252;">'Massachusetts'</span>, <span style="color: #8b2252;">'development'</span>, 1, now());
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgef55be6" class="outline-3">
-<h3 id="orgef55be6"><span class="section-number-3">1.17</span> Insert Multiple Rows</h3>
+<div id="outline-container-org70170ab" class="outline-3">
+<h3 id="org70170ab"><span class="section-number-3">1.17</span> Insert Multiple Rows</h3>
 <div class="outline-text-3" id="text-1-17">
 <div class="org-src-container">
-<pre class="src src-sql">INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
+<pre class="src src-sql"><span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> users (first_name, last_name, email, password, location, dept,  is_admin, register_date) <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'Fred'</span>, <span style="color: #8b2252;">'Smith'</span>, <span style="color: #8b2252;">'fred@gmail.com'</span>, <span style="color: #8b2252;">'123456'</span>, <span style="color: #8b2252;">'New York'</span>, <span style="color: #8b2252;">'design'</span>, 0, now()), (<span style="color: #8b2252;">'Sara'</span>, <span style="color: #8b2252;">'Watson'</span>, <span style="color: #8b2252;">'sara@gmail.com'</span>, <span style="color: #8b2252;">'123456'</span>, <span style="color: #8b2252;">'New York'</span>, <span style="color: #8b2252;">'design'</span>, 0, now()),(<span style="color: #8b2252;">'Will'</span>, <span style="color: #8b2252;">'Jackson'</span>, <span style="color: #8b2252;">'will@yahoo.com'</span>, <span style="color: #8b2252;">'123456'</span>, <span style="color: #8b2252;">'Rhode Island'</span>, <span style="color: #8b2252;">'development'</span>, 1, now()),(<span style="color: #8b2252;">'Paula'</span>, <span style="color: #8b2252;">'Johnson'</span>, <span style="color: #8b2252;">'paula@yahoo.com'</span>, <span style="color: #8b2252;">'123456'</span>, <span style="color: #8b2252;">'Massachusetts'</span>, <span style="color: #8b2252;">'sales'</span>, 0, now()),(<span style="color: #8b2252;">'Tom'</span>, <span style="color: #8b2252;">'Spears'</span>, <span style="color: #8b2252;">'tom@yahoo.com'</span>, <span style="color: #8b2252;">'123456'</span>, <span style="color: #8b2252;">'Massachusetts'</span>, <span style="color: #8b2252;">'sales'</span>, 0, now());
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgee1b1b9" class="outline-3">
-<h3 id="orgee1b1b9"><span class="section-number-3">1.18</span> Select</h3>
+<div id="outline-container-orgca5e0aa" class="outline-3">
+<h3 id="orgca5e0aa"><span class="section-number-3">1.18</span> Select</h3>
 <div class="outline-text-3" id="text-1-18">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users;
-SELECT first_name, last_name FROM users;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users;
+<span style="color: #a020f0;">SELECT</span> first_name, last_name <span style="color: #a020f0;">FROM</span> users;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb6e275e" class="outline-3">
-<h3 id="orgb6e275e"><span class="section-number-3">1.19</span> Where Clause</h3>
+<div id="outline-container-orgdc1803f" class="outline-3">
+<h3 id="orgdc1803f"><span class="section-number-3">1.19</span> Where Clause</h3>
 <div class="outline-text-3" id="text-1-19">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users WHERE location='Massachusetts';
-SELECT * FROM users WHERE location='Massachusetts' AND dept='sales';
-SELECT * FROM users WHERE is_admin = 1;
-SELECT * FROM users WHERE is_admin &gt; 0;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> location=<span style="color: #8b2252;">'Massachusetts'</span>;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> location=<span style="color: #8b2252;">'Massachusetts'</span> <span style="color: #a020f0;">AND</span> dept=<span style="color: #8b2252;">'sales'</span>;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> is_admin = 1;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> is_admin &gt; 0;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org66586c8" class="outline-3">
-<h3 id="org66586c8"><span class="section-number-3">1.20</span> Delete Row</h3>
+<div id="outline-container-orga7c0536" class="outline-3">
+<h3 id="orga7c0536"><span class="section-number-3">1.20</span> Delete Row</h3>
 <div class="outline-text-3" id="text-1-20">
 <div class="org-src-container">
-<pre class="src src-sql">DELETE FROM users WHERE id = 6;
+<pre class="src src-sql"><span style="color: #a020f0;">DELETE</span> <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> id = 6;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9430acc" class="outline-3">
-<h3 id="org9430acc"><span class="section-number-3">1.21</span> Update Row</h3>
+<div id="outline-container-orge3583ac" class="outline-3">
+<h3 id="orge3583ac"><span class="section-number-3">1.21</span> Update Row</h3>
 <div class="outline-text-3" id="text-1-21">
 <div class="org-src-container">
-<pre class="src src-sql">UPDATE users SET email = 'freddy@gmail.com' WHERE id = 2;
+<pre class="src src-sql"><span style="color: #a020f0;">UPDATE</span> users <span style="color: #a020f0;">SET</span> email = <span style="color: #8b2252;">'freddy@gmail.com'</span> <span style="color: #a020f0;">WHERE</span> id = 2;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd8db7f4" class="outline-3">
-<h3 id="orgd8db7f4"><span class="section-number-3">1.22</span> Add New Column</h3>
+<div id="outline-container-orgc9fce2f" class="outline-3">
+<h3 id="orgc9fce2f"><span class="section-number-3">1.22</span> Add New Column</h3>
 <div class="outline-text-3" id="text-1-22">
 <div class="org-src-container">
-<pre class="src src-sql">ALTER TABLE users ADD age VARCHAR(3);
+<pre class="src src-sql"><span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">users</span> <span style="color: #a020f0;">ADD</span> age <span style="color: #228b22;">VARCHAR</span>(3);
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org497a6af" class="outline-3">
-<h3 id="org497a6af"><span class="section-number-3">1.23</span> Modify Column</h3>
+<div id="outline-container-orgd1dc0b6" class="outline-3">
+<h3 id="orgd1dc0b6"><span class="section-number-3">1.23</span> Modify Column</h3>
 <div class="outline-text-3" id="text-1-23">
 <div class="org-src-container">
-<pre class="src src-sql">ALTER TABLE users MODIFY COLUMN age INT(3);
+<pre class="src src-sql"><span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">users</span> <span style="color: #a020f0;">MODIFY</span> <span style="color: #a020f0;">COLUMN</span> age <span style="color: #228b22;">INT</span>(3);
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9e37325" class="outline-3">
-<h3 id="org9e37325"><span class="section-number-3">1.24</span> Order By (Sort)</h3>
+<div id="outline-container-orgc1a3a43" class="outline-3">
+<h3 id="orgc1a3a43"><span class="section-number-3">1.24</span> Order By (Sort)</h3>
 <div class="outline-text-3" id="text-1-24">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users ORDER BY last_name ASC;
-SELECT * FROM users ORDER BY last_name DESC;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">ORDER</span> <span style="color: #a020f0;">BY</span> last_name <span style="color: #a020f0;">ASC</span>;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">ORDER</span> <span style="color: #a020f0;">BY</span> last_name <span style="color: #a020f0;">DESC</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org72b12b4" class="outline-3">
-<h3 id="org72b12b4"><span class="section-number-3">1.25</span> Concatenate Columns</h3>
+<div id="outline-container-orga67cd84" class="outline-3">
+<h3 id="orga67cd84"><span class="section-number-3">1.25</span> Concatenate Columns</h3>
 <div class="outline-text-3" id="text-1-25">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT CONCAT(first_name, ' ', last_name) AS 'Name', dept FROM users;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> CONCAT(first_name, <span style="color: #8b2252;">' '</span>, last_name) <span style="color: #a020f0;">AS</span> <span style="color: #8b2252;">'Name'</span>, dept <span style="color: #a020f0;">FROM</span> users;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6946a35" class="outline-3">
-<h3 id="org6946a35"><span class="section-number-3">1.26</span> Select Distinct Rows</h3>
+<div id="outline-container-org981eaea" class="outline-3">
+<h3 id="org981eaea"><span class="section-number-3">1.26</span> Select Distinct Rows</h3>
 <div class="outline-text-3" id="text-1-26">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT DISTINCT location FROM users;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> <span style="color: #a020f0;">DISTINCT</span> location <span style="color: #a020f0;">FROM</span> users;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org45a4f49" class="outline-3">
-<h3 id="org45a4f49"><span class="section-number-3">1.27</span> Between (Select Range)</h3>
+<div id="outline-container-org4c6a54d" class="outline-3">
+<h3 id="org4c6a54d"><span class="section-number-3">1.27</span> Between (Select Range)</h3>
 <div class="outline-text-3" id="text-1-27">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users WHERE age BETWEEN 20 AND 25;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> age <span style="color: #a020f0;">BETWEEN</span> 20 <span style="color: #a020f0;">AND</span> 25;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga3f439a" class="outline-3">
-<h3 id="orga3f439a"><span class="section-number-3">1.28</span> Like (Searching)</h3>
+<div id="outline-container-orge30367b" class="outline-3">
+<h3 id="orge30367b"><span class="section-number-3">1.28</span> Like (Searching)</h3>
 <div class="outline-text-3" id="text-1-28">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users WHERE dept LIKE 'd%';
-SELECT * FROM users WHERE dept LIKE 'dev%';
-SELECT * FROM users WHERE dept LIKE '%t';
-SELECT * FROM users WHERE dept LIKE '%e%';
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> dept <span style="color: #a020f0;">LIKE</span> <span style="color: #8b2252;">'d%'</span>;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> dept <span style="color: #a020f0;">LIKE</span> <span style="color: #8b2252;">'dev%'</span>;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> dept <span style="color: #a020f0;">LIKE</span> <span style="color: #8b2252;">'%t'</span>;
+<span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> dept <span style="color: #a020f0;">LIKE</span> <span style="color: #8b2252;">'%e%'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1dc3cb8" class="outline-3">
-<h3 id="org1dc3cb8"><span class="section-number-3">1.29</span> Not Like</h3>
+<div id="outline-container-orgb11f8d5" class="outline-3">
+<h3 id="orgb11f8d5"><span class="section-number-3">1.29</span> Not Like</h3>
 <div class="outline-text-3" id="text-1-29">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users WHERE dept NOT LIKE 'd%';
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> dept <span style="color: #a020f0;">NOT</span> <span style="color: #a020f0;">LIKE</span> <span style="color: #8b2252;">'d%'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0833747" class="outline-3">
-<h3 id="org0833747"><span class="section-number-3">1.30</span> IN</h3>
+<div id="outline-container-orgba50883" class="outline-3">
+<h3 id="orgba50883"><span class="section-number-3">1.30</span> IN</h3>
 <div class="outline-text-3" id="text-1-30">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT * FROM users WHERE dept IN ('design', 'sales');
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> * <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> dept <span style="color: #a020f0;">IN</span> (<span style="color: #8b2252;">'design'</span>, <span style="color: #8b2252;">'sales'</span>);
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgef6a895" class="outline-3">
-<h3 id="orgef6a895"><span class="section-number-3">1.31</span> Create &amp; Remove Index</h3>
+<div id="outline-container-org7aec091" class="outline-3">
+<h3 id="org7aec091"><span class="section-number-3">1.31</span> Create &amp; Remove Index</h3>
 <div class="outline-text-3" id="text-1-31">
 <div class="org-src-container">
-<pre class="src src-sql">CREATE INDEX LIndex On users(location);
-DROP INDEX LIndex ON users;
+<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> INDEX LIndex <span style="color: #a020f0;">On</span> users(location);
+<span style="color: #a020f0;">DROP</span> INDEX LIndex <span style="color: #a020f0;">ON</span> users;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0805b66" class="outline-3">
-<h3 id="org0805b66"><span class="section-number-3">1.32</span> New Table With Foreign Key (Posts)</h3>
+<div id="outline-container-orgd29de12" class="outline-3">
+<h3 id="orgd29de12"><span class="section-number-3">1.32</span> New Table With Foreign Key (Posts)</h3>
 <div class="outline-text-3" id="text-1-32">
 <div class="org-src-container">
-<pre class="src src-sql">CREATE TABLE posts(
-id INT AUTO_INCREMENT,
-   user_id INT,
-   title VARCHAR(100),
+<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">posts</span>(
+id <span style="color: #228b22;">INT</span> AUTO_INCREMENT,
+   user_id <span style="color: #228b22;">INT</span>,
+   title <span style="color: #228b22;">VARCHAR</span>(100),
    body TEXT,
-   publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY(id),
-   FOREIGN KEY (user_id) REFERENCES users(id)
+   publish_date DATETIME <span style="color: #a020f0;">DEFAULT</span> <span style="color: #483d8b;">CURRENT_TIMESTAMP</span>,
+   <span style="color: #a020f0;">PRIMARY</span> <span style="color: #a020f0;">KEY</span>(id),
+   <span style="color: #a020f0;">FOREIGN</span> <span style="color: #a020f0;">KEY</span> (user_id) <span style="color: #a020f0;">REFERENCES</span> users(id)
 );
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgda460d6" class="outline-3">
-<h3 id="orgda460d6"><span class="section-number-3">1.33</span> Add Data to Posts Table</h3>
+<div id="outline-container-org00f771b" class="outline-3">
+<h3 id="org00f771b"><span class="section-number-3">1.33</span> Add Data to Posts Table</h3>
 <div class="outline-text-3" id="text-1-33">
 <div class="org-src-container">
-<pre class="src src-sql">INSERT INTO posts(user_id, title, body) VALUES (1, 'Post One', 'This is post one'),(3, 'Post Two', 'This is post two'),(1, 'Post Three', 'This is post three'),(2, 'Post Four', 'This is post four'),(5, 'Post Five', 'This is post five'),(4, 'Post Six', 'This is post six'),(2, 'Post Seven', 'This is post seven'),(1, 'Post Eight', 'This is post eight'),(3, 'Post Nine', 'This is post none'),(4, 'Post Ten', 'This is post ten');
+<pre class="src src-sql"><span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> posts(user_id, title, body) <span style="color: #a020f0;">VALUES</span> (1, <span style="color: #8b2252;">'Post One'</span>, <span style="color: #8b2252;">'This is post one'</span>),(3, <span style="color: #8b2252;">'Post Two'</span>, <span style="color: #8b2252;">'This is post two'</span>),(1, <span style="color: #8b2252;">'Post Three'</span>, <span style="color: #8b2252;">'This is post three'</span>),(2, <span style="color: #8b2252;">'Post Four'</span>, <span style="color: #8b2252;">'This is post four'</span>),(5, <span style="color: #8b2252;">'Post Five'</span>, <span style="color: #8b2252;">'This is post five'</span>),(4, <span style="color: #8b2252;">'Post Six'</span>, <span style="color: #8b2252;">'This is post six'</span>),(2, <span style="color: #8b2252;">'Post Seven'</span>, <span style="color: #8b2252;">'This is post seven'</span>),(1, <span style="color: #8b2252;">'Post Eight'</span>, <span style="color: #8b2252;">'This is post eight'</span>),(3, <span style="color: #8b2252;">'Post Nine'</span>, <span style="color: #8b2252;">'This is post none'</span>),(4, <span style="color: #8b2252;">'Post Ten'</span>, <span style="color: #8b2252;">'This is post ten'</span>);
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3a27a54" class="outline-3">
-<h3 id="org3a27a54"><span class="section-number-3">1.34</span> INNER JOIN</h3>
+<div id="outline-container-orgf27ba7a" class="outline-3">
+<h3 id="orgf27ba7a"><span class="section-number-3">1.34</span> INNER JOIN</h3>
 <div class="outline-text-3" id="text-1-34">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span>
   users.first_name,
   users.last_name,
   posts.title,
   posts.publish_date
-FROM users
-INNER JOIN posts
-ON users.id = posts.user_id
-ORDER BY posts.title;
+<span style="color: #a020f0;">FROM</span> users
+<span style="color: #a020f0;">INNER</span> <span style="color: #a020f0;">JOIN</span> posts
+<span style="color: #a020f0;">ON</span> users.id = posts.user_id
+<span style="color: #a020f0;">ORDER</span> <span style="color: #a020f0;">BY</span> posts.title;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd6fc924" class="outline-3">
-<h3 id="orgd6fc924"><span class="section-number-3">1.35</span> New Table With 2 Foriegn Keys</h3>
+<div id="outline-container-orgf0ea0b2" class="outline-3">
+<h3 id="orgf0ea0b2"><span class="section-number-3">1.35</span> New Table With 2 Foriegn Keys</h3>
 <div class="outline-text-3" id="text-1-35">
 <div class="org-src-container">
-<pre class="src src-sql">CREATE TABLE comments(
-	id INT AUTO_INCREMENT,
-    post_id INT,
-    user_id INT,
+<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">comments</span>(
+        id <span style="color: #228b22;">INT</span> AUTO_INCREMENT,
+    post_id <span style="color: #228b22;">INT</span>,
+    user_id <span style="color: #228b22;">INT</span>,
     body TEXT,
-    publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id),
-    FOREIGN KEY(user_id) references users(id),
-    FOREIGN KEY(post_id) references posts(id)
+    publish_date DATETIME <span style="color: #a020f0;">DEFAULT</span> <span style="color: #483d8b;">CURRENT_TIMESTAMP</span>,
+    <span style="color: #a020f0;">PRIMARY</span> <span style="color: #a020f0;">KEY</span>(id),
+    <span style="color: #a020f0;">FOREIGN</span> <span style="color: #a020f0;">KEY</span>(user_id) <span style="color: #a020f0;">references</span> users(id),
+    <span style="color: #a020f0;">FOREIGN</span> <span style="color: #a020f0;">KEY</span>(post_id) <span style="color: #a020f0;">references</span> posts(id)
 );
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orge823d61" class="outline-3">
-<h3 id="orge823d61"><span class="section-number-3">1.36</span> Add Data to Comments Table</h3>
+<div id="outline-container-org747f236" class="outline-3">
+<h3 id="org747f236"><span class="section-number-3">1.36</span> Add Data to Comments Table</h3>
 <div class="outline-text-3" id="text-1-36">
 <div class="org-src-container">
-<pre class="src src-sql">INSERT INTO comments(post_id, user_id, body) VALUES (1, 3, 'This is comment one'),(2, 1, 'This is comment two'),(5, 3, 'This is comment three'),(2, 4, 'This is comment four'),(1, 2, 'This is comment five'),(3, 1, 'This is comment six'),(3, 2, 'This is comment six'),(5, 4, 'This is comment seven'),(2, 3, 'This is comment seven');
+<pre class="src src-sql"><span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> comments(post_id, user_id, body) <span style="color: #a020f0;">VALUES</span> (1, 3, <span style="color: #8b2252;">'This is comment one'</span>),(2, 1, <span style="color: #8b2252;">'This is comment two'</span>),(5, 3, <span style="color: #8b2252;">'This is comment three'</span>),(2, 4, <span style="color: #8b2252;">'This is comment four'</span>),(1, 2, <span style="color: #8b2252;">'This is comment five'</span>),(3, 1, <span style="color: #8b2252;">'This is comment six'</span>),(3, 2, <span style="color: #8b2252;">'This is comment six'</span>),(5, 4, <span style="color: #8b2252;">'This is comment seven'</span>),(2, 3, <span style="color: #8b2252;">'This is comment seven'</span>);
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga4b0a6c" class="outline-3">
-<h3 id="orga4b0a6c"><span class="section-number-3">1.37</span> Left Join</h3>
+<div id="outline-container-org48887f3" class="outline-3">
+<h3 id="org48887f3"><span class="section-number-3">1.37</span> Left Join</h3>
 <div class="outline-text-3" id="text-1-37">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span>
 comments.body,
 posts.title
-FROM comments
-LEFT JOIN posts ON posts.id = comments.post_id
-ORDER BY posts.title;
+<span style="color: #a020f0;">FROM</span> comments
+<span style="color: #a020f0;">LEFT</span> <span style="color: #a020f0;">JOIN</span> posts <span style="color: #a020f0;">ON</span> posts.id = comments.post_id
+<span style="color: #a020f0;">ORDER</span> <span style="color: #a020f0;">BY</span> posts.title;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4a28461" class="outline-3">
-<h3 id="org4a28461"><span class="section-number-3">1.38</span> Join Multiple Tables</h3>
+<div id="outline-container-orgc69b2f8" class="outline-3">
+<h3 id="orgc69b2f8"><span class="section-number-3">1.38</span> Join Multiple Tables</h3>
 <div class="outline-text-3" id="text-1-38">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span>
 comments.body,
 posts.title,
 users.first_name,
 users.last_name
-FROM comments
-INNER JOIN posts on posts.id = comments.post_id
-INNER JOIN users on users.id = comments.user_id
-ORDER BY posts.title;
+<span style="color: #a020f0;">FROM</span> comments
+<span style="color: #a020f0;">INNER</span> <span style="color: #a020f0;">JOIN</span> posts <span style="color: #a020f0;">on</span> posts.id = comments.post_id
+<span style="color: #a020f0;">INNER</span> <span style="color: #a020f0;">JOIN</span> users <span style="color: #a020f0;">on</span> users.id = comments.user_id
+<span style="color: #a020f0;">ORDER</span> <span style="color: #a020f0;">BY</span> posts.title;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3f83511" class="outline-3">
-<h3 id="org3f83511"><span class="section-number-3">1.39</span> Aggregate Functions</h3>
+<div id="outline-container-org5902f21" class="outline-3">
+<h3 id="org5902f21"><span class="section-number-3">1.39</span> Aggregate Functions</h3>
 <div class="outline-text-3" id="text-1-39">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT COUNT(id) FROM users;
-SELECT MAX(age) FROM users;
-SELECT MIN(age) FROM users;
-SELECT SUM(age) FROM users;
-SELECT UCASE(first_name), LCASE(last_name) FROM users;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> <span style="color: #483d8b;">COUNT</span>(id) <span style="color: #a020f0;">FROM</span> users;
+<span style="color: #a020f0;">SELECT</span> <span style="color: #483d8b;">MAX</span>(age) <span style="color: #a020f0;">FROM</span> users;
+<span style="color: #a020f0;">SELECT</span> <span style="color: #483d8b;">MIN</span>(age) <span style="color: #a020f0;">FROM</span> users;
+<span style="color: #a020f0;">SELECT</span> <span style="color: #483d8b;">SUM</span>(age) <span style="color: #a020f0;">FROM</span> users;
+<span style="color: #a020f0;">SELECT</span> UCASE(first_name), LCASE(last_name) <span style="color: #a020f0;">FROM</span> users;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org39a8686" class="outline-3">
-<h3 id="org39a8686"><span class="section-number-3">1.40</span> Group By</h3>
+<div id="outline-container-org78ac668" class="outline-3">
+<h3 id="org78ac668"><span class="section-number-3">1.40</span> Group By</h3>
 <div class="outline-text-3" id="text-1-40">
 <div class="org-src-container">
-<pre class="src src-sql">SELECT age, COUNT(age) FROM users GROUP BY age;
-SELECT age, COUNT(age) FROM users WHERE age &gt; 20 GROUP BY age;
-SELECT age, COUNT(age) FROM users GROUP BY age HAVING count(age) &gt;=2;
+<pre class="src src-sql"><span style="color: #a020f0;">SELECT</span> age, <span style="color: #483d8b;">COUNT</span>(age) <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">GROUP</span> <span style="color: #a020f0;">BY</span> age;
+<span style="color: #a020f0;">SELECT</span> age, <span style="color: #483d8b;">COUNT</span>(age) <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">WHERE</span> age &gt; 20 <span style="color: #a020f0;">GROUP</span> <span style="color: #a020f0;">BY</span> age;
+<span style="color: #a020f0;">SELECT</span> age, <span style="color: #483d8b;">COUNT</span>(age) <span style="color: #a020f0;">FROM</span> users <span style="color: #a020f0;">GROUP</span> <span style="color: #a020f0;">BY</span> age <span style="color: #a020f0;">HAVING</span> <span style="color: #483d8b;">count</span>(age) &gt;=2;
 </pre>
 </div>
 </div>
@@ -765,7 +765,7 @@ SELECT age, COUNT(age) FROM users GROUP BY age HAVING count(age) &gt;=2;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Manos Vasilakis (advizor.gr)</p>
-<p class="date">Created: 2021-09-16 Thu 22:51</p>
+<p class="date">Created: 2021-09-21 Tue 23:39</p>
 </div>
 </body>
 </html>

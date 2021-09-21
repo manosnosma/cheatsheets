@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-09-16 Thu 22:51 -->
+<!-- 2021-09-21 Tue 23:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>VIM Cheat Sheet</title>
@@ -267,70 +267,70 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3b6df5b">1. VIM Cheatsheet</a>
+<li><a href="#org872afe2">1. VIM Cheatsheet</a>
 <ul>
-<li><a href="#orgcd4b8c3">1.1. Basics</a>
+<li><a href="#org48ebba8">1.1. Basics</a>
 <ul>
-<li><a href="#org152b99a">1.1.1. Basic Movements &amp; Commands</a></li>
-<li><a href="#org70c97a9">1.1.2. Cursor Location &amp; File Status</a></li>
-<li><a href="#org2556feb">1.1.3. Search Command / and ?</a></li>
-<li><a href="#orge1c6733">1.1.4. Matching (Parenthesis)</a></li>
-<li><a href="#org3ed0cf2">1.1.5. Searching</a></li>
-<li><a href="#orgd684e84">1.1.6. Substitution</a></li>
-<li><a href="#orgd5bedfc">1.1.7. Execute External Commands:</a></li>
-<li><a href="#orgdcebd36">1.1.8. Make External copy of current file:</a></li>
-<li><a href="#org7be4b1f">1.1.9. Retrieve &amp; Merge Files:</a></li>
-<li><a href="#org4d866b7">1.1.10. To go insert mode:</a></li>
-<li><a href="#orgbaccb1b">1.1.11. Basic Text Manipulation</a></li>
-<li><a href="#org48e718d">1.1.12. set option :set</a></li>
+<li><a href="#orgbb70de3">1.1.1. Basic Movements &amp; Commands</a></li>
+<li><a href="#org5886c92">1.1.2. Cursor Location &amp; File Status</a></li>
+<li><a href="#org2a02148">1.1.3. Search Command / and ?</a></li>
+<li><a href="#org82fd1d3">1.1.4. Matching (Parenthesis)</a></li>
+<li><a href="#orga3417e9">1.1.5. Searching</a></li>
+<li><a href="#org12cae69">1.1.6. Substitution</a></li>
+<li><a href="#org40ae838">1.1.7. Execute External Commands:</a></li>
+<li><a href="#orgfe4de0d">1.1.8. Make External copy of current file:</a></li>
+<li><a href="#org71e0b7f">1.1.9. Retrieve &amp; Merge Files:</a></li>
+<li><a href="#org671d9d5">1.1.10. To go insert mode:</a></li>
+<li><a href="#orgedf06af">1.1.11. Basic Text Manipulation</a></li>
+<li><a href="#org538e366">1.1.12. set option :set</a></li>
 </ul>
 </li>
-<li><a href="#orgd7afbe5">1.2. Vim Language Synopsis</a>
+<li><a href="#orgecd9244">1.2. Vim Language Synopsis</a>
 <ul>
-<li><a href="#org4b83ad2">1.2.1. Verbs and Nouns in VimL</a></li>
+<li><a href="#org708dade">1.2.1. Verbs and Nouns in VimL</a></li>
 </ul>
 </li>
-<li><a href="#org351ad4d">1.3. Some built-in configuration additions</a>
+<li><a href="#org29ee8ae">1.3. Some built-in configuration additions</a>
 <ul>
-<li><a href="#org92065d1">1.3.1. Fuzzy Buffer File Search</a></li>
-<li><a href="#orga280d46">1.3.2. Tag Jumping</a></li>
-<li><a href="#org97428ef">1.3.3. Autocomplete</a></li>
-<li><a href="#org825ff29">1.3.4. File Browsing</a></li>
-<li><a href="#orgbf18d48">1.3.5. Snippets</a></li>
-<li><a href="#orgd8ec742">1.3.6. Build Integration</a></li>
+<li><a href="#orge32e5c8">1.3.1. Fuzzy Buffer File Search</a></li>
+<li><a href="#org4fa4fbe">1.3.2. Tag Jumping</a></li>
+<li><a href="#orgf576b9e">1.3.3. Autocomplete</a></li>
+<li><a href="#orgfce9e26">1.3.4. File Browsing</a></li>
+<li><a href="#org2b82224">1.3.5. Snippets</a></li>
+<li><a href="#orgf414937">1.3.6. Build Integration</a></li>
 </ul>
 </li>
-<li><a href="#orgefd73d3">1.4. NeoVim User Manual Synopsis</a>
+<li><a href="#org7b52dff">1.4. NeoVim User Manual Synopsis</a>
 <ul>
-<li><a href="#orgf9260c4">1.4.1. <code>usr_02.txt</code>: First Steps in Vim</a></li>
-<li><a href="#orgd242270">1.4.2. <code>usr_03.txt</code>: Moving Around</a></li>
-<li><a href="#orgf8ef476">1.4.3. <code>usr_04.txt</code>: Making Small Changes</a></li>
-<li><a href="#org0e94216">1.4.4. more someday&#x2026;</a></li>
+<li><a href="#org9a6a616">1.4.1. <code>usr_02.txt</code>: First Steps in Vim</a></li>
+<li><a href="#orgc59770c">1.4.2. <code>usr_03.txt</code>: Moving Around</a></li>
+<li><a href="#org752ff06">1.4.3. <code>usr_04.txt</code>: Making Small Changes</a></li>
+<li><a href="#orge10dcce">1.4.4. more someday&#x2026;</a></li>
 </ul>
 </li>
-<li><a href="#orgb3dca9c">1.5. Let vim do the typing</a></li>
-<li><a href="#orgb66c9af">1.6. More Unsorted Magic</a></li>
+<li><a href="#orgea94c10">1.5. Let vim do the typing</a></li>
+<li><a href="#orgd0a8516">1.6. More Unsorted Magic</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3b6df5b" class="outline-2">
-<h2 id="org3b6df5b"><span class="section-number-2">1</span> VIM Cheatsheet</h2>
+<div id="outline-container-org872afe2" class="outline-2">
+<h2 id="org872afe2"><span class="section-number-2">1</span> VIM Cheatsheet</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A lifetime worth of vim knowledge in a file.
 </p>
 </div>
-<div id="outline-container-orgcd4b8c3" class="outline-3">
-<h3 id="orgcd4b8c3"><span class="section-number-3">1.1</span> Basics</h3>
+<div id="outline-container-org48ebba8" class="outline-3">
+<h3 id="org48ebba8"><span class="section-number-3">1.1</span> Basics</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org152b99a" class="outline-4">
-<h4 id="org152b99a"><span class="section-number-4">1.1.1</span> Basic Movements &amp; Commands</h4>
+<div id="outline-container-orgbb70de3" class="outline-4">
+<h4 id="orgbb70de3"><span class="section-number-4">1.1.1</span> Basic Movements &amp; Commands</h4>
 <div class="outline-text-4" id="text-1-1-1">
-<pre class="example" id="org10907af">
+<pre class="example" id="orgf0148da">
 +-----------------+   For Japanese users, Hiroshi Iwatani suggested using this:
 |  Movements:     | -----------------------------------------------------------
 +-----------------+                   Komsomolsk
@@ -354,8 +354,8 @@ Basic Commands:
 </pre>
 </div>
 </div>
-<div id="outline-container-org70c97a9" class="outline-4">
-<h4 id="org70c97a9"><span class="section-number-4">1.1.2</span> Cursor Location &amp; File Status</h4>
+<div id="outline-container-org5886c92" class="outline-4">
+<h4 id="org5886c92"><span class="section-number-4">1.1.2</span> Cursor Location &amp; File Status</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>CTRL + G → Shows Ur Location in file &amp; file status.</li>
@@ -365,8 +365,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-org2556feb" class="outline-4">
-<h4 id="org2556feb"><span class="section-number-4">1.1.3</span> Search Command / and ?</h4>
+<div id="outline-container-org2a02148" class="outline-4">
+<h4 id="org2a02148"><span class="section-number-4">1.1.3</span> Search Command / and ?</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>/test
@@ -385,16 +385,16 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-orge1c6733" class="outline-4">
-<h4 id="orge1c6733"><span class="section-number-4">1.1.4</span> Matching (Parenthesis)</h4>
+<div id="outline-container-org82fd1d3" class="outline-4">
+<h4 id="org82fd1d3"><span class="section-number-4">1.1.4</span> Matching (Parenthesis)</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>% → Place cursor on any (,[,{ and type % to find it's match ),] or }.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ed0cf2" class="outline-4">
-<h4 id="org3ed0cf2"><span class="section-number-4">1.1.5</span> Searching</h4>
+<div id="outline-container-orga3417e9" class="outline-4">
+<h4 id="orga3417e9"><span class="section-number-4">1.1.5</span> Searching</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li>/term
@@ -406,10 +406,10 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-orgd684e84" class="outline-4">
-<h4 id="orgd684e84"><span class="section-number-4">1.1.6</span> Substitution</h4>
+<div id="outline-container-org12cae69" class="outline-4">
+<h4 id="org12cae69"><span class="section-number-4">1.1.6</span> Substitution</h4>
 <div class="outline-text-4" id="text-1-1-6">
-<pre class="example" id="org954148b">
+<pre class="example" id="orgc5b1725">
 :s/old/new	    → Change first occurence of "old" to "new".
 :s/old/new/     → Adding the g Flag makes it Global
 		      all occurences of "thee" replaced.
@@ -421,8 +421,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-orgd5bedfc" class="outline-4">
-<h4 id="orgd5bedfc"><span class="section-number-4">1.1.7</span> Execute External Commands:</h4>
+<div id="outline-container-org40ae838" class="outline-4">
+<h4 id="org40ae838"><span class="section-number-4">1.1.7</span> Execute External Commands:</h4>
 <div class="outline-text-4" id="text-1-1-7">
 <ul class="org-ul">
 <li>!ls → Execute ls command inside vim.</li>
@@ -430,8 +430,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-orgdcebd36" class="outline-4">
-<h4 id="orgdcebd36"><span class="section-number-4">1.1.8</span> Make External copy of current file:</h4>
+<div id="outline-container-orgfe4de0d" class="outline-4">
+<h4 id="orgfe4de0d"><span class="section-number-4">1.1.8</span> Make External copy of current file:</h4>
 <div class="outline-text-4" id="text-1-1-8">
 <ul class="org-ul">
 <li>:w NewFile
@@ -443,8 +443,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-org7be4b1f" class="outline-4">
-<h4 id="org7be4b1f"><span class="section-number-4">1.1.9</span> Retrieve &amp; Merge Files:</h4>
+<div id="outline-container-org71e0b7f" class="outline-4">
+<h4 id="org71e0b7f"><span class="section-number-4">1.1.9</span> Retrieve &amp; Merge Files:</h4>
 <div class="outline-text-4" id="text-1-1-9">
 <ul class="org-ul">
 <li>:r Filename
@@ -459,8 +459,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-org4d866b7" class="outline-4">
-<h4 id="org4d866b7"><span class="section-number-4">1.1.10</span> To go insert mode:</h4>
+<div id="outline-container-org671d9d5" class="outline-4">
+<h4 id="org671d9d5"><span class="section-number-4">1.1.10</span> To go insert mode:</h4>
 <div class="outline-text-4" id="text-1-1-10">
 <ul class="org-ul">
 <li>o → open Command, puts you in I mode, to the line bellow the cursor.</li>
@@ -471,8 +471,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-orgbaccb1b" class="outline-4">
-<h4 id="orgbaccb1b"><span class="section-number-4">1.1.11</span> Basic Text Manipulation</h4>
+<div id="outline-container-orgedf06af" class="outline-4">
+<h4 id="orgedf06af"><span class="section-number-4">1.1.11</span> Basic Text Manipulation</h4>
 <div class="outline-text-4" id="text-1-1-11">
 <ul class="org-ul">
 <li>R → Replace Command, Replace More than One Character.</li>
@@ -482,8 +482,8 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-org48e718d" class="outline-4">
-<h4 id="org48e718d"><span class="section-number-4">1.1.12</span> set option :set</h4>
+<div id="outline-container-org538e366" class="outline-4">
+<h4 id="org538e366"><span class="section-number-4">1.1.12</span> set option :set</h4>
 <div class="outline-text-4" id="text-1-1-12">
 <ul class="org-ul">
 <li>:set ic
@@ -499,13 +499,13 @@ Basic Commands:
 </div>
 </div>
 
-<div id="outline-container-orgd7afbe5" class="outline-3">
-<h3 id="orgd7afbe5"><span class="section-number-3">1.2</span> Vim Language Synopsis</h3>
+<div id="outline-container-orgecd9244" class="outline-3">
+<h3 id="orgecd9244"><span class="section-number-3">1.2</span> Vim Language Synopsis</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Vim's killer feature is the language it provides for making changes.
 </p>
-<pre class="example" id="orgacb28c5">
+<pre class="example" id="org37eae39">
 The Syntax of the VIM Language:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     - Verb + Noun
@@ -518,8 +518,8 @@ The Syntax of the VIM Language:
 </pre>
 </div>
 
-<div id="outline-container-org4b83ad2" class="outline-4">
-<h4 id="org4b83ad2"><span class="section-number-4">1.2.1</span> Verbs and Nouns in VimL</h4>
+<div id="outline-container-org708dade" class="outline-4">
+<h4 id="org708dade"><span class="section-number-4">1.2.1</span> Verbs and Nouns in VimL</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Verbs: The operations you want to make on the text.
@@ -597,14 +597,14 @@ The Syntax of the VIM Language:
 </div>
 </div>
 
-<div id="outline-container-org351ad4d" class="outline-3">
-<h3 id="org351ad4d"><span class="section-number-3">1.3</span> Some built-in configuration additions</h3>
+<div id="outline-container-org29ee8ae" class="outline-3">
+<h3 id="org29ee8ae"><span class="section-number-3">1.3</span> Some built-in configuration additions</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The following settings in the next 6 sections require no plugins
 to be installed, just vanilla vim or neovim.
 </p>
-<pre class="example" id="org752f71c">
+<pre class="example" id="org5f8e552">
 " Enter the current millenium:
 set nocompatible
 
@@ -614,15 +614,15 @@ filetype plugin on
 </pre>
 </div>
 
-<div id="outline-container-org92065d1" class="outline-4">
-<h4 id="org92065d1"><span class="section-number-4">1.3.1</span> Fuzzy Buffer File Search</h4>
+<div id="outline-container-orge32e5c8" class="outline-4">
+<h4 id="orge32e5c8"><span class="section-number-4">1.3.1</span> Fuzzy Buffer File Search</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Search down into subfolders
 Provides tab-complition for all file-related tasks
 </p>
 
-<pre class="example" id="org848663d">
+<pre class="example" id="orgad6997d">
 set path +=**
 
 " Display all matching files when we tab autocomplete
@@ -650,7 +650,7 @@ you can use the :ls command, to view all opened buffers.</li>
 Then you can use the :b command along with a substring:
 (part of the filename of the file u need from the buffer)
 </p>
-<pre class="example" id="orgc1b85fe">
+<pre class="example" id="org0bda5a5">
 :b flname
 </pre>
 <p>
@@ -660,13 +660,13 @@ If ur substring Isn't Unique vim'll let u know.
 </div>
 </div>
 
-<div id="outline-container-orga280d46" class="outline-4">
-<h4 id="orga280d46"><span class="section-number-4">1.3.2</span> Tag Jumping</h4>
+<div id="outline-container-org4fa4fbe" class="outline-4">
+<h4 id="org4fa4fbe"><span class="section-number-4">1.3.2</span> Tag Jumping</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 Create the 'tags' file (may need ctags if urnot in Linux.)
 </p>
-<pre class="example" id="org570253b">
+<pre class="example" id="org75af3c4">
 command! MakeTags !ctags -R .
 </pre>
 <p>
@@ -680,8 +680,8 @@ NOW YOU CAN: (^=&lt;CTRL&gt;)
 </ol>
 </div>
 </div>
-<div id="outline-container-org97428ef" class="outline-4">
-<h4 id="org97428ef"><span class="section-number-4">1.3.3</span> Autocomplete</h4>
+<div id="outline-container-orgf576b9e" class="outline-4">
+<h4 id="orgf576b9e"><span class="section-number-4">1.3.3</span> Autocomplete</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 The good stuff is documented in |:help ins-completion|
@@ -713,13 +713,13 @@ NOW YOU CAN:
 </div>
 </div>
 
-<div id="outline-container-org825ff29" class="outline-4">
-<h4 id="org825ff29"><span class="section-number-4">1.3.4</span> File Browsing</h4>
+<div id="outline-container-orgfce9e26" class="outline-4">
+<h4 id="orgfce9e26"><span class="section-number-4">1.3.4</span> File Browsing</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <p>
 Tweak for browsing:
 </p>
-<pre class="example" id="org3246a4b">
+<pre class="example" id="org16281af">
 let g:netrw_banner=0		" disable annoying banner.
 let g:netrw_browse_split=4	" open in prior windows.
 let g:netrw_altv=1		" open splits to the right.
@@ -738,10 +738,10 @@ NOW YOU CAN:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf18d48" class="outline-4">
-<h4 id="orgbf18d48"><span class="section-number-4">1.3.5</span> Snippets</h4>
+<div id="outline-container-org2b82224" class="outline-4">
+<h4 id="org2b82224"><span class="section-number-4">1.3.5</span> Snippets</h4>
 <div class="outline-text-4" id="text-1-3-5">
-<pre class="example" id="org4d2052e">
+<pre class="example" id="org20251ed">
 nnoremap ,html :-1read $HOME/.config/nvim/.skeleton.html&lt;CR&gt;3jwf&gt;a
 </pre>
 
@@ -756,8 +756,8 @@ NOW YOU CAN:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd8ec742" class="outline-4">
-<h4 id="orgd8ec742"><span class="section-number-4">1.3.6</span> Build Integration</h4>
+<div id="outline-container-orgf414937" class="outline-4">
+<h4 id="orgf414937"><span class="section-number-4">1.3.6</span> Build Integration</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
 Steal Mr. Bradley's formatter &amp; add it to our <code>spec_helper</code>
@@ -767,7 +767,7 @@ Steal Mr. Bradley's formatter &amp; add it to our <code>spec_helper</code>
 <p>
 Configure the 'make' command to run RSpec
 </p>
-<pre class="example" id="orgcda48c2">
+<pre class="example" id="org49ef761">
 set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
 </pre>
 
@@ -788,15 +788,15 @@ Run
 </div>
 </div>
 
-<div id="outline-container-orgefd73d3" class="outline-3">
-<h3 id="orgefd73d3"><span class="section-number-3">1.4</span> NeoVim User Manual Synopsis</h3>
+<div id="outline-container-org7b52dff" class="outline-3">
+<h3 id="org7b52dff"><span class="section-number-3">1.4</span> NeoVim User Manual Synopsis</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 NEOVIM USER MANUAL - by Bram Mooleanaar - Not all of it but the stuff i needed most.
 </p>
 </div>
-<div id="outline-container-orgf9260c4" class="outline-4">
-<h4 id="orgf9260c4"><span class="section-number-4">1.4.1</span> <code>usr_02.txt</code>: First Steps in Vim</h4>
+<div id="outline-container-org9a6a616" class="outline-4">
+<h4 id="org9a6a616"><span class="section-number-4">1.4.1</span> <code>usr_02.txt</code>: First Steps in Vim</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ol class="org-ol">
 <li>Go to Insert Mode:	"i"</li>
@@ -841,12 +841,12 @@ m. For more on help see: ":help helphelp" or ":help usr<sub>02.txt</sub>" :)
 </div>
 </div>
 
-<div id="outline-container-orgd242270" class="outline-4">
-<h4 id="orgd242270"><span class="section-number-4">1.4.2</span> <code>usr_03.txt</code>: Moving Around</h4>
+<div id="outline-container-orgc59770c" class="outline-4">
+<h4 id="orgc59770c"><span class="section-number-4">1.4.2</span> <code>usr_03.txt</code>: Moving Around</h4>
 <div class="outline-text-4" id="text-1-4-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgd8ba558"></a>Word Movement:<br />
+<li><a id="org3c873a1"></a>Word Movement:<br />
 <div class="outline-text-5" id="text-1-4-2-1">
 <ol class="org-ol">
 <li>Move (3) word(s) Forward: "3w"</li>
@@ -858,7 +858,7 @@ end with a non-word char like . - &#x2026; : ":set iskeyword&amp;"</li>
 </ol>
 </div>
 </li>
-<li><a id="org550305a"></a>Moving to start or end of file:<br />
+<li><a id="org9daa6a9"></a>Moving to start or end of file:<br />
 <div class="outline-text-5" id="text-1-4-2-2">
 <ol class="org-ol">
 <li>Move to end of Current Line: "&amp;"</li>
@@ -868,7 +868,7 @@ end with a non-word char like . - &#x2026; : ":set iskeyword&amp;"</li>
 </div>
 </li>
 
-<li><a id="orge6ee572"></a>Moving to a specific character:<br />
+<li><a id="orga830c0d"></a>Moving to a specific character:<br />
 <div class="outline-text-5" id="text-1-4-2-3">
 <ol class="org-ol">
 <li>(f)ind forward in line specific char: "fx" search for "x"
@@ -883,7 +883,7 @@ end with a non-word char like . - &#x2026; : ":set iskeyword&amp;"</li>
 </div>
 </li>
 
-<li><a id="orgc60e587"></a>Matching Parenthesis:<br />
+<li><a id="orga6970b5"></a>Matching Parenthesis:<br />
 <div class="outline-text-5" id="text-1-4-2-4">
 <ol class="org-ol">
 <li>Match (,[,[ by going on top of one and: "%"</li>
@@ -891,7 +891,7 @@ end with a non-word char like . - &#x2026; : ":set iskeyword&amp;"</li>
 </div>
 </li>
 
-<li><a id="orge75e46a"></a>Moving to a specific line:<br />
+<li><a id="orgec3a842"></a>Moving to a specific line:<br />
 <div class="outline-text-5" id="text-1-4-2-5">
 <ol class="org-ol">
 <li>Go to Last line in file: "G"</li>
@@ -906,7 +906,7 @@ end with a non-word char like . - &#x2026; : ":set iskeyword&amp;"</li>
 </div>
 </li>
 
-<li><a id="org53a7e5f"></a>Telling where you are:<br />
+<li><a id="orga48e3cf"></a>Telling where you are:<br />
 <div class="outline-text-5" id="text-1-4-2-6">
 <ol class="org-ol">
 <li>See current filename, line number,
@@ -918,7 +918,7 @@ position(%), column: "&lt;CTRL&gt; + G"</li>
 </div>
 </li>
 
-<li><a id="org3da02ad"></a>Scrolling around:<br />
+<li><a id="org4d54c14"></a>Scrolling around:<br />
 <div class="outline-text-5" id="text-1-4-2-7">
 <ol class="org-ol">
 <li>Scrolling Carefully Up: "&lt;CTRL&gt; + U" or "u"</li>
@@ -935,7 +935,7 @@ moving the cursor, to see below: "zz"</li>
 </div>
 </li>
 
-<li><a id="org5fec0f8"></a>Simple Searches:<br />
+<li><a id="org81ccde9"></a>Simple Searches:<br />
 <div class="outline-text-5" id="text-1-4-2-8">
 <ol class="org-ol">
 <li>Search for a string: <code>"\string_to_find"</code></li>
@@ -976,7 +976,7 @@ to grab the word as search string.</li>
 </div>
 </li>
 
-<li><a id="orgf6c5ea1"></a>Simple Search Patterns - Simple REs:<br />
+<li><a id="orgb25172f"></a>Simple Search Patterns - Simple REs:<br />
 <div class="outline-text-5" id="text-1-4-2-9">
 <ol class="org-ol">
 <li>Match a word at beginning of line Only: "<sup>the</sup>"</li>
@@ -989,7 +989,7 @@ to grab the word as search string.</li>
 </div>
 </li>
 
-<li><a id="org44a9b51"></a>Using marks<br />
+<li><a id="orgd08978d"></a>Using marks<br />
 <div class="outline-text-5" id="text-1-4-2-10">
 <p>
 When u move arround vim remembers the position u came from, this position is called mark.
@@ -1028,12 +1028,12 @@ forth easilly with: "'s" / "'e"</li>
 </ol>
 </div>
 
-<div id="outline-container-orgf8ef476" class="outline-4">
-<h4 id="orgf8ef476"><span class="section-number-4">1.4.3</span> <code>usr_04.txt</code>: Making Small Changes</h4>
+<div id="outline-container-org752ff06" class="outline-4">
+<h4 id="org752ff06"><span class="section-number-4">1.4.3</span> <code>usr_04.txt</code>: Making Small Changes</h4>
 <div class="outline-text-4" id="text-1-4-3">
 </div>
 <ol class="org-ol">
-<li><a id="org21626ab"></a>Operators and Motions<br />
+<li><a id="org8261793"></a>Operators and Motions<br />
 <div class="outline-text-5" id="text-1-4-3-1">
 <ol class="org-ol">
 <li>Delete 2 words (w): "d2w"</li>
@@ -1043,7 +1043,7 @@ forth easilly with: "'s" / "'e"</li>
 </ol>
 </div>
 </li>
-<li><a id="org5ab0502"></a>Changing Text<br />
+<li><a id="orgfc7dad7"></a>Changing Text<br />
 <div class="outline-text-5" id="text-1-4-3-2">
 <ol class="org-ol">
 <li>Replace part of a line with ur string: "c2wbe&lt;Esc&gt;"
@@ -1062,7 +1062,7 @@ c. Change to the end of Line: "C"</li>
 </ol>
 </div>
 </li>
-<li><a id="org5db9b30"></a>SHORTCUTS:<br />
+<li><a id="org261d46b"></a>SHORTCUTS:<br />
 <div class="outline-text-5" id="text-1-4-3-3">
 <p>
 Some operator-motion commands are used so often that they
@@ -1078,7 +1078,7 @@ have been given a single letter command:
 </ul>
 </div>
 </li>
-<li><a id="org0824f55"></a>WHERE TO PUT THE COUNT:<br />
+<li><a id="org1b7cf29"></a>WHERE TO PUT THE COUNT:<br />
 <div class="outline-text-5" id="text-1-4-3-4">
 <ol class="org-ol">
 <li>Delete 1 word 3 times: "3dw"</li>
@@ -1087,7 +1087,7 @@ have been given a single letter command:
 </ol>
 </div>
 </li>
-<li><a id="orge7e91b0"></a>REPLACING WITH ONE CHARACTER:<br />
+<li><a id="org623ffcc"></a>REPLACING WITH ONE CHARACTER:<br />
 <div class="outline-text-5" id="text-1-4-3-5">
 <ol class="org-ol">
 <li>Replace char with "T" in NormalMode: "rT"</li>
@@ -1096,14 +1096,14 @@ have been given a single letter command:
 </ol>
 </div>
 </li>
-<li><a id="org80808af"></a>Repeating a Change<br />
+<li><a id="org3c25d47"></a>Repeating a Change<br />
 <div class="outline-text-5" id="text-1-4-3-6">
 <ol class="org-ol">
 <li>Repeat the last change: "."</li>
 </ol>
 </div>
 </li>
-<li><a id="org15d63db"></a>Visual Mode - (v/V)<br />
+<li><a id="orge724d15"></a>Visual Mode - (v/V)<br />
 <div class="outline-text-5" id="text-1-4-3-7">
 <ol class="org-ol">
 <li>Select text: "v" + movement(h/j/k/l)</li>
@@ -1114,7 +1114,7 @@ have been given a single letter command:
 </ol>
 </div>
 </li>
-<li><a id="org89654e2"></a>Moving Text<br />
+<li><a id="orgf1836f8"></a>Moving Text<br />
 <div class="outline-text-5" id="text-1-4-3-8">
 <p>
 When you Delete something with "d", "x", or another command,
@@ -1129,7 +1129,7 @@ the text is saved. You can paste it back by using the "p" put command.
 </ol>
 </div>
 </li>
-<li><a id="org3b55a70"></a>Copying - Yanking Text - Inside vim<br />
+<li><a id="org857fa0c"></a>Copying - Yanking Text - Inside vim<br />
 <div class="outline-text-5" id="text-1-4-3-9">
 <ol class="org-ol">
 <li>Yank selected text: "y"</li>
@@ -1142,7 +1142,7 @@ the text is saved. You can paste it back by using the "p" put command.
 </ol>
 </div>
 </li>
-<li><a id="orgbcdc56c"></a>Using the Clipboard - (y + p + "*)<br />
+<li><a id="orgf3a44b8"></a>Using the Clipboard - (y + p + "*)<br />
 <div class="outline-text-5" id="text-1-4-3-10">
 <ol class="org-ol">
 <li>Yank line into clipboard: "*yy</li>
@@ -1150,7 +1150,7 @@ the text is saved. You can paste it back by using the "p" put command.
 </ol>
 </div>
 </li>
-<li><a id="org530bab0"></a>Text objects<br />
+<li><a id="org35893bb"></a>Text objects<br />
 <div class="outline-text-5" id="text-1-4-3-11">
 <p>
 These commands move over three kinds of text objects:
@@ -1177,7 +1177,7 @@ Sentence, Paragraph, Section
 </ol>
 </div>
 </li>
-<li><a id="org7373332"></a>Replace mode - R<br />
+<li><a id="orgcbd3102"></a>Replace mode - R<br />
 <div class="outline-text-5" id="text-1-4-3-12">
 <ol class="org-ol">
 <li>The R command cause vim to enter the replace mode.
@@ -1190,12 +1190,12 @@ under ur cursor, until u press &lt;Esc&gt;</li>
 </ol>
 </div>
 
-<div id="outline-container-org0e94216" class="outline-4">
-<h4 id="org0e94216"><span class="section-number-4">1.4.4</span> more someday&#x2026;</h4>
+<div id="outline-container-orge10dcce" class="outline-4">
+<h4 id="orge10dcce"><span class="section-number-4">1.4.4</span> more someday&#x2026;</h4>
 </div>
 </div>
-<div id="outline-container-orgb3dca9c" class="outline-3">
-<h3 id="orgb3dca9c"><span class="section-number-3">1.5</span> Let vim do the typing</h3>
+<div id="outline-container-orgea94c10" class="outline-3">
+<h3 id="orgea94c10"><span class="section-number-3">1.5</span> Let vim do the typing</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Let Vim do the typing - Insert Mode
@@ -1216,8 +1216,8 @@ Let Vim do the typing - Insert Mode
 </div>
 </div>
 
-<div id="outline-container-orgb66c9af" class="outline-3">
-<h3 id="orgb66c9af"><span class="section-number-3">1.6</span> More Unsorted Magic</h3>
+<div id="outline-container-orgd0a8516" class="outline-3">
+<h3 id="orgd0a8516"><span class="section-number-3">1.6</span> More Unsorted Magic</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li>To delete forward up to character: "'X' type dtX"</li>
@@ -1235,7 +1235,7 @@ Let Vim do the typing - Insert Mode
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Manos Vasilakis (advizor.gr)</p>
-<p class="date">Created: 2021-09-16 Thu 22:51</p>
+<p class="date">Created: 2021-09-21 Tue 23:41</p>
 </div>
 </body>
 </html>
