@@ -2,6 +2,7 @@
 
 Cheatsheets:
 - C
+- C++
 - Java
 - [~~Python~~](https://github.com/manosvasilakis/cheatsheets/blob/master/python-cheatsheet.org)
 - [~~Awk~~](https://github.com/manosvasilakis/cheatsheets/blob/master/awk-cheatsheet.org)
