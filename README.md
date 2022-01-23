@@ -11,5 +11,6 @@ Cheatsheets:
 - [~~Git~~](https://github.com/manosvasilakis/cheatsheets/blob/master/git-cheatsheet.org)
 - [~~Vim~~](https://github.com/manosvasilakis/cheatsheets/blob/master/vim-cheatsheet.org)
 - Emacs
+- [~~OpenBSD~~](https://github.com/manosvasilakis/cheatsheets/blob/master/openbsd-cheatsheet.org)
 - Linux
 - Windows
