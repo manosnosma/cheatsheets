@@ -1,0 +1,913 @@
+#+title: OpenBSD Cheat Sheet
+#+author: Manos Vasilakis (advizor.gr)
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/style.css" />
+
+* OpenBSD
+
+** The License
+- Retain the copyright notice
+- No warranty
+- Don't use the author's name to promote the product
+
+** =W^X=
+- Poineered by the OpenBSD project in 3.3 in 2002, and
+  strictly enforced in 6.0
+- Memory can either be write or execute, but not both (XOR)
+- Similar to PaX Linux Kernel extension (developed later, linux team)
+#+BEGIN_EXAMPLE
+  1           2   3       4
++---+---+---+---+---+---+---+-----+-----+
+| X | W | W | X | X | W | X | W|X | W|X |
++---+---+---+---+---+---+---+-----+-----+
+      5   6           7        8     9
+
+- 1,2,3,4: Execute only
+- 5,6,7  : Write only
+- 8,9    : Write and Execute ->
+           Only created by programs on a
+           specially marked partition.
+#+END_EXAMPLE
+
+** AnonCVS
+- First project with a public source tree featuring version control (1995)
+- Now an extremely popular model of software development.
+
+** Privilege Separation
+- First implementation in 3.2
+- Split a program into processes performing defferent sub-functions
+- Now used in almost all privileged programs in OpenBSD like: httpd, bgpd,
+  dhcpd, syslog, sndio, etc.
+#+BEGIN_EXAMPLE
+                           Unprivileged Environment
+                       +-------------------------------+
++--------+    pipe     | +-------+ +-------+ +-------+ |
+| Parent | |---------> | | child | | child | | child | |
++--------+             | +-------+ +-------+ +-------+ |
+                       +-------------------------------+
+#+END_EXAMPLE
+
+** Privilege Revocation
+- pledge (2)
+  - Restrict sscall permissions
+  - Implemented in OpenBSD 5.9
+  - Drop access to syscalls that are no longer needed
+  - pledge("stdio dns inet", null) # seconds arg is for any child processes that may be spawned
+  - Attempts to access any restricted syscalls after pledge cause the program to be killed
+- unveil (2)
+  - Restrict file access
+  - Implemented in OpenBSD 6.4
+  - Hide the filesystem and only expose parts you need
+  - unveil("/home/zzz", "r")
+  - Accessing anything other than /home/zzz with throw ENOENT
+  - Trying to write to /home/zzz will throw EINVAL or EPERM
+Really simple compared to other frameworks like capsicum, firejair and used
+in most of the base system.
+
+** Randomization
+- ASLR
+  - First widely used operating system to provide this by default
+  - Libraries, heap and program code are randomly distributed through
+    virtual memory each time the program starts
+  - Random stack offset
+- KARL
+  - Unique kernel each reboot
+  - Relinks kernel C libraries in random orders
+  - Adds lot of randomization to the code it self
+  - The message "Relinking to create unique kernel... done" on boot
+- Library order randomization
+  - Randomly relinks libc.so, libcrypto and lb.so on startup
+- Kernel ASLR vs KARL
+  - Kernel ASLR
+    - Same kernel binary
+    - Address space randomization
+  - KARL
+    - Unique binary each boot
+    - Linking order randomized
+  - OpenBSD does BOTH!
+- arc4random (3)
+  - Very high quality random numbers
+  - Originally used RC4
+  - Now uses ChaCha20
+#+BEGIN_EXAMPLE
+                 RDRAND -------+   +------- Interrupts (latency)
+                               |   |
+                               V   V
+                      +---------------------+
+                      | Entropy input queue |
+                      +---------------------+
+                                  |
+                                  V
+                             +-----------+
+                             | whitening |
+                             +-----------+
+                                   |
+                                   V
+                             +----------------+
++------------------+ boot    |                | shutdown   +------------------+
+| /etc/random.seed |-------> | ChaCha20 state |----------> | /etc/random.seed |
++------------------+         |                |            +------------------+
+                             +----------------+
+                                     |
+                                     V
+ +----------------------------------------------------------------------+
+  \                         ChaCha20 stream                              \
+  /                                                                      /
+ +---------------------+-+-+-+------+-+---------------------------------+
+                       | | | |      | |
+                  uvm -+ | | |      | +- /dev/random
+       pid generation ---+ | |      +--- ...
+       IP packets IDs -----+ |
+                  etc -------+
+#+END_EXAMPLE
+- Other
+  - Position-Independent Executables (PIE)
+    - First OS to enable PIE by default
+- RETGUARD
+  - Mitigation against ROP exploits
+  - Compiler-based exploit mitigation
+- Randomized PIDs
+
+** Philosophy
+- Correctness
+- Portability
+- Documentation
+- Rewriting bad code
+- Keeping it simple
+
+** Crypto
+- Founded in Canada
+- Avoid US export controls (backdoors)
+
+** Security
+- Widely considered to be the most secure OS in the world
+- Least privilege principle
+- Under constant audit from all developers
+
+** Cathedral Style Development
+- One repo to rule them all
+- All components properly intergrated
+
+** Releases
+- The OS base is released as a whole
+  (not like GNU + Linux + other crappy utilities)
+- Patches to the OS are installed using syspatch (1)
+- Upgrading is done with sysupgrade (1)
+- Releases come out every 6 months
+- Cool artwork and music
+
+** Projects
+- OpenSSH
+- LibreSSL
+  - Forked from OpenSSL during the Heartbleed vulnerability
+  - Massive Effort
+  - Legacy code removal
+  - Vulnerability fixes
+  - Modernization
+  - libtls (easy crypto for C!)
+- openrsync (1)
+  - Rewrite of rsync with a friendly BSD license
+  - Privilege separation and revocation, exploit mitigation.
+- pf (4)
+  - Extremely simple configuration and administration
+  - Ported to many other OSs:
+    - MacOS
+    - iOS
+    - FreeBSD
+    - NetBSD
+    - Solaris
+    - QNX
+    - Blackberry
+    - Others
+
+** Some Tools
+- signify
+  - cryptographic signature tools used to author releases and verify patches, very simple
+- mandoc toolchain
+  - Manpage utilities
+- sndio
+  - OpenBSD sound system. Very simple and flexible (f*ck pipewire & pulseaudio)
+- doas
+  - A sane sudo, with a line of configuration to understand
+- httpd, relayd
+  - http server and http/tcp relay
+- vmm/vmd
+  - Homegrown virtual machines
+- switchd
+  - Software Defined Networking daemon, implements OpenFlow spec.
+- rebound
+  - DNS proxy
+- unwind
+  - Validating DNS resolver
+- xenocara
+  - Fork of X11
+- acme-client
+  - Client for LetsEncrypt's ACME service
+
+** Networking Daemons
+- OpenSMTPD
+- OpenBGPD
+  - RPKI-Client
+- OpenNTPD
+- OpenIKED
+- CARP
+- DHCPd
+- DNS
+  - Authoritative - nsd
+  - Resolving - unbound
+- FTPd
+- LDAP
+- HostAPd
+- NFS
+- OSPF
+- RADIUSs
+- RIPD
+- TFTPd
+- and more...
+
+** Use case considerations
+- Network edge
+- Mail servers
+- DNS server
+- BGP server
+- Secure Systems
+- Aythentication server
+- High risk environments
+- Places where correctness and predictability are important
+- Increased security causes a small performance hit
+- Multiprocessing kernel doesn't fully utilize multi-core processors
+- VMs are still experimental and not production ready, but getting there.
+
+** man (1) Pages
+- Contain everything
+- apropos
+- man afterboot # and help
+- man hier
+- Manpage section: man <#> intro
+  - Section 1 - General Commands
+  - Section 2 - System calls
+  - Section 3 - C library function
+  - Section 4 - Device drivers
+  - Section 5 - File Formats
+  - Section 6 - Games
+  - Section 7 - Miscellaneous
+  - Section 8 - System Management
+  - Section 9 - Kernel Development
+
+** Filesystem hierarchy
+- =/bsd=    - The kernel
+- =/bsd.mp= - The multiprocessing kernel, if you're on a platform that supports it
+- =/bsd.rd= - The ramdisk kernel, used for installation
+- =/bin/=   - Statically-linked essential user tools
+- =/sbin/=  - Statically-linked essential superuser tools
+- =/etc/=   - Configuration files
+- =/dev/=   - Device files
+- =/home/=  - User home directories
+- =/mnt/=   - Empty mount point
+- =/root/=  - Root user home directory
+- =/var/=   - Persistent non-user data: logs, mail, databases, websites, etc.
+- =/usr/bin/=   - Most other user tools
+- =/user/sbin/= - Most other superuser tools
+- =/usr/{lib,include,share}=      - Program resources
+- =/usr/local/{bin,lib,includes}= - All package provided files, except for configuration files (=/etc/=)
+
+** User Management
+- adduser  - Interactively add users
+- chpass   - Interactively change user info
+- useradd  - Non-interactively add users
+- usermod  - Non-interactively modify user info
+- userinfo - Get information on a user
+- userdel  - Delete a user account
+
+** syspatch (8)
+- Dead simple to use
+- Fast
+- Really relyable, but if something goes wrong
+  - Rollback the last patch with -r
+  - Rollback all patches with -R
+
+** rc (8)
+- The command invoked by init (8)
+- Very simple
+- rcctl (8)
+  - rcctl enable <daemon>  - Enable a daemon/service at boot
+  - rcctl disable <daemon> - Disable a daemon/service at boot
+  - rcctl get <daemon> - Get the configuration of a daemon
+  - rcctl set <service> <variable> <args> - Set daemon variables
+    - Examples:
+      - rcctl set apmd flags -A
+      - rcctl set dhcp user _dhcp
+  - rcctl order [daemon] - Move daemon to the begining of the order
+  - rcctl getdef <daemon> - Get default config of a daemon
+  - rcctl ls <arg> - Display a list of services/daemons, one of:
+    - rcctl ls all     - All services and daemons
+    - rcctl ls failed  - All enabled but stopped daemons
+    - rcctl ls on      - All enabled daemons
+    - rcctl ls off     - All disabled daemons
+    - rcctl ls started - All started daemons
+    - rcctl ls stopped - All stopped daemons
+  - rcctl [-df] <action> <daemon> - Pass a command to the rc.d script
+    - rcctl [-f] start <daemon> - Start the daemon (-f start degardless of =daemon_flags=)
+    - rcctl stop <daemon> - Stop the daemon
+    - rcctl restart <daemon> - Restart the daemon
+    - rcctl check <daemon> - Check if the daemon is running
+- Split up into several parts:
+  - /etc/rc - Startup command script
+  - /etc/rc.conf - System daemon configuration database (don't touch)
+  - /etc/rc.conf.local - System local configuration
+  - /etc/rc/d - Location of rc/d (8) scripts
+- rc.conf[.local]
+  - =apmd_flags=NP= - Daemon disabled
+  - =apmd_flags==   - Daemon enabled
+  - =apmd_flags=-A= - Daemon enabled with special flags
+- Special services (pf, ipsec, etc.) only hav a YES/NO option
+  - =pf_enabled=YES=
+- =pkg_scripts= - Services that have to startup and shutdown in order
+  - Example: =pkg_scripts=messagebus cupsd=
+
+** Logs
+- Most logs are stores in /var/logs as you'd expect
+  - Auth, pf, mail, daemons, etc.
+  - httpd logs are stored in /var/www/logs
+
+** Network Interfaces
+- /etc/myname - Hostname
+- /etc/mygateway - Static default gateway
+  - Ingored by DHCP
+- /etc/resolv.conf - Nameserver config
+  - Overwritten by DHCP
+- /etc/hostname.<if> where <if> is the name of the interface
+- Enable DHCP on interface re0:
+  - echo "dhcp" > /etc/hostname.re0
+- Set static IP on t=interface re0:
+  - echo "inet <ip addr? <subnet mask> NONE" > /etc/hostname.re0
+  - echo "inet 192.168.2.23 255.255.255.0 NONE" > /etc/hostname.re0
+- To auto-join a wireless network when it's around on iw0:
+  - echo "join <NWID> wpakey <password>" > /etc/hostname.iw0
+- man hostname.if
+- man ifconfig
+- Anything that doesn't match the configuration syntax is passed to ifconfig
+  - Example: join Shopify wpakey NotThePassword
+- Lines starting with a bang are run as commands
+  - Example: !route add 10.0.5.0/24 10.0.1.1
+- /etc/netstart - Network startup script, configures:
+  - hostname
+  - loopback
+  - bridges
+  - etc
+- To re-apply a configuration to an interface: sh /etc/netstart <if>
+
+** ifconfig (8)
+- Used for all network configuration
+- No ip/iwconfig/wpa_supplicant/vconfig/brctl/nmcli
+- Join WiFi
+#+BEGIN_SRC sh
+  $ ifconfig iw0 join MySSID wpakey ThePassword
+#+END_SRC
+- Create vlan:
+#+BEGIN_SRC sh
+  $ ifconfig vlan5 create
+  $ ifconfig vlan5 parent em1 192.168.5.1/24
+#+END_SRC
+
+** Package Management
+- =pkg_add=         - Install packages
+- =pkg_delete=      - Removed Packages
+  - =pkg_delete -a= - Remove unused dependencies
+- =pkg_info=        - Get package information
+  - =pkg_info -Q=   - Search for packages
+
+** OpenBSD Partitions
+- Disks identified with DUID in /etc/fstab
+- Disklabel partitions
+  - Partition c is the whole disk
+- Fast FileSystem (FFS)
+  - Stable
+  - Old
+  - Updated frequently by the OpenBSD devs
+
+** Commonly used commands
+- ksh(1) - default shell
+- sysctl (8) - manage kernel state
+- usbdevs (8) - list usb devices
+- pcidump (8) - list pci devices
+- disklabel (8) - format OpenBSD disks
+- sysctl hw.disknames - list disks
+- vmstat (8) - check ram usage
+
+** Window & Display Managers
+- DWM  - The suckless dynamic window manager (less than 1000 lines of code)
+- FVWM - Fully bloated, complicated to configure
+- TWM  - Old crap
+- More bloat:
+  - Mate, gnome, lxqt
+- Change default WM in $HOME/.xsession, or $HOME/.xinitrc
+- Enable Xenodm (display manages)
+  - rcctl enable xenodm
+  - rcctl start xenodm
+
+** Resources
+1. Youtube ([[https://youtube.com/watch?v=EkDVKthufAM][?v=EkDVKthufAM]])
+2. [[https://man.openbsd.org]]
+3. [[https://www.openbsd.org/mail.html][Mailing List]]
+4. [[https://undeadly.org][OpenBSD Journal]]
+5. [[https://bronevichok.ru/openbsdnow/][Planet OpenBSD]]
+6. [[https://github.com/ligurio/awesome-openbsd][Awesome-openbsd]]
+7. [[https://blog.lambda.cx][Post]]
+
+----------------------------------------------------------------------
+
+* The OpenBSD Web Stack
+
+** The Software Life Circle
+#+BEGIN_EXAMPLE
+Alice - "I made a simple tool!"
+Bob   - "It's a great tool! Here's a feature."
+Cal   - "Here's more features!"
+Dale  - feature, feature, feature, feature
+World - "bloatware, ughh"
+Annie - "I made a simple tool!" :)
+#+END_EXAMPLE
+
+** OpenBSD vs the Software Cyrcle
+- OpenBSD stands athwart the software feature cyrcle, shouting "Stop!"
+- Simple tools that do one job well
+- Read "Features are Faults" by Yed Uangst
+
+** Web Stack Components
+- httpd web server
+- relayd proxy and redirector
+- CARP IP-layer redundancy
+- PF packet filter
+- LibreSSL
+
+** LibreSSL & PF
+- All writtento LibreSSL APIs, not OpenSSL
+- Hooks into PF
+- No LibreSSL or PF, no httpd/relayd
+- Platforms:
+  - OpenBSD
+  - FreeBSD w/LibreSSL like TrueOS or HardenedBSD
+  - FreeBSD with custom packages
+
+** httpd
+- Simple web server
+- Config syntax remoniscent of nginx & other OpenBSD programs
+- Chrooted into /var/www
+- /etc/httpd.conf
+- FastCGI
+
+** Httpd.conf
+#+BEGIN_EXAMPLE
+public_ip="192.0.2.101"
+
+server "www.manosvasilakis.gr" {
+	include "/etc.httpd-global.conf"
+	alias "manosvasilakis.gr"
+	listen on $public_ip port 80
+	root "/manosvasilakis.gr"
+}
+#+END_EXAMPLE
+
+** Per-Location Rules
+#+BEGIN_EXAMPLE
+server "www.manosvasilakis.gr" {
+	...
+	directory auto index
+	location "/files/" {
+		directory no auto index
+	}
+	location "/secret/*" {
+		authenticate "Nope!" with "/htpasswords"
+	}
+}
+#+END_EXAMPLE
+
+** Default Server
+- Listens on all IPs
+- Client pokes at IP without providing a hostname,
+  get the default
+- /var/www/htdocs
+
+** Blocks and Redirects
+#+BEGIN_EXAMPLE
+...
+location "/rss.xml" {
+	block return 302 "index/cgi?rss=1"
+}
+
+server "www.manosvasilakis.gr" {
+	listen on $public_ipb port 80
+	block return 301 "https://$SERVER_NAME$REQUEST_URI"
+}
+#+END_EXAMPLE
+
+** Globs
+- Shell globs in httpd.conf
+#+BEGIN_EXAMPLE
+server "www?.manosvasilakis.gr" {
+	alias "www.manosvasilakis.gr"
+	listen on $public_ip6 port 80
+	root "/www1"
+}
+#+END_EXAMPLE
+
+** Wildcards & Classes
+#+BEGIN_EXAMPLE
+server "*.manosvasilakis.gr" {
+	alias manosvasilakis.gr
+	listen on $public_ip6 port 80
+	root "/www1"
+}
+server "[ab1][cd2].manosvasilakis.gr" {
+}
+#+END_EXAMPLE
+
+
+** Perl Regexes
+- Nightmarishly complicated
+- Convoluted to use
+- Impossible to verify in code
+- Most of use use only a tiny part of them
+- OpenBSD: Nope!
+
+** Lua Patterns
+- Lots of regex-style functionality
+- Much smaller
+- Much simpler
+- Much less maddening
+- Look like globs
+- Identify patterns with "match" keyword
+
+** Lua Character Classes
+- period (.) = any possible character
+- %a = all letters
+- %d = all digits
+- %g = all printable characters except spaces
+- %l = all lowercase letters
+- %u = all upercase letters
+- %w = all alphanumeric characters
+
+** Custom Lua Classes
+- Put classes in brackets:
+  - [a-p,r-z] - all lowercase letters but q
+  - [%a%d] - all letters, all digits
+
+** Multiples
+- W* -> 0 or more Ws
+- W+ -> 1 or more Ws
+- * and + -> match longest possible strings
+- ^ -> anchor to front of string
+- $ -> anchor to end of string
+
+** Httpd Logs
+- Defaults to traditional Apache log format
+#+BEGIN_EXAMPLE
+server mwl.io {
+	log style combined
+	log access mwl/mwl_access
+	log error mwl/mwl_err
+	...
+}
+#+END_EXAMPLE
+
+** Httpd Debugging
+- Test configuration before restarting
+#+BEGIN_EXAMPLE
+  # httpd -n
+#+END_EXAMPLE
+- Check test config
+#+BEGIN_EXAMPLE
+  # httpd -nf /etc/httpd-test.conf
+#+END_EXAMPLE
+- Run in foreground
+#+BEGIN_EXAMPLE
+  # httpd -dvvv
+#+END_EXAMPLE
+
+** Dynamic Content
+- Uses FastCGI interface with slowcgi(8)
+- 500 errors? showcgi not running
+#+BEGIN_EXAMPLE
+server "bgp.manosvasilakis.gr {
+	listen on * port 80
+	location "/cgi-bin/*" {
+		root "/"
+		fastcgi
+	}
+}
+#+END_EXAMPLE
+
+** Httpd Chroot
+- Plus side: the webserver can only access stuff in /var/www
+- Down side: the webserver can only access stuff in /var/www
+- /var/www/etc/hosts, resolv.conf, locatime
+- No Symlinks
+- ldd(1) to identify shared libraries
+
+** Sample App: Wordpress
+- If WordPress runs, anything runs!
+- MariaDB instead of MySQL
+- Choose PHP version
+- rc.conf:
+#+BEGIN_EXAMPLE
+  httpd_flags=""
+  pkg_scripts="mysqld php70_fpm"
+#+END_EXAMPLE
+
+
+** MariaDB socket in chroot
+#+BEGIN_EXAMPLE
+# mkdir -p /var/www/var/run/mysql
+# chown _mysql:_mysql /var/www/var/run/mysql
+#+END_EXAMPLE
+
+- /etc/my.cnf
+#+BEGIN_EXAMPLE
+[client]
+socket = /var/www/var/run/mysql/mysql.sock
+[mysqld]
+socket = /var/www/var/run/mysql/mysql.sock
+#+END_EXAMPLE
+
+
+** Configure PHP Modules
+#+BEGIN_EXAMPLE
+# cd /etc/php-7.0
+# cp ../php-7.0.sample/* .
+# rcctl start php70_fpm
+#+END_EXAMPLE
+
+** httpd.conf
+#+BEGIN_EXAMPLE
+server "blog.manosvasilakis.gr" {
+	listen on * port 80
+	directory index index.php
+	location "*.php" {
+		fastcgi socket "/run/php-fpm.sock"
+	}
+}
+#+END_EXAMPLE
+
+** TLS
+- Transport Layer Security
+- Replaces SSL
+- Only protects data in transit
+- Verifies control of DNS
+- Does not verify identity
+- Certificate Authority based
+  - CAs suck
+
+** Let's Encrypt
+- Scripted automated certificate authority
+- Free SSL certs all around!
+- Work by verifying domain control, such as DNS entries or HTTP entries.
+- Automated Certificate Management Environment (ACME)
+- OpenBSD's acme-client(1) automates cert renewal
+- Good for 90 days, must be automate renewal
+
+** How ACME Works
+- Initial client run: creates account keypair
+- Client asks ACME CA what proof it will accept
+  - LE accepts HTTP and DNS auth
+  - Client chooses with proof it wants to offer
+  - acme-client users HTTP
+- acme-client creates CSR
+- ACME CA say "create this HTTP file on server"
+- acme-client creates file and signs it
+- ACME CA checks for file
+- If file exists, signs and retuns the cert
+
+** Configuring httpd for ACME
+#+BEGIN_EXAMPLE
+server "www.manosvasilakis.gr" {
+	...
+	location "/.well-known/acme- challenge/*" {
+		root "/acme"
+		root strip 2
+		no auto index
+	}
+}
+domain www.manosvasilakis.gr {
+	alternative names {
+		manosvasilakis.gr api.manosvasilakis.gr
+	}
+	domain key "/etc/ssl/acme/manosvasilakis/manosvasilakis.key"
+	domain certificate "/etc/ssl/acme/manosvasilakis/manosvasilakis.crt"
+	domain chain certificate
+		"/etc/ssl/acme/manosvasilakis/manosvasilakis.chain.pem"
+	domain full chain certificate
+		"/etc/ssl/acme/manosvasilakis/manosvasilakis.fullchain.pem"
+	sign with $le		
+}
+#+END_EXAMPLE
+
+** First acme-client run
+- Create authority account key
+#+BEGIN_EXAMPLE
+  # acme-client -A
+#+END_EXAMPLE
+- Get cert
+#+BEGIN_EXAMPLE
+  # acme-client -vvD www.manosvasilakis.gr
+#+END_EXAMPLE
+- Read -v output, learn things :)
+
+** TLS in httpd.conf
+#+BEGIN_EXAMPLE
+server "www.manosvasilakis.gr" {
+	listen on * port 80
+	block return 301 "https://$SERVER$REQUEST_URI"
+}
+server "www.manosvasilakis.gr" {
+	alias manosvasilakis.gr
+	listen on * tls port 443
+	tls certificate
+		"/etc/ssl/acme/manosvasilakis/manosvasilakis.fullchain.pem"
+	tls key "/etc/ssl/acme/manosvasilakis/manosvasilakis.key"
+	hsts
+	...
+}
+#+END_EXAMPLE
+
+** Renew ACME Certs
+#+BEGIN_SRC sh
+#!/bin/sh
+acme-client www.manosvasilakis.gr
+if [ $? -eq 0 ]
+	then
+	/etc/rc.d/httpd reload
+fi
+#+END_SRC
+
+
+Online Certificate Status Protocol
+- Doesn't worth ur time for small websites
+- Provides a speed up in cert validation
+- Verifies certificate hasn't been revoked in the last 7 days
+#+BEGIN_SRC sh
+cd /etc/ssl/acme/www
+ocspcheck -No www.der www.fullchain.pem
+#+END_SRC
+#+BEGIN_EXAMPLE
+server "www.manosvasilakis.gr" {
+	tls certificate
+		"/etc/ssl/acme/www/www.fullchain.pem"
+	tls key "/etc/ssl/adme/www/www.key"
+	tls ocsp "/etc/ssl/acme/www/www.der"
+}
+#+END_EXAMPLE
+
+** Maintain OCSP
+- Certificates expire weekly
+#+BEGIN_SRC sh
+#!/bin/sh
+acme-client -v www.manosvasilakis.gr
+ocspcheck -vN -o /etc/ssh/acme/manosvasilakis/manosvasilakis.der
+	/etc/ssl/acme/manosvasilakis/manosvasilakis.fullchain.pem
+if [ $? == 0 ]
+	then
+	/etc/rc.d/httpd reload
+fi
+#+END_SRC
+
+** More Httpd Bits
+The Internet is stupid and sometimes you have to...
+- Change site's TCP behavior in httpd.conf
+- Set IP TTL
+- Change TLS versions & ciphers
+- Users with websites? Home dirs under /var/www
+
+
+** Relayd
+- PF can redirect traffic to hosts inside firewall
+- Relayd tests hosts to see if they should receive traffic
+  and adjusts PF tables appropriately
+- Relayd can act as layer 7 proxy: accept connection,
+  muck with them, connect onward.
+- Start with a PF firewall: packet forwarding, inside can't
+  connect to firewall itself, etc
+
+** Relayd Components
+- Relayd daemon - runs checks
+  - Parent process
+  - Host Check Engine
+  - PF Engine
+  - Relay Engine
+- relayctl(8) - manages relayd
+
+** Redirections
+- Pure TCP/IP load balancing
+#+BEGIN_EXAMPLE
+table <www> {192.0.2.101 192.0.2.102}
+redirect www {
+	listen on $ext_addr port 90 interface en0
+	forward to <www> check http "/" code 200
+}
+#+END_EXAMPLE
+
+** Macros (like any other OpenBSD program)
+#+BEGIN_EXAMPLE
+www1="192.0.2.101"
+www2="192.0.2.102"
+ext_ip="203.0.113.213"
+
+table <www> {$www1 $www2}
+redirect www {
+	listen on $ext_ip port 80 interface em0
+	forward to <www> check http "/" code 200
+}
+#+END_EXAMPLE
+
+** relayctl(8)
+#+BEGIN_EXAMPLE
+# relayctl show summary
+
+id  Type      Name         Avlbltu  Status
+1   redirect  www                   active
+1   table     www:80                active (2 hosts)
+1   host      192.0.2.101  100.00%  up
+2   host      192.0.2.102  100.00%  up
+#+END_EXAMPLE
+
+** Host Checks
+- ICMP checks
+- TCP port test
+- HTTP response code check
+- TLS check
+- HTTP response code over TLS check
+- File integrity check
+
+** More Host Checks
+- Exchange arbitrary data
+  forward to <smtp> check send "" expect \
+  	"220 mail.manosvasilakis.gr *"
+- External scripts
+  forward to <www> check script \
+  	"/usr/local/scripts/dnscheck.sh"
+
+#+BEGIN_SRC sh
+#!/bin/sh
+! dig www.manosvasilakis.gr @$1 | grep "qr aa rd" \
+	> /dev/null
+#+END_SRC
+
+** Relays
+- Relays accept TCP connection, examine traffic, create new connection
+  to destinations
+- Can filter traffic
+
+** SSH Relay
+#+BEGIN_EXAMPLE
+tcp protocol fixup {
+	tcp nodelay
+}
+
+relay ssh {
+	listen on 203.0.113.213 port 2222
+	forward to <ssh? port 22
+	protocol fixup
+}
+#+END_EXAMPLE
+
+** Relays let you do weird things
+#+BEGIN_EXAMPLE
+# bill promised he only uses get method in da site...
+http protocol getonly {
+	pass quick method GET
+	block label "Forbidden Method"
+}
+
+# bill promised that he doesn't use phpMyAdmin...
+# i don't trust billy.
+block request url "www4.manosvasilakis.gr/phpMyAdmin"
+	label "Bill is a Wimp"
+
+# no websockets bill :)
+block request handler "Upgrade" vaue "websocket"
+
+# but if you really hate bill... strip the user-agent header.
+match request handler remove "Users-Agent"
+#+END_EXAMPLE
+
+** TLS Acceleration
+- Put SSL on the load balancer
+#+BEGIN_EXAMPLE
+http protocol https {
+	match request header append "X-Forwarded-For" \
+		value "$REMOTE_ADDR"
+	match request header append "X-Forwarded-By" \
+		value "$SERVER_ADDR:$SERVER_PORT"
+	match request header set "Connection" \
+		value "close"
+	# Various TCP performance options
+	tcp { nodelay, sack, socket buffer 65536, backlog 128 }
+}
+#+END_EXAMPLE
+
+** Other Relay Fun
+- Relays do not do SNI yet
+- Enable/disable client-renegotiations, session tickets, etc.
+- Can do HA with CARP
+
+** Resources
+1. Youtube ([[https://youtube.com/watch?v=u-62QXjhLxk][?v=u-62QXjhLxk]])

@@ -1,0 +1,1817 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-01-23 Êõñ 12:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenBSD Cheat Sheet</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Manos Vasilakis (advizor.gr)" />
+<style type="text/css">
+	<!--/*--><![CDATA[/*><!--*/
+	#content { max-width: 60em; margin: auto; }
+	tr:nth-child(even) { background-color: #f2f2f2 }
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	a:hover { text-decoration: underline }
+	a:visited {
+		color: green;
+		text-decoration: underline;
+	}
+	img { max-width: 100%; }
+	.title {
+		text-align: center;
+		margin-bottom: .2em;
+	}
+	.subtitle { 
+		text-align: center;
+		font-size: medium;
+		font-weight: bold;
+		margin-top:0;
+	}
+	.todo     { font-family: monospace; color: red;    }
+	.done     { font-family: monospace; color: green;  }
+	.priority { font-family: monospace; color: orange; }
+	.tag      { 
+		background-color: #eee; 
+		font-family: monospace;
+		padding: 2px;
+		font-size: 80%;
+		font-weight: normal;
+	}
+	.timestamp     { color: #bebebe; }
+	.timestamp-kwd { color: #5f9ea0; }
+	.org-right  { margin-left: auto; margin-right: 0px;  text-align: right;  }
+	.org-left   { margin-left: 0px;  margin-right: auto; text-align: left;   }
+	.org-center { margin-left: auto; margin-right: auto; text-align: center; }
+	.underline  { text-decoration: underline; }
+	#postamble p, #preamble p { font-size: 90%; margin: .2em; }
+	p.verse { margin-left: 3%; }
+	pre {
+		border: 1px solid #e6e6e6;
+		border-radius: 3px;
+		background-color: #f2f2f2;
+		padding: 8pt;
+		font-family: monospace;
+		overflow: auto;
+		margin: 1.2em;
+	}
+	pre.src {
+		position: relative;
+		overflow: auto;
+	}
+	pre.src:before {
+		display: none;
+		position: absolute;
+		top: -8px;
+		right: 12px;
+		padding: 3px;
+		color: #555;
+		background-color: #f2f2f299;
+	}
+	pre.src:hover:before { 
+		display: inline; 
+		margin-top: 14px;
+	}
+
+	/* Languages per Org manual */
+	pre.src-asymptote:before  { content: 'Asymptote' }
+	pre.src-awk:before        { content: 'Awk'       }
+	pre.src-authinfo::before  { content: 'Authinfo'  }
+	pre.src-C:before          { content: 'C'         }
+	/* pre.src-C++ doesn't work in CSS */
+	pre.src-clojure:before    { content: 'Clojure'        }
+	pre.src-css:before        { content: 'CSS'            }
+	pre.src-D:before          { content: 'D'              }
+	pre.src-ditaa:before      { content: 'ditaa'          }
+	pre.src-dot:before        { content: 'Graphviz'       }
+	pre.src-calc:before       { content: 'Emacs Calc'     }
+	pre.src-emacs-lisp:before { content: 'Emacs Lisp'     }
+	pre.src-fortran:before    { content: 'Fortran'        }
+	pre.src-gnuplot:before    { content: 'gnuplot'        }
+	pre.src-haskell:before    { content: 'Haskell'        }
+	pre.src-hledger:before    { content: 'hledger'        }
+	pre.src-java:before       { content: 'Java'           }
+	pre.src-js:before         { content: 'Javascript'     }
+	pre.src-latex:before      { content: 'LaTeX'          }
+	pre.src-ledger:before     { content: 'Ledger'         }
+	pre.src-lisp:before       { content: 'Lisp'           }
+	pre.src-lilypond:before   { content: 'Lilypond'       }
+	pre.src-lua:before        { content: 'Lua'            }
+	pre.src-matlab:before     { content: 'MATLAB'         }
+	pre.src-mscgen:before     { content: 'Mscgen'         }
+	pre.src-ocaml:before      { content: 'Objective Caml' }
+	pre.src-octave:before     { content: 'Octave'         }
+	pre.src-org:before        { content: 'Org mode'       }
+	pre.src-oz:before         { content: 'OZ'             }
+	pre.src-plantuml:before   { content: 'Plantuml'       }
+	pre.src-processing:before { content: 'Processing.js'  }
+	pre.src-python:before     { content: 'Python'         }
+	pre.src-R:before          { content: 'R'              }
+	pre.src-ruby:before       { content: 'Ruby'           }
+	pre.src-sass:before       { content: 'Sass'           }
+	pre.src-scheme:before     { content: 'Scheme'         }
+	pre.src-screen:before     { content: 'Gnu Screen'     }
+	pre.src-sed:before        { content: 'Sed'            }
+	pre.src-sh:before         { content: 'shell'          }
+	pre.src-sql:before        { content: 'SQL'            }
+	pre.src-sqlite:before     { content: 'SQLite'         }
+	/* additional languages in org.el's org-babel-load-languages alist */
+	pre.src-forth:before      { content: 'Forth'        }
+	pre.src-io:before         { content: 'IO'           }
+	pre.src-J:before          { content: 'J'            }
+	pre.src-makefile:before   { content: 'Makefile'     }
+	pre.src-maxima:before     { content: 'Maxima'       }
+	pre.src-perl:before       { content: 'Perl'         }
+	pre.src-picolisp:before   { content: 'Pico Lisp'    }
+	pre.src-scala:before      { content: 'Scala'        }
+	pre.src-shell:before      { content: 'Shell Script' }
+	pre.src-ebnf2ps:before    { content: 'ebfn2ps'      }
+	/* additional language identifiers per "defun org-babel-execute" in ob-*.el */
+	pre.src-cpp:before     { content: 'C++'    }
+	pre.src-abc:before     { content: 'ABC'    }
+	pre.src-coq:before     { content: 'Coq'    }
+	pre.src-groovy:before  { content: 'Groovy' }
+	/* additional language identifiers from org-babel-shell-names in
+	 * ob-shell.el: ob-shell is the only babel language using a lambda to put
+	 * the execution function name together. 
+	 */
+	pre.src-bash:before { content: 'bash' }
+	pre.src-csh:before  { content: 'csh'  }
+	pre.src-ash:before  { content: 'ash'  }
+	pre.src-dash:before { content: 'dash' }
+	pre.src-ksh:before  { content: 'ksh'  }
+	pre.src-mksh:before { content: 'mksh' }
+	pre.src-posh:before { content: 'posh' }
+	/* Additional Emacs modes also supported by the LaTeX listings package */
+	pre.src-ada:before       { content: 'Ada'        }
+	pre.src-asm:before       { content: 'Assembler'  }
+	pre.src-caml:before      { content: 'Caml'       }
+	pre.src-delphi:before    { content: 'Delphi'     }
+	pre.src-html:before      { content: 'HTML'       }
+	pre.src-idl:before       { content: 'IDL'        }
+	pre.src-mercury:before   { content: 'Mercury'    }
+	pre.src-metapost:before  { content: 'MetaPost'   }
+	pre.src-modula-2:before  { content: 'Modula-2'   }
+	pre.src-pascal:before    { content: 'Pascal'     }
+	pre.src-ps:before        { content: 'PostScript' }
+	pre.src-prolog:before    { content: 'Prolog'     }
+	pre.src-simula:before    { content: 'Simula'     }
+	pre.src-tcl:before       { content: 'tcl'        }
+	pre.src-tex:before       { content: 'TeX'        }
+	pre.src-plain-tex:before { content: 'Plain TeX'  }
+	pre.src-verilog:before   { content: 'Verilog'    }
+	pre.src-vhdl:before      { content: 'VHDL'       }
+	pre.src-xml:before       { content: 'XML'        }
+	pre.src-nxml:before      { content: 'XML'        }
+	/* add a generic configuration mode; LaTeX export needs an additional
+	 (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+	pre.src-conf:before { content: 'Configuration File' }
+
+	table            { border-collapse:collapse }
+	caption.t-above  { caption-side: top    }
+	caption.t-bottom { caption-side: bottom }
+	td, th           { vertical-align:top   }
+	th.org-right     { text-align: center   }
+	th.org-left      { text-align: center   }
+	th.org-center    { text-align: center   }
+	td.org-right     { text-align: right    }
+	td.org-left      { text-align: left     }
+	td.org-center    { text-align: center   }
+	dt               { font-weight: bold    }
+	.footpara { display: inline    }
+	.footdef  { margin-bottom: 1em }
+	.figure   { padding: 1em       }
+	.figure p { text-align: center }
+	.equation-container {
+		display: table;
+		text-align: center;
+		width: 100%;
+	}
+	.equation { vertical-align: middle }
+	.equation-label {
+		display: table-cell;
+		text-align: right;
+		vertical-align: middle;
+	}
+	.inlinetask {
+		padding: 10px;
+		border: 2px solid gray;
+		margin: 10px;
+		background: #ffffcc;
+	}
+	#org-div-home-and-up { text-align: right; font-size: 70%; white-space: nowrap; }
+	textarea { overflow-x: auto   }
+	.linenr  { font-size: smaller }
+	.code-highlighted { background-color: #ffff00 }
+	.org-info-js_info-navigation { border-style: none }
+	#org-info-js_console-label { font-size: 10px; font-weight: bold; white-space: nowrap; }
+	.org-info-js_search-highlight { background-color: #ffff00; color: #000000; font-weight: bold; }
+	.org-svg { width: 90% }
+	/*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">OpenBSD Cheat Sheet</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1c8e392">1. OpenBSD</a>
+<ul>
+<li><a href="#org32dffc9">1.1. The License</a></li>
+<li><a href="#org7af364b">1.2. <code>W^X</code></a></li>
+<li><a href="#orgf07ea8b">1.3. AnonCVS</a></li>
+<li><a href="#orgb4c5049">1.4. Privilege Separation</a></li>
+<li><a href="#orgf88aff1">1.5. Privilege Revocation</a></li>
+<li><a href="#org5cea014">1.6. Randomization</a></li>
+<li><a href="#org97825e0">1.7. Philosophy</a></li>
+<li><a href="#org6362f00">1.8. Crypto</a></li>
+<li><a href="#orgf4985d1">1.9. Security</a></li>
+<li><a href="#orgca13d32">1.10. Cathedral Style Development</a></li>
+<li><a href="#org47c3535">1.11. Releases</a></li>
+<li><a href="#orgaf553b4">1.12. Projects</a></li>
+<li><a href="#org53048bb">1.13. Some Tools</a></li>
+<li><a href="#orgfe1816f">1.14. Networking Daemons</a></li>
+<li><a href="#org1b7f750">1.15. Use case considerations</a></li>
+<li><a href="#org9a5573a">1.16. man (1) Pages</a></li>
+<li><a href="#org1762914">1.17. Filesystem hierarchy</a></li>
+<li><a href="#org9001049">1.18. User Management</a></li>
+<li><a href="#orga989dc3">1.19. syspatch (8)</a></li>
+<li><a href="#orgb0505a7">1.20. rc (8)</a></li>
+<li><a href="#org1053bed">1.21. Logs</a></li>
+<li><a href="#orgc532b67">1.22. Network Interfaces</a></li>
+<li><a href="#orgd41875b">1.23. ifconfig (8)</a></li>
+<li><a href="#orgb479668">1.24. Package Management</a></li>
+<li><a href="#org1ccbd69">1.25. OpenBSD Partitions</a></li>
+<li><a href="#org6484641">1.26. Commonly used commands</a></li>
+<li><a href="#org74d7649">1.27. Window &amp; Display Managers</a></li>
+<li><a href="#org8e0ab2f">1.28. Resources</a></li>
+</ul>
+</li>
+<li><a href="#org6330259">2. The OpenBSD Web Stack</a>
+<ul>
+<li><a href="#org6217634">2.1. The Software Life Circle</a></li>
+<li><a href="#org098db9c">2.2. OpenBSD vs the Software Cyrcle</a></li>
+<li><a href="#orgfa741d6">2.3. Web Stack Components</a></li>
+<li><a href="#org84bcf98">2.4. LibreSSL &amp; PF</a></li>
+<li><a href="#org6b30615">2.5. httpd</a></li>
+<li><a href="#orgd83bc6a">2.6. Httpd.conf</a></li>
+<li><a href="#org59707c7">2.7. Per-Location Rules</a></li>
+<li><a href="#org9893dd9">2.8. Default Server</a></li>
+<li><a href="#orgdd85b43">2.9. Blocks and Redirects</a></li>
+<li><a href="#org217df6d">2.10. Globs</a></li>
+<li><a href="#org5cbdd3b">2.11. Wildcards &amp; Classes</a></li>
+<li><a href="#org9c8b7a5">2.12. Perl Regexes</a></li>
+<li><a href="#orgf5f22dc">2.13. Lua Patterns</a></li>
+<li><a href="#org4466f53">2.14. Lua Character Classes</a></li>
+<li><a href="#org47bbc3b">2.15. Custom Lua Classes</a></li>
+<li><a href="#org7b7b37c">2.16. Multiples</a></li>
+<li><a href="#org71b476b">2.17. Httpd Logs</a></li>
+<li><a href="#org3621cfe">2.18. Httpd Debugging</a></li>
+<li><a href="#org5a65236">2.19. Dynamic Content</a></li>
+<li><a href="#org32e517d">2.20. Httpd Chroot</a></li>
+<li><a href="#org54f400f">2.21. Sample App: Wordpress</a></li>
+<li><a href="#org80c9d75">2.22. MariaDB socket in chroot</a></li>
+<li><a href="#org95e8a6d">2.23. Configure PHP Modules</a></li>
+<li><a href="#orged4ca78">2.24. httpd.conf</a></li>
+<li><a href="#org0a03f86">2.25. TLS</a></li>
+<li><a href="#org37198b8">2.26. Let's Encrypt</a></li>
+<li><a href="#org3232df1">2.27. How ACME Works</a></li>
+<li><a href="#orgb8485b6">2.28. Configuring httpd for ACME</a></li>
+<li><a href="#org2cc50d3">2.29. First acme-client run</a></li>
+<li><a href="#org235ee3b">2.30. TLS in httpd.conf</a></li>
+<li><a href="#org1109184">2.31. Renew ACME Certs</a></li>
+<li><a href="#org2705fe3">2.32. Maintain OCSP</a></li>
+<li><a href="#org52f0e90">2.33. More Httpd Bits</a></li>
+<li><a href="#org21ebc78">2.34. Relayd</a></li>
+<li><a href="#org9f38522">2.35. Relayd Components</a></li>
+<li><a href="#org2c93274">2.36. Redirections</a></li>
+<li><a href="#org63eca13">2.37. Macros (like any other OpenBSD program)</a></li>
+<li><a href="#orgf2d0ed9">2.38. relayctl(8)</a></li>
+<li><a href="#org41a9462">2.39. Host Checks</a></li>
+<li><a href="#org638cf3e">2.40. More Host Checks</a></li>
+<li><a href="#org4783037">2.41. Relays</a></li>
+<li><a href="#orgd223879">2.42. SSH Relay</a></li>
+<li><a href="#org98a6d62">2.43. Relays let you do weird things</a></li>
+<li><a href="#org29ffa7b">2.44. TLS Acceleration</a></li>
+<li><a href="#org0b97977">2.45. Other Relay Fun</a></li>
+<li><a href="#orgcfe0db9">2.46. Resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1c8e392" class="outline-2">
+<h2 id="org1c8e392"><span class="section-number-2">1</span> OpenBSD</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org32dffc9" class="outline-3">
+<h3 id="org32dffc9"><span class="section-number-3">1.1</span> The License</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Retain the copyright notice</li>
+<li>No warranty</li>
+<li>Don't use the author's name to promote the product</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7af364b" class="outline-3">
+<h3 id="org7af364b"><span class="section-number-3">1.2</span> <code>W^X</code></h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Poineered by the OpenBSD project in 3.3 in 2002, and
+strictly enforced in 6.0</li>
+<li>Memory can either be write or execute, but not both (XOR)</li>
+<li>Similar to PaX Linux Kernel extension (developed later, linux team)</li>
+</ul>
+<pre class="example" id="org941b4de">
+  1           2   3       4
++---+---+---+---+---+---+---+-----+-----+
+| X | W | W | X | X | W | X | W|X | W|X |
++---+---+---+---+---+---+---+-----+-----+
+      5   6           7        8     9
+
+- 1,2,3,4: Execute only
+- 5,6,7  : Write only
+- 8,9    : Write and Execute -&gt;
+           Only created by programs on a
+           specially marked partition.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf07ea8b" class="outline-3">
+<h3 id="orgf07ea8b"><span class="section-number-3">1.3</span> AnonCVS</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>First project with a public source tree featuring version control (1995)</li>
+<li>Now an extremely popular model of software development.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb4c5049" class="outline-3">
+<h3 id="orgb4c5049"><span class="section-number-3">1.4</span> Privilege Separation</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>First implementation in 3.2</li>
+<li>Split a program into processes performing defferent sub-functions</li>
+<li>Now used in almost all privileged programs in OpenBSD like: httpd, bgpd,
+dhcpd, syslog, sndio, etc.</li>
+</ul>
+<pre class="example" id="org2993140">
+                           Unprivileged Environment
+                       +-------------------------------+
++--------+    pipe     | +-------+ +-------+ +-------+ |
+| Parent | |---------&gt; | | child | | child | | child | |
++--------+             | +-------+ +-------+ +-------+ |
+                       +-------------------------------+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf88aff1" class="outline-3">
+<h3 id="orgf88aff1"><span class="section-number-3">1.5</span> Privilege Revocation</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>pledge (2)
+<ul class="org-ul">
+<li>Restrict sscall permissions</li>
+<li>Implemented in OpenBSD 5.9</li>
+<li>Drop access to syscalls that are no longer needed</li>
+<li>pledge("stdio dns inet", null) # seconds arg is for any child processes that may be spawned</li>
+<li>Attempts to access any restricted syscalls after pledge cause the program to be killed</li>
+</ul></li>
+<li>unveil (2)
+<ul class="org-ul">
+<li>Restrict file access</li>
+<li>Implemented in OpenBSD 6.4</li>
+<li>Hide the filesystem and only expose parts you need</li>
+<li>unveil("/home/zzz", "r")</li>
+<li>Accessing anything other than /home/zzz with throw ENOENT</li>
+<li>Trying to write to /home/zzz will throw EINVAL or EPERM</li>
+</ul></li>
+</ul>
+<p>
+Really simple compared to other frameworks like capsicum, firejair and used
+in most of the base system.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5cea014" class="outline-3">
+<h3 id="org5cea014"><span class="section-number-3">1.6</span> Randomization</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>ASLR
+<ul class="org-ul">
+<li>First widely used operating system to provide this by default</li>
+<li>Libraries, heap and program code are randomly distributed through
+virtual memory each time the program starts</li>
+<li>Random stack offset</li>
+</ul></li>
+<li>KARL
+<ul class="org-ul">
+<li>Unique kernel each reboot</li>
+<li>Relinks kernel C libraries in random orders</li>
+<li>Adds lot of randomization to the code it self</li>
+<li>The message "Relinking to create unique kernel&#x2026; done" on boot</li>
+</ul></li>
+<li>Library order randomization
+<ul class="org-ul">
+<li>Randomly relinks libc.so, libcrypto and lb.so on startup</li>
+</ul></li>
+<li>Kernel ASLR vs KARL
+<ul class="org-ul">
+<li>Kernel ASLR
+<ul class="org-ul">
+<li>Same kernel binary</li>
+<li>Address space randomization</li>
+</ul></li>
+<li>KARL
+<ul class="org-ul">
+<li>Unique binary each boot</li>
+<li>Linking order randomized</li>
+</ul></li>
+<li>OpenBSD does BOTH!</li>
+</ul></li>
+<li>arc4random (3)
+<ul class="org-ul">
+<li>Very high quality random numbers</li>
+<li>Originally used RC4</li>
+<li>Now uses ChaCha20</li>
+</ul></li>
+</ul>
+<pre class="example" id="org03d59a5">
+                 RDRAND -------+   +------- Interrupts (latency)
+                               |   |
+                               V   V
+                      +---------------------+
+                      | Entropy input queue |
+                      +---------------------+
+                                  |
+                                  V
+                             +-----------+
+                             | whitening |
+                             +-----------+
+                                   |
+                                   V
+                             +----------------+
++------------------+ boot    |                | shutdown   +------------------+
+| /etc/random.seed |-------&gt; | ChaCha20 state |----------&gt; | /etc/random.seed |
++------------------+         |                |            +------------------+
+                             +----------------+
+                                     |
+                                     V
+ +----------------------------------------------------------------------+
+  \                         ChaCha20 stream                              \
+  /                                                                      /
+ +---------------------+-+-+-+------+-+---------------------------------+
+                       | | | |      | |
+                  uvm -+ | | |      | +- /dev/random
+       pid generation ---+ | |      +--- ...
+       IP packets IDs -----+ |
+                  etc -------+
+</pre>
+<ul class="org-ul">
+<li>Other
+<ul class="org-ul">
+<li>Position-Independent Executables (PIE)
+<ul class="org-ul">
+<li>First OS to enable PIE by default</li>
+</ul></li>
+</ul></li>
+<li>RETGUARD
+<ul class="org-ul">
+<li>Mitigation against ROP exploits</li>
+<li>Compiler-based exploit mitigation</li>
+</ul></li>
+<li>Randomized PIDs</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org97825e0" class="outline-3">
+<h3 id="org97825e0"><span class="section-number-3">1.7</span> Philosophy</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>Correctness</li>
+<li>Portability</li>
+<li>Documentation</li>
+<li>Rewriting bad code</li>
+<li>Keeping it simple</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6362f00" class="outline-3">
+<h3 id="org6362f00"><span class="section-number-3">1.8</span> Crypto</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>Founded in Canada</li>
+<li>Avoid US export controls (backdoors)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf4985d1" class="outline-3">
+<h3 id="orgf4985d1"><span class="section-number-3">1.9</span> Security</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>Widely considered to be the most secure OS in the world</li>
+<li>Least privilege principle</li>
+<li>Under constant audit from all developers</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgca13d32" class="outline-3">
+<h3 id="orgca13d32"><span class="section-number-3">1.10</span> Cathedral Style Development</h3>
+<div class="outline-text-3" id="text-1-10">
+<ul class="org-ul">
+<li>One repo to rule them all</li>
+<li>All components properly intergrated</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org47c3535" class="outline-3">
+<h3 id="org47c3535"><span class="section-number-3">1.11</span> Releases</h3>
+<div class="outline-text-3" id="text-1-11">
+<ul class="org-ul">
+<li>The OS base is released as a whole
+(not like GNU + Linux + other crappy utilities)</li>
+<li>Patches to the OS are installed using syspatch (1)</li>
+<li>Upgrading is done with sysupgrade (1)</li>
+<li>Releases come out every 6 months</li>
+<li>Cool artwork and music</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf553b4" class="outline-3">
+<h3 id="orgaf553b4"><span class="section-number-3">1.12</span> Projects</h3>
+<div class="outline-text-3" id="text-1-12">
+<ul class="org-ul">
+<li>OpenSSH</li>
+<li>LibreSSL
+<ul class="org-ul">
+<li>Forked from OpenSSL during the Heartbleed vulnerability</li>
+<li>Massive Effort</li>
+<li>Legacy code removal</li>
+<li>Vulnerability fixes</li>
+<li>Modernization</li>
+<li>libtls (easy crypto for C!)</li>
+</ul></li>
+<li>openrsync (1)
+<ul class="org-ul">
+<li>Rewrite of rsync with a friendly BSD license</li>
+<li>Privilege separation and revocation, exploit mitigation.</li>
+</ul></li>
+<li>pf (4)
+<ul class="org-ul">
+<li>Extremely simple configuration and administration</li>
+<li>Ported to many other OSs:
+<ul class="org-ul">
+<li>MacOS</li>
+<li>iOS</li>
+<li>FreeBSD</li>
+<li>NetBSD</li>
+<li>Solaris</li>
+<li>QNX</li>
+<li>Blackberry</li>
+<li>Others</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org53048bb" class="outline-3">
+<h3 id="org53048bb"><span class="section-number-3">1.13</span> Some Tools</h3>
+<div class="outline-text-3" id="text-1-13">
+<ul class="org-ul">
+<li>signify
+<ul class="org-ul">
+<li>cryptographic signature tools used to author releases and verify patches, very simple</li>
+</ul></li>
+<li>mandoc toolchain
+<ul class="org-ul">
+<li>Manpage utilities</li>
+</ul></li>
+<li>sndio
+<ul class="org-ul">
+<li>OpenBSD sound system. Very simple and flexible (f*ck pipewire &amp; pulseaudio)</li>
+</ul></li>
+<li>doas
+<ul class="org-ul">
+<li>A sane sudo, with a line of configuration to understand</li>
+</ul></li>
+<li>httpd, relayd
+<ul class="org-ul">
+<li>http server and http/tcp relay</li>
+</ul></li>
+<li>vmm/vmd
+<ul class="org-ul">
+<li>Homegrown virtual machines</li>
+</ul></li>
+<li>switchd
+<ul class="org-ul">
+<li>Software Defined Networking daemon, implements OpenFlow spec.</li>
+</ul></li>
+<li>rebound
+<ul class="org-ul">
+<li>DNS proxy</li>
+</ul></li>
+<li>unwind
+<ul class="org-ul">
+<li>Validating DNS resolver</li>
+</ul></li>
+<li>xenocara
+<ul class="org-ul">
+<li>Fork of X11</li>
+</ul></li>
+<li>acme-client
+<ul class="org-ul">
+<li>Client for LetsEncrypt's ACME service</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfe1816f" class="outline-3">
+<h3 id="orgfe1816f"><span class="section-number-3">1.14</span> Networking Daemons</h3>
+<div class="outline-text-3" id="text-1-14">
+<ul class="org-ul">
+<li>OpenSMTPD</li>
+<li>OpenBGPD
+<ul class="org-ul">
+<li>RPKI-Client</li>
+</ul></li>
+<li>OpenNTPD</li>
+<li>OpenIKED</li>
+<li>CARP</li>
+<li>DHCPd</li>
+<li>DNS
+<ul class="org-ul">
+<li>Authoritative - nsd</li>
+<li>Resolving - unbound</li>
+</ul></li>
+<li>FTPd</li>
+<li>LDAP</li>
+<li>HostAPd</li>
+<li>NFS</li>
+<li>OSPF</li>
+<li>RADIUSs</li>
+<li>RIPD</li>
+<li>TFTPd</li>
+<li>and more&#x2026;</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1b7f750" class="outline-3">
+<h3 id="org1b7f750"><span class="section-number-3">1.15</span> Use case considerations</h3>
+<div class="outline-text-3" id="text-1-15">
+<ul class="org-ul">
+<li>Network edge</li>
+<li>Mail servers</li>
+<li>DNS server</li>
+<li>BGP server</li>
+<li>Secure Systems</li>
+<li>Aythentication server</li>
+<li>High risk environments</li>
+<li>Places where correctness and predictability are important</li>
+<li>Increased security causes a small performance hit</li>
+<li>Multiprocessing kernel doesn't fully utilize multi-core processors</li>
+<li>VMs are still experimental and not production ready, but getting there.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9a5573a" class="outline-3">
+<h3 id="org9a5573a"><span class="section-number-3">1.16</span> man (1) Pages</h3>
+<div class="outline-text-3" id="text-1-16">
+<ul class="org-ul">
+<li>Contain everything</li>
+<li>apropos</li>
+<li>man afterboot # and help</li>
+<li>man hier</li>
+<li>Manpage section: man &lt;#&gt; intro
+<ul class="org-ul">
+<li>Section 1 - General Commands</li>
+<li>Section 2 - System calls</li>
+<li>Section 3 - C library function</li>
+<li>Section 4 - Device drivers</li>
+<li>Section 5 - File Formats</li>
+<li>Section 6 - Games</li>
+<li>Section 7 - Miscellaneous</li>
+<li>Section 8 - System Management</li>
+<li>Section 9 - Kernel Development</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1762914" class="outline-3">
+<h3 id="org1762914"><span class="section-number-3">1.17</span> Filesystem hierarchy</h3>
+<div class="outline-text-3" id="text-1-17">
+<ul class="org-ul">
+<li><code>/bsd</code>    - The kernel</li>
+<li><code>/bsd.mp</code> - The multiprocessing kernel, if you're on a platform that supports it</li>
+<li><code>/bsd.rd</code> - The ramdisk kernel, used for installation</li>
+<li><code>/bin/</code>   - Statically-linked essential user tools</li>
+<li><code>/sbin/</code>  - Statically-linked essential superuser tools</li>
+<li><code>/etc/</code>   - Configuration files</li>
+<li><code>/dev/</code>   - Device files</li>
+<li><code>/home/</code>  - User home directories</li>
+<li><code>/mnt/</code>   - Empty mount point</li>
+<li><code>/root/</code>  - Root user home directory</li>
+<li><code>/var/</code>   - Persistent non-user data: logs, mail, databases, websites, etc.</li>
+<li><code>/usr/bin/</code>   - Most other user tools</li>
+<li><code>/user/sbin/</code> - Most other superuser tools</li>
+<li><code>/usr/{lib,include,share}</code>      - Program resources</li>
+<li><code>/usr/local/{bin,lib,includes}</code> - All package provided files, except for configuration files (<code>/etc/</code>)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9001049" class="outline-3">
+<h3 id="org9001049"><span class="section-number-3">1.18</span> User Management</h3>
+<div class="outline-text-3" id="text-1-18">
+<ul class="org-ul">
+<li>adduser  - Interactively add users</li>
+<li>chpass   - Interactively change user info</li>
+<li>useradd  - Non-interactively add users</li>
+<li>usermod  - Non-interactively modify user info</li>
+<li>userinfo - Get information on a user</li>
+<li>userdel  - Delete a user account</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga989dc3" class="outline-3">
+<h3 id="orga989dc3"><span class="section-number-3">1.19</span> syspatch (8)</h3>
+<div class="outline-text-3" id="text-1-19">
+<ul class="org-ul">
+<li>Dead simple to use</li>
+<li>Fast</li>
+<li>Really relyable, but if something goes wrong
+<ul class="org-ul">
+<li>Rollback the last patch with -r</li>
+<li>Rollback all patches with -R</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb0505a7" class="outline-3">
+<h3 id="orgb0505a7"><span class="section-number-3">1.20</span> rc (8)</h3>
+<div class="outline-text-3" id="text-1-20">
+<ul class="org-ul">
+<li>The command invoked by init (8)</li>
+<li>Very simple</li>
+<li>rcctl (8)
+<ul class="org-ul">
+<li>rcctl enable &lt;daemon&gt;  - Enable a daemon/service at boot</li>
+<li>rcctl disable &lt;daemon&gt; - Disable a daemon/service at boot</li>
+<li>rcctl get &lt;daemon&gt; - Get the configuration of a daemon</li>
+<li>rcctl set &lt;service&gt; &lt;variable&gt; &lt;args&gt; - Set daemon variables
+<ul class="org-ul">
+<li>Examples:
+<ul class="org-ul">
+<li>rcctl set apmd flags -A</li>
+<li>rcctl set dhcp user _dhcp</li>
+</ul></li>
+</ul></li>
+<li>rcctl order [daemon] - Move daemon to the begining of the order</li>
+<li>rcctl getdef &lt;daemon&gt; - Get default config of a daemon</li>
+<li>rcctl ls &lt;arg&gt; - Display a list of services/daemons, one of:
+<ul class="org-ul">
+<li>rcctl ls all     - All services and daemons</li>
+<li>rcctl ls failed  - All enabled but stopped daemons</li>
+<li>rcctl ls on      - All enabled daemons</li>
+<li>rcctl ls off     - All disabled daemons</li>
+<li>rcctl ls started - All started daemons</li>
+<li>rcctl ls stopped - All stopped daemons</li>
+</ul></li>
+<li>rcctl [-df] &lt;action&gt; &lt;daemon&gt; - Pass a command to the rc.d script
+<ul class="org-ul">
+<li>rcctl [-f] start &lt;daemon&gt; - Start the daemon (-f start degardless of <code>daemon_flags</code>)</li>
+<li>rcctl stop &lt;daemon&gt; - Stop the daemon</li>
+<li>rcctl restart &lt;daemon&gt; - Restart the daemon</li>
+<li>rcctl check &lt;daemon&gt; - Check if the daemon is running</li>
+</ul></li>
+</ul></li>
+<li>Split up into several parts:
+<ul class="org-ul">
+<li>/etc/rc - Startup command script</li>
+<li>/etc/rc.conf - System daemon configuration database (don't touch)</li>
+<li>/etc/rc.conf.local - System local configuration</li>
+<li>/etc/rc/d - Location of rc/d (8) scripts</li>
+</ul></li>
+<li>rc.conf[.local]
+<ul class="org-ul">
+<li><code>apmd_flags=NP</code> - Daemon disabled</li>
+<li><code>apmd_flags=</code>   - Daemon enabled</li>
+<li><code>apmd_flags</code>-A= - Daemon enabled with special flags</li>
+</ul></li>
+<li>Special services (pf, ipsec, etc.) only hav a YES/NO option
+<ul class="org-ul">
+<li><code>pf_enabled=YES</code></li>
+</ul></li>
+<li><code>pkg_scripts</code> - Services that have to startup and shutdown in order
+<ul class="org-ul">
+<li>Example: <code>pkg_scripts=messagebus cupsd</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1053bed" class="outline-3">
+<h3 id="org1053bed"><span class="section-number-3">1.21</span> Logs</h3>
+<div class="outline-text-3" id="text-1-21">
+<ul class="org-ul">
+<li>Most logs are stores in /var/logs as you'd expect
+<ul class="org-ul">
+<li>Auth, pf, mail, daemons, etc.</li>
+<li>httpd logs are stored in /var/www/logs</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc532b67" class="outline-3">
+<h3 id="orgc532b67"><span class="section-number-3">1.22</span> Network Interfaces</h3>
+<div class="outline-text-3" id="text-1-22">
+<ul class="org-ul">
+<li>/etc/myname - Hostname</li>
+<li>/etc/mygateway - Static default gateway
+<ul class="org-ul">
+<li>Ingored by DHCP</li>
+</ul></li>
+<li>/etc/resolv.conf - Nameserver config
+<ul class="org-ul">
+<li>Overwritten by DHCP</li>
+</ul></li>
+<li>/etc/hostname.&lt;if&gt; where &lt;if&gt; is the name of the interface</li>
+<li>Enable DHCP on interface re0:
+<ul class="org-ul">
+<li>echo "dhcp" &gt; /etc/hostname.re0</li>
+</ul></li>
+<li>Set static IP on t=interface re0:
+<ul class="org-ul">
+<li>echo "inet &lt;ip addr? &lt;subnet mask&gt; NONE" &gt; /etc/hostname.re0</li>
+<li>echo "inet 192.168.2.23 255.255.255.0 NONE" &gt; /etc/hostname.re0</li>
+</ul></li>
+<li>To auto-join a wireless network when it's around on iw0:
+<ul class="org-ul">
+<li>echo "join &lt;NWID&gt; wpakey &lt;password&gt;" &gt; /etc/hostname.iw0</li>
+</ul></li>
+<li>man hostname.if</li>
+<li>man ifconfig</li>
+<li>Anything that doesn't match the configuration syntax is passed to ifconfig
+<ul class="org-ul">
+<li>Example: join Shopify wpakey NotThePassword</li>
+</ul></li>
+<li>Lines starting with a bang are run as commands
+<ul class="org-ul">
+<li>Example: !route add 10.0.5.0/24 10.0.1.1</li>
+</ul></li>
+<li>/etc/netstart - Network startup script, configures:
+<ul class="org-ul">
+<li>hostname</li>
+<li>loopback</li>
+<li>bridges</li>
+<li>etc</li>
+</ul></li>
+<li>To re-apply a configuration to an interface: sh /etc/netstart &lt;if&gt;</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd41875b" class="outline-3">
+<h3 id="orgd41875b"><span class="section-number-3">1.23</span> ifconfig (8)</h3>
+<div class="outline-text-3" id="text-1-23">
+<ul class="org-ul">
+<li>Used for all network configuration</li>
+<li>No ip/iwconfig/wpa<sub>supplicant</sub>/vconfig/brctl/nmcli</li>
+<li>Join WiFi</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">$ ifconfig iw0 join MySSID wpakey ThePassword
+</pre>
+</div>
+<ul class="org-ul">
+<li>Create vlan:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">$ ifconfig vlan5 create
+$ ifconfig vlan5 parent em1 192.168.5.1/24
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb479668" class="outline-3">
+<h3 id="orgb479668"><span class="section-number-3">1.24</span> Package Management</h3>
+<div class="outline-text-3" id="text-1-24">
+<ul class="org-ul">
+<li><code>pkg_add</code>         - Install packages</li>
+<li><code>pkg_delete</code>      - Removed Packages
+<ul class="org-ul">
+<li><code>pkg_delete -a</code> - Remove unused dependencies</li>
+</ul></li>
+<li><code>pkg_info</code>        - Get package information
+<ul class="org-ul">
+<li><code>pkg_info -Q</code>   - Search for packages</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1ccbd69" class="outline-3">
+<h3 id="org1ccbd69"><span class="section-number-3">1.25</span> OpenBSD Partitions</h3>
+<div class="outline-text-3" id="text-1-25">
+<ul class="org-ul">
+<li>Disks identified with DUID in /etc/fstab</li>
+<li>Disklabel partitions
+<ul class="org-ul">
+<li>Partition c is the whole disk</li>
+</ul></li>
+<li>Fast FileSystem (FFS)
+<ul class="org-ul">
+<li>Stable</li>
+<li>Old</li>
+<li>Updated frequently by the OpenBSD devs</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6484641" class="outline-3">
+<h3 id="org6484641"><span class="section-number-3">1.26</span> Commonly used commands</h3>
+<div class="outline-text-3" id="text-1-26">
+<ul class="org-ul">
+<li>ksh(1) - default shell</li>
+<li>sysctl (8) - manage kernel state</li>
+<li>usbdevs (8) - list usb devices</li>
+<li>pcidump (8) - list pci devices</li>
+<li>disklabel (8) - format OpenBSD disks</li>
+<li>sysctl hw.disknames - list disks</li>
+<li>vmstat (8) - check ram usage</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org74d7649" class="outline-3">
+<h3 id="org74d7649"><span class="section-number-3">1.27</span> Window &amp; Display Managers</h3>
+<div class="outline-text-3" id="text-1-27">
+<ul class="org-ul">
+<li>DWM  - The suckless dynamic window manager (less than 1000 lines of code)</li>
+<li>FVWM - Fully bloated, complicated to configure</li>
+<li>TWM  - Old crap</li>
+<li>More bloat:
+<ul class="org-ul">
+<li>Mate, gnome, lxqt</li>
+</ul></li>
+<li>Change default WM in $HOME/.xsession, or $HOME/.xinitrc</li>
+<li>Enable Xenodm (display manages)
+<ul class="org-ul">
+<li>rcctl enable xenodm</li>
+<li>rcctl start xenodm</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8e0ab2f" class="outline-3">
+<h3 id="org8e0ab2f"><span class="section-number-3">1.28</span> Resources</h3>
+<div class="outline-text-3" id="text-1-28">
+<ol class="org-ol">
+<li>Youtube (<a href="https://youtube.com/watch?v=EkDVKthufAM">?v=EkDVKthufAM</a>)</li>
+<li><a href="https://man.openbsd.org">https://man.openbsd.org</a></li>
+<li><a href="https://www.openbsd.org/mail.html">Mailing List</a></li>
+<li><a href="https://undeadly.org">OpenBSD Journal</a></li>
+<li><a href="https://bronevichok.ru/openbsdnow/">Planet OpenBSD</a></li>
+<li><a href="https://github.com/ligurio/awesome-openbsd">Awesome-openbsd</a></li>
+<li><a href="https://blog.lambda.cx">Post</a></li>
+</ol>
+
+<hr />
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6330259" class="outline-2">
+<h2 id="org6330259"><span class="section-number-2">2</span> The OpenBSD Web Stack</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6217634" class="outline-3">
+<h3 id="org6217634"><span class="section-number-3">2.1</span> The Software Life Circle</h3>
+<div class="outline-text-3" id="text-2-1">
+<pre class="example" id="orgb447b44">
+Alice - "I made a simple tool!"
+Bob   - "It's a great tool! Here's a feature."
+Cal   - "Here's more features!"
+Dale  - feature, feature, feature, feature
+World - "bloatware, ughh"
+Annie - "I made a simple tool!" :)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org098db9c" class="outline-3">
+<h3 id="org098db9c"><span class="section-number-3">2.2</span> OpenBSD vs the Software Cyrcle</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>OpenBSD stands athwart the software feature cyrcle, shouting "Stop!"</li>
+<li>Simple tools that do one job well</li>
+<li>Read "Features are Faults" by Yed Uangst</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfa741d6" class="outline-3">
+<h3 id="orgfa741d6"><span class="section-number-3">2.3</span> Web Stack Components</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>httpd web server</li>
+<li>relayd proxy and redirector</li>
+<li>CARP IP-layer redundancy</li>
+<li>PF packet filter</li>
+<li>LibreSSL</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org84bcf98" class="outline-3">
+<h3 id="org84bcf98"><span class="section-number-3">2.4</span> LibreSSL &amp; PF</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>All writtento LibreSSL APIs, not OpenSSL</li>
+<li>Hooks into PF</li>
+<li>No LibreSSL or PF, no httpd/relayd</li>
+<li>Platforms:
+<ul class="org-ul">
+<li>OpenBSD</li>
+<li>FreeBSD w/LibreSSL like TrueOS or HardenedBSD</li>
+<li>FreeBSD with custom packages</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6b30615" class="outline-3">
+<h3 id="org6b30615"><span class="section-number-3">2.5</span> httpd</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Simple web server</li>
+<li>Config syntax remoniscent of nginx &amp; other OpenBSD programs</li>
+<li>Chrooted into /var/www</li>
+<li>/etc/httpd.conf</li>
+<li>FastCGI</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd83bc6a" class="outline-3">
+<h3 id="orgd83bc6a"><span class="section-number-3">2.6</span> Httpd.conf</h3>
+<div class="outline-text-3" id="text-2-6">
+<pre class="example" id="org0a6fc9b">
+public_ip="192.0.2.101"
+
+server "www.manosvasilakis.gr" {
+	include "/etc.httpd-global.conf"
+	alias "manosvasilakis.gr"
+	listen on $public_ip port 80
+	root "/manosvasilakis.gr"
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org59707c7" class="outline-3">
+<h3 id="org59707c7"><span class="section-number-3">2.7</span> Per-Location Rules</h3>
+<div class="outline-text-3" id="text-2-7">
+<pre class="example" id="org54cb25f">
+server "www.manosvasilakis.gr" {
+	...
+	directory auto index
+	location "/files/" {
+		directory no auto index
+	}
+	location "/secret/*" {
+		authenticate "Nope!" with "/htpasswords"
+	}
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9893dd9" class="outline-3">
+<h3 id="org9893dd9"><span class="section-number-3">2.8</span> Default Server</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>Listens on all IPs</li>
+<li>Client pokes at IP without providing a hostname,
+get the default</li>
+<li>/var/www/htdocs</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdd85b43" class="outline-3">
+<h3 id="orgdd85b43"><span class="section-number-3">2.9</span> Blocks and Redirects</h3>
+<div class="outline-text-3" id="text-2-9">
+<pre class="example" id="orge22e73b">
+...
+location "/rss.xml" {
+	block return 302 "index/cgi?rss=1"
+}
+
+server "www.manosvasilakis.gr" {
+	listen on $public_ipb port 80
+	block return 301 "https://$SERVER_NAME$REQUEST_URI"
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org217df6d" class="outline-3">
+<h3 id="org217df6d"><span class="section-number-3">2.10</span> Globs</h3>
+<div class="outline-text-3" id="text-2-10">
+<ul class="org-ul">
+<li>Shell globs in httpd.conf</li>
+</ul>
+<pre class="example" id="orgd268303">
+server "www?.manosvasilakis.gr" {
+	alias "www.manosvasilakis.gr"
+	listen on $public_ip6 port 80
+	root "/www1"
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5cbdd3b" class="outline-3">
+<h3 id="org5cbdd3b"><span class="section-number-3">2.11</span> Wildcards &amp; Classes</h3>
+<div class="outline-text-3" id="text-2-11">
+<pre class="example" id="orga19bf65">
+server "*.manosvasilakis.gr" {
+	alias manosvasilakis.gr
+	listen on $public_ip6 port 80
+	root "/www1"
+}
+server "[ab1][cd2].manosvasilakis.gr" {
+}
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org9c8b7a5" class="outline-3">
+<h3 id="org9c8b7a5"><span class="section-number-3">2.12</span> Perl Regexes</h3>
+<div class="outline-text-3" id="text-2-12">
+<ul class="org-ul">
+<li>Nightmarishly complicated</li>
+<li>Convoluted to use</li>
+<li>Impossible to verify in code</li>
+<li>Most of use use only a tiny part of them</li>
+<li>OpenBSD: Nope!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf5f22dc" class="outline-3">
+<h3 id="orgf5f22dc"><span class="section-number-3">2.13</span> Lua Patterns</h3>
+<div class="outline-text-3" id="text-2-13">
+<ul class="org-ul">
+<li>Lots of regex-style functionality</li>
+<li>Much smaller</li>
+<li>Much simpler</li>
+<li>Much less maddening</li>
+<li>Look like globs</li>
+<li>Identify patterns with "match" keyword</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4466f53" class="outline-3">
+<h3 id="org4466f53"><span class="section-number-3">2.14</span> Lua Character Classes</h3>
+<div class="outline-text-3" id="text-2-14">
+<ul class="org-ul">
+<li>period (.) = any possible character</li>
+<li>%a = all letters</li>
+<li>%d = all digits</li>
+<li>%g = all printable characters except spaces</li>
+<li>%l = all lowercase letters</li>
+<li>%u = all upercase letters</li>
+<li>%w = all alphanumeric characters</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org47bbc3b" class="outline-3">
+<h3 id="org47bbc3b"><span class="section-number-3">2.15</span> Custom Lua Classes</h3>
+<div class="outline-text-3" id="text-2-15">
+<ul class="org-ul">
+<li>Put classes in brackets:
+<ul class="org-ul">
+<li>[a-p,r-z] - all lowercase letters but q</li>
+<li>[%a%d] - all letters, all digits</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7b7b37c" class="outline-3">
+<h3 id="org7b7b37c"><span class="section-number-3">2.16</span> Multiples</h3>
+<div class="outline-text-3" id="text-2-16">
+<ul class="org-ul">
+<li>W* -&gt; 0 or more Ws</li>
+<li>W+ -&gt; 1 or more Ws</li>
+<li>* and + -&gt; match longest possible strings</li>
+<li>^ -&gt; anchor to front of string</li>
+<li>$ -&gt; anchor to end of string</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org71b476b" class="outline-3">
+<h3 id="org71b476b"><span class="section-number-3">2.17</span> Httpd Logs</h3>
+<div class="outline-text-3" id="text-2-17">
+<ul class="org-ul">
+<li>Defaults to traditional Apache log format</li>
+</ul>
+<pre class="example" id="org87339ff">
+server mwl.io {
+	log style combined
+	log access mwl/mwl_access
+	log error mwl/mwl_err
+	...
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3621cfe" class="outline-3">
+<h3 id="org3621cfe"><span class="section-number-3">2.18</span> Httpd Debugging</h3>
+<div class="outline-text-3" id="text-2-18">
+<ul class="org-ul">
+<li>Test configuration before restarting</li>
+</ul>
+<pre class="example" id="org9f778db">
+# httpd -n
+</pre>
+<ul class="org-ul">
+<li>Check test config</li>
+</ul>
+<pre class="example" id="orgfcf0d9f">
+# httpd -nf /etc/httpd-test.conf
+</pre>
+<ul class="org-ul">
+<li>Run in foreground</li>
+</ul>
+<pre class="example" id="org888dd5f">
+# httpd -dvvv
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5a65236" class="outline-3">
+<h3 id="org5a65236"><span class="section-number-3">2.19</span> Dynamic Content</h3>
+<div class="outline-text-3" id="text-2-19">
+<ul class="org-ul">
+<li>Uses FastCGI interface with slowcgi(8)</li>
+<li>500 errors? showcgi not running</li>
+</ul>
+<pre class="example" id="org47cb95d">
+server "bgp.manosvasilakis.gr {
+	listen on * port 80
+	location "/cgi-bin/*" {
+		root "/"
+		fastcgi
+	}
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org32e517d" class="outline-3">
+<h3 id="org32e517d"><span class="section-number-3">2.20</span> Httpd Chroot</h3>
+<div class="outline-text-3" id="text-2-20">
+<ul class="org-ul">
+<li>Plus side: the webserver can only access stuff in /var/www</li>
+<li>Down side: the webserver can only access stuff in /var/www</li>
+<li>/var/www/etc/hosts, resolv.conf, locatime</li>
+<li>No Symlinks</li>
+<li>ldd(1) to identify shared libraries</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org54f400f" class="outline-3">
+<h3 id="org54f400f"><span class="section-number-3">2.21</span> Sample App: Wordpress</h3>
+<div class="outline-text-3" id="text-2-21">
+<ul class="org-ul">
+<li>If WordPress runs, anything runs!</li>
+<li>MariaDB instead of MySQL</li>
+<li>Choose PHP version</li>
+<li>rc.conf:</li>
+</ul>
+<pre class="example" id="org5b52f81">
+httpd_flags=""
+pkg_scripts="mysqld php70_fpm"
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org80c9d75" class="outline-3">
+<h3 id="org80c9d75"><span class="section-number-3">2.22</span> MariaDB socket in chroot</h3>
+<div class="outline-text-3" id="text-2-22">
+<pre class="example" id="orge956fee">
+# mkdir -p /var/www/var/run/mysql
+# chown _mysql:_mysql /var/www/var/run/mysql
+</pre>
+
+<ul class="org-ul">
+<li>/etc/my.cnf</li>
+</ul>
+<pre class="example" id="org00aaec0">
+[client]
+socket = /var/www/var/run/mysql/mysql.sock
+[mysqld]
+socket = /var/www/var/run/mysql/mysql.sock
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org95e8a6d" class="outline-3">
+<h3 id="org95e8a6d"><span class="section-number-3">2.23</span> Configure PHP Modules</h3>
+<div class="outline-text-3" id="text-2-23">
+<pre class="example" id="org8539770">
+# cd /etc/php-7.0
+# cp ../php-7.0.sample/* .
+# rcctl start php70_fpm
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orged4ca78" class="outline-3">
+<h3 id="orged4ca78"><span class="section-number-3">2.24</span> httpd.conf</h3>
+<div class="outline-text-3" id="text-2-24">
+<pre class="example" id="org2d5d74b">
+server "blog.manosvasilakis.gr" {
+	listen on * port 80
+	directory index index.php
+	location "*.php" {
+		fastcgi socket "/run/php-fpm.sock"
+	}
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0a03f86" class="outline-3">
+<h3 id="org0a03f86"><span class="section-number-3">2.25</span> TLS</h3>
+<div class="outline-text-3" id="text-2-25">
+<ul class="org-ul">
+<li>Transport Layer Security</li>
+<li>Replaces SSL</li>
+<li>Only protects data in transit</li>
+<li>Verifies control of DNS</li>
+<li>Does not verify identity</li>
+<li>Certificate Authority based
+<ul class="org-ul">
+<li>CAs suck</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org37198b8" class="outline-3">
+<h3 id="org37198b8"><span class="section-number-3">2.26</span> Let's Encrypt</h3>
+<div class="outline-text-3" id="text-2-26">
+<ul class="org-ul">
+<li>Scripted automated certificate authority</li>
+<li>Free SSL certs all around!</li>
+<li>Work by verifying domain control, such as DNS entries or HTTP entries.</li>
+<li>Automated Certificate Management Environment (ACME)</li>
+<li>OpenBSD's acme-client(1) automates cert renewal</li>
+<li>Good for 90 days, must be automate renewal</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3232df1" class="outline-3">
+<h3 id="org3232df1"><span class="section-number-3">2.27</span> How ACME Works</h3>
+<div class="outline-text-3" id="text-2-27">
+<ul class="org-ul">
+<li>Initial client run: creates account keypair</li>
+<li>Client asks ACME CA what proof it will accept
+<ul class="org-ul">
+<li>LE accepts HTTP and DNS auth</li>
+<li>Client chooses with proof it wants to offer</li>
+<li>acme-client users HTTP</li>
+</ul></li>
+<li>acme-client creates CSR</li>
+<li>ACME CA say "create this HTTP file on server"</li>
+<li>acme-client creates file and signs it</li>
+<li>ACME CA checks for file</li>
+<li>If file exists, signs and retuns the cert</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb8485b6" class="outline-3">
+<h3 id="orgb8485b6"><span class="section-number-3">2.28</span> Configuring httpd for ACME</h3>
+<div class="outline-text-3" id="text-2-28">
+<pre class="example" id="org3600c39">
+server "www.manosvasilakis.gr" {
+	...
+	location "/.well-known/acme- challenge/*" {
+		root "/acme"
+		root strip 2
+		no auto index
+	}
+}
+domain www.manosvasilakis.gr {
+	alternative names {
+		manosvasilakis.gr api.manosvasilakis.gr
+	}
+	domain key "/etc/ssl/acme/manosvasilakis/manosvasilakis.key"
+	domain certificate "/etc/ssl/acme/manosvasilakis/manosvasilakis.crt"
+	domain chain certificate
+		"/etc/ssl/acme/manosvasilakis/manosvasilakis.chain.pem"
+	domain full chain certificate
+		"/etc/ssl/acme/manosvasilakis/manosvasilakis.fullchain.pem"
+	sign with $le		
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2cc50d3" class="outline-3">
+<h3 id="org2cc50d3"><span class="section-number-3">2.29</span> First acme-client run</h3>
+<div class="outline-text-3" id="text-2-29">
+<ul class="org-ul">
+<li>Create authority account key</li>
+</ul>
+<pre class="example" id="org8eabe53">
+# acme-client -A
+</pre>
+<ul class="org-ul">
+<li>Get cert</li>
+</ul>
+<pre class="example" id="org02ce989">
+# acme-client -vvD www.manosvasilakis.gr
+</pre>
+<ul class="org-ul">
+<li>Read -v output, learn things :)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org235ee3b" class="outline-3">
+<h3 id="org235ee3b"><span class="section-number-3">2.30</span> TLS in httpd.conf</h3>
+<div class="outline-text-3" id="text-2-30">
+<pre class="example" id="org8ccbc52">
+server "www.manosvasilakis.gr" {
+	listen on * port 80
+	block return 301 "https://$SERVER$REQUEST_URI"
+}
+server "www.manosvasilakis.gr" {
+	alias manosvasilakis.gr
+	listen on * tls port 443
+	tls certificate
+		"/etc/ssl/acme/manosvasilakis/manosvasilakis.fullchain.pem"
+	tls key "/etc/ssl/acme/manosvasilakis/manosvasilakis.key"
+	hsts
+	...
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1109184" class="outline-3">
+<h3 id="org1109184"><span class="section-number-3">2.31</span> Renew ACME Certs</h3>
+<div class="outline-text-3" id="text-2-31">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a89984;">#</span><span style="color: #a89984;">!/bin/</span><span style="color: #9d0006;">sh</span>
+acme-client www.manosvasilakis.gr
+<span style="color: #9d0006;">if</span> [ $<span style="color: #076678;">?</span> -eq 0 ]
+    <span style="color: #9d0006;">then</span>
+    /etc/rc.d/httpd reload
+<span style="color: #9d0006;">fi</span>
+</pre>
+</div>
+
+
+<p>
+Online Certificate Status Protocol
+</p>
+<ul class="org-ul">
+<li>Doesn't worth ur time for small websites</li>
+<li>Provides a speed up in cert validation</li>
+<li>Verifies certificate hasn't been revoked in the last 7 days</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #af3a03;">cd</span> /etc/ssl/acme/www
+ocspcheck -No www.der www.fullchain.pem
+</pre>
+</div>
+<pre class="example" id="org47c9c19">
+server "www.manosvasilakis.gr" {
+	tls certificate
+		"/etc/ssl/acme/www/www.fullchain.pem"
+	tls key "/etc/ssl/adme/www/www.key"
+	tls ocsp "/etc/ssl/acme/www/www.der"
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2705fe3" class="outline-3">
+<h3 id="org2705fe3"><span class="section-number-3">2.32</span> Maintain OCSP</h3>
+<div class="outline-text-3" id="text-2-32">
+<ul class="org-ul">
+<li>Certificates expire weekly</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a89984;">#</span><span style="color: #a89984;">!/bin/</span><span style="color: #9d0006;">sh</span>
+acme-client -v www.manosvasilakis.gr
+ocspcheck -vN -o /etc/ssh/acme/manosvasilakis/manosvasilakis.der
+    /etc/ssl/acme/manosvasilakis/manosvasilakis.fullchain.pem
+<span style="color: #9d0006;">if</span> [ $<span style="color: #076678;">?</span> == 0 ]
+    <span style="color: #9d0006;">then</span>
+    /etc/rc.d/httpd reload
+<span style="color: #9d0006;">fi</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52f0e90" class="outline-3">
+<h3 id="org52f0e90"><span class="section-number-3">2.33</span> More Httpd Bits</h3>
+<div class="outline-text-3" id="text-2-33">
+<p>
+The Internet is stupid and sometimes you have to&#x2026;
+</p>
+<ul class="org-ul">
+<li>Change site's TCP behavior in httpd.conf</li>
+<li>Set IP TTL</li>
+<li>Change TLS versions &amp; ciphers</li>
+<li>Users with websites? Home dirs under /var/www</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org21ebc78" class="outline-3">
+<h3 id="org21ebc78"><span class="section-number-3">2.34</span> Relayd</h3>
+<div class="outline-text-3" id="text-2-34">
+<ul class="org-ul">
+<li>PF can redirect traffic to hosts inside firewall</li>
+<li>Relayd tests hosts to see if they should receive traffic
+and adjusts PF tables appropriately</li>
+<li>Relayd can act as layer 7 proxy: accept connection,
+muck with them, connect onward.</li>
+<li>Start with a PF firewall: packet forwarding, inside can't
+connect to firewall itself, etc</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9f38522" class="outline-3">
+<h3 id="org9f38522"><span class="section-number-3">2.35</span> Relayd Components</h3>
+<div class="outline-text-3" id="text-2-35">
+<ul class="org-ul">
+<li>Relayd daemon - runs checks
+<ul class="org-ul">
+<li>Parent process</li>
+<li>Host Check Engine</li>
+<li>PF Engine</li>
+<li>Relay Engine</li>
+</ul></li>
+<li>relayctl(8) - manages relayd</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2c93274" class="outline-3">
+<h3 id="org2c93274"><span class="section-number-3">2.36</span> Redirections</h3>
+<div class="outline-text-3" id="text-2-36">
+<ul class="org-ul">
+<li>Pure TCP/IP load balancing</li>
+</ul>
+<pre class="example" id="orge0258b1">
+table &lt;www&gt; {192.0.2.101 192.0.2.102}
+redirect www {
+	listen on $ext_addr port 90 interface en0
+	forward to &lt;www&gt; check http "/" code 200
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org63eca13" class="outline-3">
+<h3 id="org63eca13"><span class="section-number-3">2.37</span> Macros (like any other OpenBSD program)</h3>
+<div class="outline-text-3" id="text-2-37">
+<pre class="example" id="orge71f4c5">
+www1="192.0.2.101"
+www2="192.0.2.102"
+ext_ip="203.0.113.213"
+
+table &lt;www&gt; {$www1 $www2}
+redirect www {
+	listen on $ext_ip port 80 interface em0
+	forward to &lt;www&gt; check http "/" code 200
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf2d0ed9" class="outline-3">
+<h3 id="orgf2d0ed9"><span class="section-number-3">2.38</span> relayctl(8)</h3>
+<div class="outline-text-3" id="text-2-38">
+<pre class="example" id="org3b241ae">
+# relayctl show summary
+
+id  Type      Name         Avlbltu  Status
+1   redirect  www                   active
+1   table     www:80                active (2 hosts)
+1   host      192.0.2.101  100.00%  up
+2   host      192.0.2.102  100.00%  up
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org41a9462" class="outline-3">
+<h3 id="org41a9462"><span class="section-number-3">2.39</span> Host Checks</h3>
+<div class="outline-text-3" id="text-2-39">
+<ul class="org-ul">
+<li>ICMP checks</li>
+<li>TCP port test</li>
+<li>HTTP response code check</li>
+<li>TLS check</li>
+<li>HTTP response code over TLS check</li>
+<li>File integrity check</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org638cf3e" class="outline-3">
+<h3 id="org638cf3e"><span class="section-number-3">2.40</span> More Host Checks</h3>
+<div class="outline-text-3" id="text-2-40">
+<ul class="org-ul">
+<li>Exchange arbitrary data
+forward to &lt;smtp&gt; check send "" expect \
+	"220 mail.manosvasilakis.gr *"</li>
+<li>External scripts
+forward to &lt;www&gt; check script \
+	"/usr/local/scripts/dnscheck.sh"</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a89984;">#</span><span style="color: #a89984;">!/bin/</span><span style="color: #9d0006;">sh</span>
+! dig www.manosvasilakis.gr @$<span style="color: #076678;">1</span> | grep <span style="color: #79740e;">"qr aa rd"</span> <span style="color: #79740e;">\</span>
+    &gt; /dev/null
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4783037" class="outline-3">
+<h3 id="org4783037"><span class="section-number-3">2.41</span> Relays</h3>
+<div class="outline-text-3" id="text-2-41">
+<ul class="org-ul">
+<li>Relays accept TCP connection, examine traffic, create new connection
+to destinations</li>
+<li>Can filter traffic</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd223879" class="outline-3">
+<h3 id="orgd223879"><span class="section-number-3">2.42</span> SSH Relay</h3>
+<div class="outline-text-3" id="text-2-42">
+<pre class="example" id="orge60c8a1">
+tcp protocol fixup {
+	tcp nodelay
+}
+
+relay ssh {
+	listen on 203.0.113.213 port 2222
+	forward to &lt;ssh? port 22
+	protocol fixup
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org98a6d62" class="outline-3">
+<h3 id="org98a6d62"><span class="section-number-3">2.43</span> Relays let you do weird things</h3>
+<div class="outline-text-3" id="text-2-43">
+<pre class="example" id="orga641776">
+# bill promised he only uses get method in da site...
+http protocol getonly {
+	pass quick method GET
+	block label "Forbidden Method"
+}
+
+# bill promised that he doesn't use phpMyAdmin...
+# i don't trust billy.
+block request url "www4.manosvasilakis.gr/phpMyAdmin"
+	label "Bill is a Wimp"
+
+# no websockets bill :)
+block request handler "Upgrade" vaue "websocket"
+
+# but if you really hate bill... strip the user-agent header.
+match request handler remove "Users-Agent"
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org29ffa7b" class="outline-3">
+<h3 id="org29ffa7b"><span class="section-number-3">2.44</span> TLS Acceleration</h3>
+<div class="outline-text-3" id="text-2-44">
+<ul class="org-ul">
+<li>Put SSL on the load balancer</li>
+</ul>
+<pre class="example" id="org80cef99">
+http protocol https {
+	match request header append "X-Forwarded-For" \
+		value "$REMOTE_ADDR"
+	match request header append "X-Forwarded-By" \
+		value "$SERVER_ADDR:$SERVER_PORT"
+	match request header set "Connection" \
+		value "close"
+	# Various TCP performance options
+	tcp { nodelay, sack, socket buffer 65536, backlog 128 }
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0b97977" class="outline-3">
+<h3 id="org0b97977"><span class="section-number-3">2.45</span> Other Relay Fun</h3>
+<div class="outline-text-3" id="text-2-45">
+<ul class="org-ul">
+<li>Relays do not do SNI yet</li>
+<li>Enable/disable client-renegotiations, session tickets, etc.</li>
+<li>Can do HA with CARP</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcfe0db9" class="outline-3">
+<h3 id="orgcfe0db9"><span class="section-number-3">2.46</span> Resources</h3>
+<div class="outline-text-3" id="text-2-46">
+<ol class="org-ol">
+<li>Youtube (<a href="https://youtube.com/watch?v=u-62QXjhLxk">?v=u-62QXjhLxk</a>)</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Manos Vasilakis (advizor.gr)</p>
+<p class="date">Created: 2022-01-23 Sun 12:24</p>
+</div>
+</body>
+</html>
